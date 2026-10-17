@@ -19,7 +19,7 @@ public partial class ListViewSample : ContentView
 	private void OnDeleteRow(object? sender, EventArgs e) =>
 		ContextOutput.Text = $"删除请求 / Delete: {(sender as MenuItem)?.BindingContext}（示例中不真正删除）";
 
-	private void OnRefresh()
+	private void OnRefresh(object? sender, EventArgs e)
 	{
 		RefreshListView.ItemsSource = SampleData.CreateItems(6).Select(i => i with { Detail = $"已刷新 {System.DateTime.Now:HH:mm:ss}" }).ToList();
 		RefreshListView.IsRefreshing = false;

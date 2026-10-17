@@ -40,29 +40,33 @@
                 <controls:ControlExample.Example>
                     <VerticalStackLayout RadioButtonGroup.GroupName="size" Spacing="8">
                         <RadioButton Value="S">
-                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <RadioButton.Content>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                                 <BoxView Grid.Column="0" Color="#C8C8C8" WidthRequest="28" HeightRequest="28" CornerRadius="6" />
                                 <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                     <Label Text="小 / Small" FontFamily="OpenSansSemibold" />
                                     <Label Text="适合单人使用" FontSize="11" />
                                 </VerticalStackLayout>
                             </Grid>
+                        </RadioButton.Content>
                         </RadioButton>
                         <RadioButton Value="L">
-                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <RadioButton.Content>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                                 <BoxView Grid.Column="0" Color="#512BD4" WidthRequest="28" HeightRequest="28" CornerRadius="6" />
                                 <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                     <Label Text="大 / Large" FontFamily="OpenSansSemibold" />
                                     <Label Text="适合团队使用" FontSize="11" />
                                 </VerticalStackLayout>
                             </Grid>
+                        </RadioButton.Content>
                         </RadioButton>
                     </VerticalStackLayout>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
             <controls:ControlExample Title="事件 / Events"
-                                     Description="CheckedChanged 获取 CheckedChangedEventArgs.IsChecked；结合 Value 可得到所选值。"
+                                     Description="CheckedChanged 获取 CheckedChangedEventArgs.Value；结合 Value 可得到所选值。"
                                      Xaml="{StaticResource RadioBindXaml}">
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="4">

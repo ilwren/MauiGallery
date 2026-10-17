@@ -10,14 +10,14 @@
        FontSize="12"
        TextColor="DarkRed" /&gt;</x:String>
         <x:String x:Key="LabelFormatXaml">&lt;Label&gt;
-    &lt;Label.FormattedString&gt;
+    &lt;Label.FormattedText&gt;
         &lt;FormattedString&gt;
             &lt;Span Text="粗体 " FontAttributes="Bold" /&gt;
             &lt;Span Text="斜体 " FontAttributes="Italic" /&gt;
             &lt;Span Text="下划线"
                   TextDecorations="Underline" /&gt;
         &lt;/FormattedString&gt;
-    &lt;/Label.FormattedString&gt;
+    &lt;/Label.FormattedText&gt;
 &lt;/Label&gt;</x:String>
         <x:String x:Key="LabelBreakXaml">&lt;Label Text="很长很长的文本..."
        LineBreakMode="TailTruncation" /&gt;</x:String>
@@ -51,23 +51,23 @@
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="8">
                         <Label>
-                            <Label.FormattedString>
+                            <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="粗体 " FontAttributes="Bold" FontSize="18" />
                                     <Span Text="斜体 " FontAttributes="Italic" FontSize="18" />
                                     <Span Text="下划线" TextDecorations="Underline" FontSize="18" TextColor="#512BD4" />
                                 </FormattedString>
-                            </Label.FormattedString>
+                            </Label.FormattedText>
                         </Label>
                         <Label>
-                            <Label.FormattedString>
+                            <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="混色文本：" FontSize="15" />
                                     <Span Text="红 " TextColor="Red" FontSize="15" />
                                     <Span Text="绿 " TextColor="Green" FontSize="15" />
                                     <Span Text="蓝" TextColor="Blue" FontSize="15" />
                                 </FormattedString>
-                            </Label.FormattedString>
+                            </Label.FormattedText>
                         </Label>
                     </VerticalStackLayout>
                 </controls:ControlExample.Example>

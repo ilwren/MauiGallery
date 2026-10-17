@@ -9,7 +9,7 @@
     &lt;TableRoot Title="设置 / Settings"&gt;
         &lt;TableSection Title="账号 / Account"&gt;
             &lt;TextCell Text="用户名" Detail="maui_user" /&gt;
-            &lt;SwitchCell Text="通知" IsOn="True" /&gt;
+            &lt;SwitchCell Text="通知" On="True" /&gt;
         &lt;/TableSection&gt;
     &lt;/TableRoot&gt;
 &lt;/TableView&gt;</x:String>
@@ -36,8 +36,8 @@
                                 <TextCell Text="邮箱 / Email" Detail="user@example.com" />
                             </TableSection>
                             <TableSection Title="偏好 / Preferences">
-                                <SwitchCell Text="接收通知 / Notifications" IsOn="True" />
-                                <SwitchCell Text="深色模式 / Dark mode" IsOn="False" />
+                                <SwitchCell Text="接收通知 / Notifications" On="True" />
+                                <SwitchCell Text="深色模式 / Dark mode" On="False" />
                             </TableSection>
                             <TableSection Title="其他 / Other">
                                 <EntryCell Label="昵称 / Nickname" Placeholder="输入昵称" />

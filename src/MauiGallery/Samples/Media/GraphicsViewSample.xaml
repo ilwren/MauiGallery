@@ -18,7 +18,7 @@ public void Draw(ICanvas canvas, RectF dirtyRect)
     canvas.DrawLine(10, 10, 190, 190);
 }</x:String>
         <x:String x:Key="GvInteractXaml">&lt;GraphicsView StartInteraction="OnStart"
-               MoveInteraction="OnMove"
+               DragInteraction="OnMove"
                EndInteraction="OnEnd" /&gt;</x:String>
     </ContentView.Resources>
 
@@ -61,7 +61,7 @@ public void Draw(ICanvas canvas, RectF dirtyRect)
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <GraphicsView x:Name="TouchCanvas" HeightRequest="180"
-                                          StartInteraction="OnStart" MoveInteraction="OnMove" EndInteraction="OnEnd" />
+                                          StartInteraction="OnStart" DragInteraction="OnMove" EndInteraction="OnEnd" />
                         </Border>
                         <Label x:Name="TouchOutput" Text="在上方区域拖动 / Drag above" FontSize="12" />
                     </VerticalStackLayout>

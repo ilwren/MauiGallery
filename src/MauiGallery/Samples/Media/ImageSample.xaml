@@ -58,7 +58,7 @@
                                      Description="AspectFit（等比完整显示）、AspectFill（等比填满裁剪）、Fill（拉伸填满）、Center（居中原始尺寸）。"
                                      Xaml="{StaticResource ImageAspectXaml}">
                 <controls:ControlExample.Example>
-                    <FlexLayout Wrap="Wrap" Spacing="0">
+                    <FlexLayout Wrap="Wrap">
                         <VerticalStackLayout Margin="0,0,10,10" Spacing="4">
                             <Image Source="dotnet_bot.png" WidthRequest="110" HeightRequest="80" BackgroundColor="#F4F4F7" Aspect="AspectFit" />
                             <Label Text="AspectFit" FontSize="11" HorizontalOptions="Center" />

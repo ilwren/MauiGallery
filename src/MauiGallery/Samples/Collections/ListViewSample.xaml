@@ -96,7 +96,7 @@
                         <ListView x:Name="RefreshListView" HeightRequest="150"
                                   IsPullToRefreshEnabled="True"
                                   IsRefreshing="False"
-                                  RefreshCommand="OnRefresh">
+                                  Refreshing="OnRefresh">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />

@@ -96,9 +96,9 @@
                             <RoundRectangle CornerRadius="10" />
                         </Border.StrokeShape>
                         <Border.Background>
-                            <ImageBrush Source="dotnet_bot.png" Opacity="0.5" />
+                            <SolidColorBrush Color="#80512BD4" />
                         </Border.Background>
-                        <Label Text="图像画刷背景 / ImageBrush" VerticalOptions="Center" HorizontalOptions="Center"
+                        <Label Text="半透明画刷 / translucent brush" VerticalOptions="Center" HorizontalOptions="Center"
                                BackgroundColor="#80FFFFFF" Padding="8" />
                     </Border>
                 </controls:ControlExample.Example>

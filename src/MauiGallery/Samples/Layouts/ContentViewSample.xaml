@@ -8,8 +8,8 @@
         <x:String x:Key="CvBasicXaml">&lt;ContentView&gt;
     &lt;Label Text="ContentView 包裹任意内容" /&gt;
 &lt;/ContentView&gt;</x:String>
-        <x:String x:Key="CvTemplateXaml">&lt;TemplatedView&gt;
-    &lt;TemplatedView.ControlTemplate&gt;
+        <x:String x:Key="CvTemplateXaml">&lt;ContentView&gt;
+    &lt;ContentView.ControlTemplate&gt;
         &lt;ControlTemplate&gt;
             &lt;Border&gt;
                 &lt;Grid ColumnDefinitions="Auto,*"&gt;
@@ -17,9 +17,9 @@
                 &lt;/Grid&gt;
             &lt;/Border&gt;
         &lt;/ControlTemplate&gt;
-    &lt;/TemplatedView.ControlTemplate&gt;
+    &lt;/ContentView.ControlTemplate&gt;
     &lt;Label Text="被模板包裹的内容" /&gt;
-&lt;/TemplatedView&gt;</x:String>
+&lt;/ContentView&gt;</x:String>
         <x:String x:Key="CvBindingXaml">&lt;!-- TemplateBinding 在 ControlTemplate 内绑定宿主属性 --&gt;
 &lt;Label Text="{TemplateBinding Title}" /&gt;</x:String>
     </ContentView.Resources>
@@ -38,12 +38,12 @@
             </controls:ControlExample>
 
             <controls:ControlExample Title="ControlTemplate + ContentPresenter / 控件模板"
-                                     Description="TemplatedView/ControlTemplate 定义可复用外观；ContentPresenter 是模板中内容的占位符。"
+                                     Description="ContentView/ControlTemplate 定义可复用外观；ContentPresenter 是模板中内容的占位符。"
                                      Xaml="{StaticResource CvTemplateXaml}">
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="10">
-                        <TemplatedView>
-                            <TemplatedView.ControlTemplate>
+                        <ContentView>
+                            <ContentView.ControlTemplate>
                                 <ControlTemplate>
                                     <Border BackgroundColor="#EEE6FF" Padding="16">
                                         <Border.StrokeShape>
@@ -55,15 +55,15 @@
                                         </Grid>
                                     </Border>
                                 </ControlTemplate>
-                            </TemplatedView.ControlTemplate>
+                            </ContentView.ControlTemplate>
                             <VerticalStackLayout>
                                 <Label Text="模板化卡片 / Templated card" FontFamily="OpenSansSemibold" />
                                 <Label Text="ContentPresenter 放置的内容" FontSize="12" />
                             </VerticalStackLayout>
-                        </TemplatedView>
+                        </ContentView>
 
-                        <TemplatedView>
-                            <TemplatedView.ControlTemplate>
+                        <ContentView>
+                            <ContentView.ControlTemplate>
                                 <ControlTemplate>
                                     <Border BackgroundColor="#FCE4EC" Padding="16">
                                         <Border.StrokeShape>
@@ -75,9 +75,9 @@
                                         </Grid>
                                     </Border>
                                 </ControlTemplate>
-                            </TemplatedView.ControlTemplate>
+                            </ContentView.ControlTemplate>
                             <Label Text="同一模板、不同内容 / Same template, different content" />
-                        </TemplatedView>
+                        </ContentView>
                     </VerticalStackLayout>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
@@ -86,8 +86,8 @@
                                      Description="TemplateBinding 在 ControlTemplate 内引用宿主属性（轻量级单向绑定）。"
                                      Xaml="{StaticResource CvBindingXaml}">
                 <controls:ControlExample.Example>
-                    <TemplatedView>
-                        <TemplatedView.ControlTemplate>
+                    <ContentView>
+                        <ContentView.ControlTemplate>
                             <ControlTemplate>
                                 <Border Padding="16">
                                     <Border.StrokeShape>
@@ -99,8 +99,8 @@
                                     </VerticalStackLayout>
                                 </Border>
                             </ControlTemplate>
-                        </TemplatedView.ControlTemplate>
-                    </TemplatedView>
+                        </ContentView.ControlTemplate>
+                    </ContentView>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 

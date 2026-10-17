@@ -65,10 +65,6 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="12" />
                             </Border.StrokeShape>
-                            <VisualStateManager.GoToStateNames>
-                                <x:String>Expanded</x:String>
-                                <x:String>Collapsed</x:String>
-                            </VisualStateManager.GoToStateNames>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroupList>
                                     <VisualStateGroup x:Name="ExpandStates">

@@ -7,7 +7,7 @@
         <MenuBarItem Text="文件 / File">
             <MenuFlyoutItem Text="新建 / New" Clicked="OnNew">
                 <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Modifiers="Control" Key="N" />
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="N" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="打开 / Open" Clicked="OnOpen" />

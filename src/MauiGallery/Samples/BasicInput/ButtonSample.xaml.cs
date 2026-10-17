@@ -7,6 +7,10 @@ public partial class ButtonSample : ContentView
 	public ButtonSample()
 	{
 		InitializeComponent();
+
+		// ButtonContentLayout is a nested type — set it in code
+		ImageButton.ContentLayout = new Button.ButtonContentLayout(
+			Button.ButtonContentLayout.ImagePosition.Left, 8);
 	}
 
 	private void OnCountClicked(object? sender, EventArgs e)

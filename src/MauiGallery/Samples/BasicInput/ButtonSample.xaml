@@ -81,13 +81,10 @@
                                      Description="Button.ImageSource 可显示图像（含 FontImageSource 字体图标），ContentLayout 控制图文布局。"
                                      Xaml="{StaticResource ButtonImageXaml}">
                 <controls:ControlExample.Example>
-                    <Button Text="图像按钮 / Image" HorizontalOptions="Start">
+                    <Button x:Name="ImageButton" Text="图像按钮 / Image" HorizontalOptions="Start">
                         <Button.ImageSource>
                             <FontImageSource Glyph="&#x2764;" Color="White" Size="18" />
                         </Button.ImageSource>
-                        <Button.ContentLayout>
-                            <ButtonContentLayout ImagePosition="Left" Spacing="8" />
-                        </Button.ContentLayout>
                     </Button>
                 </controls:ControlExample.Example>
             </controls:ControlExample>

@@ -9,7 +9,7 @@
           Detail="详细信息 / Detail"
           TextColor="Purple" /&gt;</x:String>
         <x:String x:Key="CellTypesXaml">&lt;ImageCell ImageSource="dotnet_bot.png" Text="..." /&gt;
-&lt;SwitchCell Text="通知" IsOn="True" /&gt;
+&lt;SwitchCell Text="通知" On="True" /&gt;
 &lt;EntryCell Label="昵称" Placeholder="输入..." /&gt;
 &lt;ViewCell&gt; ...任意布局... &lt;/ViewCell&gt;</x:String>
         <x:String x:Key="CellContextXaml">&lt;TextCell Text="右键/长按我"&gt;
@@ -46,7 +46,7 @@
                         <TableRoot>
                             <TableSection>
                                 <ImageCell ImageSource="dotnet_bot.png" Text="图像单元格 / ImageCell" Detail="图标 + 两行文本" />
-                                <SwitchCell Text="接收通知 / Notifications" IsOn="True" OnChanged="OnSwitchChanged" />
+                                <SwitchCell Text="接收通知 / Notifications" On="True" OnChanged="OnSwitchChanged" />
                                 <EntryCell Label="昵称 / Nick" Placeholder="输入昵称" />
                                 <ViewCell>
                                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Padding="8">

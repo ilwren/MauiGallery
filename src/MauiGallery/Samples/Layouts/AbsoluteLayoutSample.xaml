@@ -8,7 +8,7 @@
         <x:String x:Key="AbsBasicXaml">&lt;AbsoluteLayout HeightRequest="200"&gt;
     &lt;BoxView Color="Purple"
              AbsoluteLayout.LayoutBounds="20,20,100,60"
-             AbsoluteLayout.LayoutFlags="Absolute" /&gt;
+             AbsoluteLayout.LayoutFlags="None" /&gt;
     &lt;BoxView Color="Teal"
              AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3"
              AbsoluteLayout.LayoutFlags="All" /&gt;
@@ -28,13 +28,13 @@
                     <AbsoluteLayout HeightRequest="200" BackgroundColor="#F4F4F7">
                         <BoxView Color="#512BD4"
                                  AbsoluteLayout.LayoutBounds="20,20,100,60"
-                                 AbsoluteLayout.LayoutFlags="Absolute" />
+                                 AbsoluteLayout.LayoutFlags="None" />
                         <BoxView Color="#D600AA"
                                  AbsoluteLayout.LayoutBounds="150,40,80,40"
-                                 AbsoluteLayout.LayoutFlags="Absolute" />
+                                 AbsoluteLayout.LayoutFlags="None" />
                         <Label Text="像素定位 / Pixel"
                                AbsoluteLayout.LayoutBounds="20,100,150,30"
-                               AbsoluteLayout.LayoutFlags="Absolute" />
+                               AbsoluteLayout.LayoutFlags="None" />
                     </AbsoluteLayout>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
