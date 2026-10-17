@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.StackLayoutSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="StackVerticalXaml">&lt;VerticalStackLayout Spacing="8"&gt;
+    &lt;Label Text="第一行" /&gt;
+    &lt;Label Text="第二行" /&gt;
+&lt;/VerticalStackLayout&gt;</x:String>
+        <x:String x:Key="StackHorizontalXaml">&lt;HorizontalStackLayout Spacing="8"&gt;
+    &lt;BoxView WidthRequest="40" HeightRequest="40" /&gt;
+    &lt;Label Text="右侧文本" VerticalOptions="Center" /&gt;
+&lt;/HorizontalStackLayout&gt;</x:String>
+        <x:String x:Key="StackLegacyXaml">&lt;StackLayout Orientation="Vertical" Spacing="4"&gt; ... &lt;/StackLayout&gt;
+&lt;!-- 传统 StackLayout 为兼容保留；新代码请用 VerticalStackLayout / HorizontalStackLayout --&gt;</x:String>
+        <x:String x:Key="StackOptionsXaml">&lt;VerticalStackLayout Spacing="8"
+                   Padding="12"
+                   HorizontalOptions="Center"&gt; ... &lt;/VerticalStackLayout&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="VerticalStackLayout / 垂直堆叠"
+                                     Description="子视图自上而下依次排列，Spacing 控制间距，Padding 控制内边距。"
+                                     Xaml="{StaticResource StackVerticalXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8" BackgroundColor="#F4F4F7" Padding="12">
+                        <Label Text="第一行 / Row 1" BackgroundColor="#DFD8F7" />
+                        <Label Text="第二行 / Row 2" BackgroundColor="#DFD8F7" />
+                        <Label Text="第三行 / Row 3" BackgroundColor="#DFD8F7" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="HorizontalStackLayout / 水平堆叠"
+                                     Description="子视图自左向右依次排列（FlowDirection 影响方向）。"
+                                     Xaml="{StaticResource StackHorizontalXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="8" BackgroundColor="#F4F4F7" Padding="12">
+                        <BoxView Color="#512BD4" WidthRequest="40" HeightRequest="40" CornerRadius="8" />
+                        <Label Text="右侧文本 / Text" VerticalOptions="Center" />
+                        <Button Text="按钮" VerticalOptions="Center" Padding="10,6" MinimumHeightRequest="34" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="布局选项 / LayoutOptions"
+                                     Description="每个视图的 HorizontalOptions/VerticalOptions（Start/Center/End/Fill/AndExpand）决定在堆叠中的对齐与扩展。"
+                                     Xaml="{StaticResource StackOptionsXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8" BackgroundColor="#F4F4F7" Padding="12" HeightRequest="150">
+                        <Label Text="Fill（默认）" BackgroundColor="#C8C8C8" />
+                        <Label Text="Start" BackgroundColor="#C8C8C8" HorizontalOptions="Start" />
+                        <Label Text="Center" BackgroundColor="#C8C8C8" HorizontalOptions="Center" />
+                        <Label Text="End" BackgroundColor="#C8C8C8" HorizontalOptions="End" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="StackLayout（遗留）/ Legacy StackLayout"
+                                     Description="传统 StackLayout 通过 Orientation 切换方向，功能已被两个专用布局取代。"
+                                     Xaml="{StaticResource StackLegacyXaml}">
+                <controls:ControlExample.Example>
+                    <StackLayout Orientation="Horizontal" Spacing="4" BackgroundColor="#F4F4F7" Padding="12">
+                        <Label Text="传统 StackLayout" BackgroundColor="#DFD8F7" />
+                        <Label Text="Orientation=Horizontal" BackgroundColor="#DFD8F7" />
+                    </StackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

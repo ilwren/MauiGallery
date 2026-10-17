@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Accessibility.SemanticsSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="SemXaml">&lt;Button Text="确定"&gt;
+    &lt;SemanticProperties.Description&gt;保存设置并关闭对话框&lt;/SemanticProperties.Description&gt;
+    &lt;SemanticProperties.Hint&gt;双击确认&lt;/SemanticProperties.Hint&gt;
+&lt;/Button&gt;</x:String>
+        <x:String x:Key="SemHeadingXaml">&lt;Label Text="第一章"
+       SemanticProperties.HeadingLevel="Level1" /&gt;</x:String>
+        <x:String x:Key="AutomationXaml">&lt;Entry AutomationProperties.IsInAccessibleTree="True"
+       AutomationProperties.Name="用户名输入框"
+       AutomationProperties.HelpText="输入登录名" /&gt;</x:String>
+        <x:String x:Key="SemOrderXaml">&lt;!-- SemanticProperties.Description 补充视觉之外的语义；
+       ToolTipProperties.Text 提供悬停提示；
+       VisualElement.InputTransparent 控制是否接收输入 --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="SemanticProperties / 语义属性"
+                                     Description="屏幕阅读器（TalkBack/VoiceOver/Narrator）朗读 Description 与 Hint；语义完善的 UI 是可访问应用的基础。"
+                                     Xaml="{StaticResource SemXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="✓">
+                            <SemanticProperties.Description>保存设置并关闭对话框</SemanticProperties.Description>
+                            <SemanticProperties.Hint>双击确认</SemanticProperties.Hint>
+                        </Button>
+                        <Button Text="✓" ToolTipProperties.Text="保存设置并关闭对话框">
+                            <SemanticProperties.Description>保存设置并关闭对话框，带工具提示</SemanticProperties.Description>
+                        </Button>
+                        <Label Text="开启系统屏幕阅读器测试朗读效果 / Test with a screen reader" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="标题层级 / HeadingLevel"
+                                     Description="SemanticProperties.HeadingLevel（None/Level1~Level9）标记结构标题，帮助屏幕阅读器导航。"
+                                     Xaml="{StaticResource SemHeadingXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="第一章 / Chapter 1" FontFamily="OpenSansSemibold" FontSize="20">
+                            <SemanticProperties.HeadingLevel>Level1</SemanticProperties.HeadingLevel>
+                        </Label>
+                        <Label Text="1.1 小节 / Section" FontSize="16">
+                            <SemanticProperties.HeadingLevel>Level2</SemanticProperties.HeadingLevel>
+                        </Label>
+                        <Label Text="正文内容 / Body text" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="AutomationProperties / 自动化属性"
+                                     Description="AutomationProperties（IsInAccessibleTree、Name、HelpText）为 UI 自动化与测试提供稳定标识。"
+                                     Xaml="{StaticResource AutomationXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry Placeholder="用户名 / Username"
+                               AutomationProperties.IsInAccessibleTree="True"
+                               AutomationProperties.Name="用户名输入框"
+                               AutomationProperties.HelpText="输入登录名" />
+                        <Button Text="登录 / Sign in"
+                                AutomationProperties.IsInAccessibleTree="True"
+                                AutomationProperties.Name="登录按钮" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

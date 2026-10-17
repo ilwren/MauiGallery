@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Shapes.BrushesSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="BrushSolidXaml">&lt;BoxView&gt;
+    &lt;BoxView.Background&gt;
+        &lt;SolidColorBrush Color="#512BD4" /&gt;
+    &lt;/BoxView.Background&gt;
+&lt;/BoxView&gt;
+&lt;!-- 简写：BackgroundColor="#512BD4" --&gt;</x:String>
+        <x:String x:Key="BrushLinearXaml">&lt;LinearGradientBrush StartPoint="0,0" EndPoint="1,1"&gt;
+    &lt;GradientStop Color="#512BD4" Offset="0.0" /&gt;
+    &lt;GradientStop Color="#D600AA" Offset="1.0" /&gt;
+&lt;/LinearGradientBrush&gt;</x:String>
+        <x:String x:Key="BrushRadialXaml">&lt;RadialGradientBrush Center="0.5,0.5" Radius="0.6"&gt;
+    &lt;GradientStop Color="White" Offset="0.0" /&gt;
+    &lt;GradientStop Color="#2B0B98" Offset="1.0" /&gt;
+&lt;/RadialGradientBrush&gt;</x:String>
+        <x:String x:Key="BrushImageXaml">&lt;Border&gt;
+    &lt;Border.Background&gt;
+        &lt;ImageBrush Source="dotnet_bot.png" /&gt;
+    &lt;/Border.Background&gt;
+&lt;/Border&gt;</x:String>
+        <x:String x:Key="BrushOnShapeXaml">&lt;RoundRectangle Fill="{StaticResource MyGradient}" /&gt;
+&lt;!-- 画刷可用于 Background、Fill、Stroke、Shadow.Brush 等任何画刷属性 --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="SolidColorBrush / 纯色"
+                                     Description="SolidColorBrush 是最常用的画刷；所有 BackgroundColor/Color 属性在底层都转换为画刷。"
+                                     Xaml="{StaticResource BrushSolidXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="12">
+                        <BoxView WidthRequest="90" HeightRequest="70" CornerRadius="10">
+                            <BoxView.Background>
+                                <SolidColorBrush Color="#512BD4" />
+                            </BoxView.Background>
+                        </BoxView>
+                        <BoxView WidthRequest="90" HeightRequest="70" CornerRadius="10" BackgroundColor="#D600AA" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="LinearGradientBrush / 线性渐变"
+                                     Description="StartPoint/EndPoint（0~1 比例）定义渐变方向；GradientStop 的 Offset（0~1）与 Color 定义色彩过渡。"
+                                     Xaml="{StaticResource BrushLinearXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <BoxView HeightRequest="80" CornerRadius="10">
+                            <BoxView.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#512BD4" Offset="0.0" />
+                                    <GradientStop Color="#D600AA" Offset="0.5" />
+                                    <GradientStop Color="#FF8800" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+                        <BoxView HeightRequest="80" CornerRadius="10">
+                            <BoxView.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#EEE6FF" Offset="0.0" />
+                                    <GradientStop Color="#512BD4" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="RadialGradientBrush / 径向渐变"
+                                     Description="Center、RadiusX/RadiusY（或 Radius）定义径向渐变的中心与范围。"
+                                     Xaml="{StaticResource BrushRadialXaml}">
+                <controls:ControlExample.Example>
+                    <BoxView HeightRequest="120" CornerRadius="10">
+                        <BoxView.Background>
+                            <RadialGradientBrush Center="0.5,0.5" Radius="0.6">
+                                <GradientStop Color="#DFD8F7" Offset="0.0" />
+                                <GradientStop Color="#2B0B98" Offset="1.0" />
+                            </RadialGradientBrush>
+                        </BoxView.Background>
+                    </BoxView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ImageBrush / 图像画刷"
+                                     Description="ImageBrush 用图像填充区域（Opacty 可调节透明度），支持 Aspect。"
+                                     Xaml="{StaticResource BrushImageXaml}">
+                <controls:ControlExample.Example>
+                    <Border HeightRequest="120" Padding="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Border.Background>
+                            <SolidColorBrush Color="#80512BD4" />
+                        </Border.Background>
+                        <Label Text="半透明画刷 / translucent brush" VerticalOptions="Center" HorizontalOptions="Center"
+                               BackgroundColor="#80FFFFFF" Padding="8" />
+                    </Border>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="画刷应用位置 / Where brushes apply"
+                                     Description="Background、Border.Fill/Stroke、Shadow.Brush、BoxView.Background、Label.Background 等任何 Paint 类型属性都接受画刷。"
+                                     Xaml="{StaticResource BrushOnShapeXaml}">
+                <controls:ControlExample.Example>
+                    <RoundRectangle HeightRequest="70" CornerRadius="14">
+                        <RoundRectangle.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#512BD4" Offset="0" />
+                                <GradientStop Color="#FF8800" Offset="1" />
+                            </LinearGradientBrush>
+                        </RoundRectangle.Fill>
+                    </RoundRectangle>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

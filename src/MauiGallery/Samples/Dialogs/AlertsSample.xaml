@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Dialogs.AlertsSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="AlertXaml">// DisplayAlert(title, message, cancel)
+bool ok = await DisplayAlert("退出", "确定要退出吗？", "确定", "取消");</x:String>
+        <x:String x:Key="ActionSheetXaml">// DisplayActionSheet(title, cancel, destruction, params buttons)
+string action = await DisplayActionSheet("分享到", "取消", null,
+                                         "微信", "微博", "邮件");</x:String>
+        <x:String x:Key="PromptXaml">// DisplayPrompt(title, message, accept, cancel, placeholder, maxLength)
+string? text = await DisplayPrompt("重命名", "输入新名称：",
+                                   "确定", "取消", "名称", 20);</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="DisplayAlert / 确认对话框"
+                                     Description="DisplayAlert 显示平台原生确认框；返回 Task&lt;bool&gt;（两个按钮）或 Task（单按钮）。"
+                                     Xaml="{StaticResource AlertXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="显示确认框 / Show alert" Clicked="OnAlert" HorizontalOptions="Start" />
+                        <Button Text="显示单按钮提示 / Show message" Clicked="OnMessage" HorizontalOptions="Start" />
+                        <Label x:Name="AlertOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="DisplayActionSheet / 操作表"
+                                     Description="DisplayActionSheet 显示选项列表；可含取消按钮与破坏性按钮（红色）。返回所选字符串。"
+                                     Xaml="{StaticResource ActionSheetXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="显示操作表 / Show action sheet" Clicked="OnActionSheet" HorizontalOptions="Start" />
+                        <Label x:Name="SheetOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="DisplayPrompt / 输入对话框"
+                                     Description="DisplayPrompt 弹出单行输入框（Placeholder、MaxLength 可选），返回输入字符串或 null。"
+                                     Xaml="{StaticResource PromptXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="显示输入框 / Show prompt" Clicked="OnPrompt" HorizontalOptions="Start" />
+                        <Label x:Name="PromptOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

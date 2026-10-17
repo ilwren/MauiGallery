@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Media.ImageSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ImageFileXaml">&lt;Image Source="dotnet_bot.png" /&gt;
+&lt;!-- FileImageSource: Resources/Images 下的图片（可省略扩展名） --&gt;</x:String>
+        <x:String x:Key="ImageUriXaml">&lt;Image Source="https://aka.ms/maui_logo" /&gt;
+&lt;!-- UriImageSource 也支持 CachingEnabled / CacheValidity --&gt;</x:String>
+        <x:String x:Key="ImageFontXaml">&lt;Image&gt;
+    &lt;Image.Source&gt;
+        &lt;FontImageSource FontFamily="OpenSansRegular"
+                         Glyph="&#x1F600;"
+                         Size="48" /&gt;
+    &lt;/Image.Source&gt;
+&lt;/Image&gt;</x:String>
+        <x:String x:Key="ImageAspectXaml">&lt;Image Aspect="AspectFit" /&gt;
+&lt;Image Aspect="AspectFill" /&gt;
+&lt;Image Aspect="Fill" /&gt;
+&lt;Image Aspect="Center" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="图像来源 / Image sources"
+                                     Description="ImageSource 有四种：FileImageSource（资源文件）、UriImageSource（URI）、FontImageSource（字体图标）、StreamImageSource（流）。"
+                                     Xaml="{StaticResource ImageFileXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Image Source="dotnet_bot.png" HeightRequest="100" WidthRequest="100" BackgroundColor="#F4F4F7" />
+                            <Label Text="文件 / File" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <Image HeightRequest="100" WidthRequest="100" BackgroundColor="#F4F4F7">
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#x1F680;" Size="64" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="字体图标 / FontImage" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <Image HeightRequest="100" WidthRequest="100" BackgroundColor="#F4F4F7">
+                                <Image.Source>
+                                    <UriImageSource Uri="https://aka.ms/maui_logo" CachingEnabled="True" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="URI / UriImageSource" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="缩放模式 / Aspect"
+                                     Description="AspectFit（等比完整显示）、AspectFill（等比填满裁剪）、Fill（拉伸填满）、Center（居中原始尺寸）。"
+                                     Xaml="{StaticResource ImageAspectXaml}">
+                <controls:ControlExample.Example>
+                    <FlexLayout Wrap="Wrap">
+                        <VerticalStackLayout Margin="0,0,10,10" Spacing="4">
+                            <Image Source="dotnet_bot.png" WidthRequest="110" HeightRequest="80" BackgroundColor="#F4F4F7" Aspect="AspectFit" />
+                            <Label Text="AspectFit" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Margin="0,0,10,10" Spacing="4">
+                            <Image Source="dotnet_bot.png" WidthRequest="110" HeightRequest="80" BackgroundColor="#F4F4F7" Aspect="AspectFill" />
+                            <Label Text="AspectFill" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Margin="0,0,10,10" Spacing="4">
+                            <Image Source="dotnet_bot.png" WidthRequest="110" HeightRequest="80" BackgroundColor="#F4F4F7" Aspect="Fill" />
+                            <Label Text="Fill" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Margin="0,0,10,10" Spacing="4">
+                            <Image Source="dotnet_bot.png" WidthRequest="110" HeightRequest="80" BackgroundColor="#F4F4F7" Aspect="Center" />
+                            <Label Text="Center" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="运行时切换源 / Switching source"
+                                     Description="Image.Source 可在运行时更换（UriImageSource/FileImageSource）。.NET 10 的 Image 不再公开加载事件，加载缓存由 ImageSource 管理。"
+                                     Xaml="&lt;Image x:Name=&quot;EventImage&quot;&#x0a;       Source=&quot;dotnet_bot.png&quot; /&gt;&#x0a;// 代码中：EventImage.Source = &quot;https://.../image.png&quot;;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Image x:Name="EventImage" Source="dotnet_bot.png" HeightRequest="100" WidthRequest="100"
+                               HorizontalOptions="Start" BackgroundColor="#F4F4F7" />
+                        <Button Text="切换源 / Swap source" Clicked="OnSwapSource" HorizontalOptions="Start" />
+                        <Label x:Name="ImageOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

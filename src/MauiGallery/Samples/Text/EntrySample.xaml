@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Text.EntrySample">
+
+    <ContentView.Resources>
+        <x:String x:Key="EntryBasicXaml">&lt;Entry Placeholder="请输入姓名 / Your name" /&gt;
+&lt;Entry Text="已有内容 / Prefilled" /&gt;
+&lt;Entry IsEnabled="False" Text="禁用 / Disabled" /&gt;</x:String>
+        <x:String x:Key="EntryKeyboardXaml">&lt;Entry Keyboard="Email" Placeholder="email@example.com" /&gt;
+&lt;Entry Keyboard="Numeric" Placeholder="数字 / Numeric" /&gt;
+&lt;Entry Keyboard="Telephone" Placeholder="电话 / Phone" /&gt;</x:String>
+        <x:String x:Key="EntrySecureXaml">&lt;Entry IsPassword="True"
+        Placeholder="密码 / Password"
+        ClearButtonVisibility="WhileEditing" /&gt;</x:String>
+        <x:String x:Key="EntryEventXaml">&lt;Entry TextChanged="OnTextChanged"
+        Completed="OnCompleted"
+        ReturnType="Search" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础输入框 / Basic Entry"
+                                     Description="Entry 是单行输入控件。Placeholder 显示占位提示；Text 为内容。"
+                                     Xaml="{StaticResource EntryBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry Placeholder="请输入姓名 / Your name" />
+                        <Entry Text="已有内容 / Prefilled" />
+                        <Entry IsEnabled="False" Text="禁用 / Disabled" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="键盘类型 / Keyboard types"
+                                     Description="Keyboard（Default/Email/Numeric/Telephone/Chat/Url）在移动端弹出相应软键盘；ReturnType 控制回车键样式。"
+                                     Xaml="{StaticResource EntryKeyboardXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry Keyboard="Email" Placeholder="email@example.com" ReturnType="Next" />
+                        <Entry Keyboard="Numeric" Placeholder="数字 / Numeric" />
+                        <Entry Keyboard="Telephone" Placeholder="电话 / Phone" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="密码与清除按钮 / Password &amp; clear"
+                                     Description="IsPassword 遮蔽输入；ClearButtonVisibility（Never/WhileEditing）提供一键清除；IsTextPredictionEnabled 控制联想输入。"
+                                     Xaml="{StaticResource EntrySecureXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry IsPassword="True"
+                               Placeholder="密码 / Password"
+                               ClearButtonVisibility="WhileEditing" />
+                        <Entry Placeholder="带清除按钮 / With clear button"
+                               ClearButtonVisibility="WhileEditing" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="TextChanged（TextChangedEventArgs.NewTextValue）在每次输入时触发；Completed 在回车/完成时触发。"
+                                     Xaml="{StaticResource EntryEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry Placeholder="边打字边看输出 / Type here"
+                               TextChanged="OnTextChanged"
+                               Completed="OnCompleted"
+                               ReturnType="Search" />
+                        <Label x:Name="EntryOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="外观 / Appearance"
+                                     Description="BackgroundColor、TextColor、PlaceholderColor、FontSize、HorizontalTextAlignment 等控制外观。"
+                                     Xaml="{StaticResource EntryBasicXaml}">
+                <controls:ControlExample.Example>
+                    <Entry Placeholder="圆角背景输入框 / Styled entry"
+                           BackgroundColor="#EEE6FF"
+                           TextColor="#2B0B98"
+                           PlaceholderColor="#512BD4"
+                           FontSize="16"
+                           HeightRequest="48" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

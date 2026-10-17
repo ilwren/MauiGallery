@@ -1,0 +1,24 @@
+## .NET / MAUI
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.cache
+*.dll
+*.exe
+*.pdb
+artifacts/
+TestResults/
+[Dd]ebug/
+[Rr]elease/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## IDE
+.idea/
+.vscode/
+*.swp

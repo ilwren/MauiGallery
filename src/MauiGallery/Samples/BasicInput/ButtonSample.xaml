@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.ButtonSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ButtonBasicXaml">&lt;Button Text="点击我 / Click me" /&gt;
+&lt;Button Text="禁用状态 / Disabled" IsEnabled="False" /&gt;</x:String>
+        <x:String x:Key="ButtonEventsXaml">&lt;Button Text="点我计数 / Count"
+        Clicked="OnCountClicked"
+        Pressed="OnPressed"
+        Released="OnReleased" /&gt;</x:String>
+        <x:String x:Key="ButtonStyleXaml">&lt;Button Text="自定义样式 / Styled"
+        BackgroundColor="#2B0B98"
+        TextColor="White"
+        FontSize="18"
+        CornerRadius="20"
+        Padding="24,12" /&gt;</x:String>
+        <x:String x:Key="ButtonImageXaml">&lt;Button Text="图像按钮 / Image"
+        FontFamily="OpenSansRegular"&gt;
+    &lt;Button.ImageSource&gt;
+        &lt;FontImageSource FontFamily="OpenSansRegular"
+                         Glyph="&#x2764;"
+                         Color="Red"
+                         Size="22" /&gt;
+    &lt;/Button.ImageSource&gt;
+&lt;/Button&gt;</x:String>
+        <x:String x:Key="ButtonCommandXaml">&lt;Button Text="{Binding MyText}"
+        Command="{Binding MyCommand}"
+        CommandParameter="hello" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础按钮 / Basic buttons"
+                                     Description="Button 是最常用的命令控件。IsEnabled 控制可用状态。"
+                                     Xaml="{StaticResource ButtonBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="点击我 / Click me" />
+                        <Button Text="禁用状态 / Disabled" IsEnabled="False" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="Clicked 在点击后触发；Pressed/Released 在按下与释放时触发。Command/CommandParameter 适合 MVVM 模式。"
+                                     Xaml="{StaticResource ButtonEventsXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="点我计数 / Count" Clicked="OnCountClicked" Pressed="OnPressed" Released="OnReleased" />
+                        <Label x:Name="EventOutput" Text="等待点击…" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自定义样式 / Custom appearance"
+                                     Description="BackgroundColor、TextColor、FontSize、CornerRadius、Padding、BorderColor/BorderWidth 可组合出各种按钮外观。"
+                                     Xaml="{StaticResource ButtonStyleXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="自定义样式 / Styled"
+                                BackgroundColor="#2B0B98"
+                                TextColor="White"
+                                FontSize="18"
+                                CornerRadius="20"
+                                Padding="24,12" />
+                        <Button Text="描边按钮 / Outline"
+                                BackgroundColor="Transparent"
+                                TextColor="{AppThemeBinding Light=#512BD4, Dark=#DFD8F7}"
+                                BorderColor="#512BD4"
+                                BorderWidth="2"
+                                CornerRadius="8" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="图像内容 / Image content"
+                                     Description="Button.ImageSource 可显示图像（含 FontImageSource 字体图标），ContentLayout 控制图文布局。"
+                                     Xaml="{StaticResource ButtonImageXaml}">
+                <controls:ControlExample.Example>
+                    <Button x:Name="ImageButton" Text="图像按钮 / Image" HorizontalOptions="Start">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="&#x2764;" Color="White" Size="18" />
+                        </Button.ImageSource>
+                    </Button>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="视觉状态 / Visual states"
+                                     Description="按钮内置 CommonStates（Normal / Disabled / PointerOver / Pressed），可用 VisualStateManager 自定义。"
+                                     Xaml="{StaticResource ButtonCommandXaml}">
+                <controls:ControlExample.Example>
+                    <Button Text="悬停/按下看效果 / Hover &amp; press me" HorizontalOptions="Start">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#D600AA" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#2B0B98" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                    </Button>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

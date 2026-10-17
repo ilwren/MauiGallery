@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Controls.ControlExample"
+             x:Name="Root">
+
+    <VerticalStackLayout Spacing="10" Padding="0,12">
+
+        <!-- Header: title + badge -->
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="{Binding Title, Source={x:Reference Root}}"
+                   Style="{StaticResource ExampleHeaderLabel}"
+                   VerticalOptions="Center" />
+            <Border BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}"
+                    Padding="8,2"
+                    VerticalOptions="Center"
+                    StrokeThickness="0"
+                    IsVisible="{Binding HasBadge, Source={x:Reference Root}}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Label Text="{Binding Badge, Source={x:Reference Root}}"
+                       FontSize="11"
+                       FontFamily="OpenSansSemibold"
+                       TextColor="{AppThemeBinding Light=#512BD4, Dark=#DFD8F7}" />
+            </Border>
+        </HorizontalStackLayout>
+
+        <!-- Description -->
+        <Label Text="{Binding Description, Source={x:Reference Root}}"
+               IsVisible="{Binding HasDescription, Source={x:Reference Root}}" />
+
+        <!-- Live example -->
+        <Border Style="{StaticResource ExampleHostBorder}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="12">
+                <ContentView x:Name="ExampleHost" />
+                <ContentView x:Name="OutputHost" IsVisible="False" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Interactive options -->
+        <Border BackgroundColor="{AppThemeBinding Light=#F4F4F7, Dark=#222228}"
+                Padding="12"
+                StrokeThickness="0"
+                IsVisible="{Binding HasOptions, Source={x:Reference Root}}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="8">
+                <Label Text="选项 / Options"
+                       FontFamily="OpenSansSemibold"
+                       FontSize="13" />
+                <ContentView x:Name="OptionsHost" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Source code -->
+        <Border BackgroundColor="{AppThemeBinding Light=#F7F7FA, Dark=#1B1B20}"
+                Padding="12"
+                StrokeThickness="0"
+                IsVisible="{Binding HasSource, Source={x:Reference Root}}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="8">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                    <Button Grid.Column="0"
+                            x:Name="ToggleButton"
+                            Text="显示源码 / Show source"
+                            FontSize="12"
+                            Padding="10,6"
+                            MinimumHeightRequest="34"
+                            Clicked="OnToggleSourceClicked" />
+                    <Button Grid.Column="2"
+                            Text="复制 / Copy"
+                            FontSize="12"
+                            Padding="10,6"
+                            MinimumHeightRequest="34"
+                            BackgroundColor="{AppThemeBinding Light=#E1E1E1, Dark=#404040}"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#E1E1E1}"
+                            Clicked="OnCopySourceClicked" />
+                </Grid>
+                <Label x:Name="SourceText"
+                       Style="{StaticResource CodeLabel}"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+        </Border>
+
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             xmlns:local="clr-namespace:MauiGallery.Samples.Styles"
+             x:Class="MauiGallery.Samples.Styles.DataTemplateSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="DtBasicXaml">&lt;DataTemplate&gt;
+    &lt;Label Text="{Binding Name}" /&gt;
+&lt;/DataTemplate&gt;
+&lt;!-- 用于 CollectionView.ItemTemplate、BindableLayout.ItemTemplate 等 --&gt;</x:String>
+        <x:String x:Key="DtSelectorXaml">&lt;local:MyDataTemplateSelector NormalTemplate="..." AltTemplate="..." /&gt;
+public class MyDataTemplateSelector : DataTemplateSelector
+{
+    protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        =&gt; ((Item)item).IsSpecial ? AltTemplate : NormalTemplate;
+}</x:String>
+        <x:String x:Key="DtControlXaml">&lt;ControlTemplate&gt;
+    &lt;Border&gt;
+        &lt;Grid ColumnDefinitions="Auto,*"&gt;
+            &lt;ContentPresenter /&gt;
+        &lt;/Grid&gt;
+    &lt;/Border&gt;
+&lt;/ControlTemplate&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="DataTemplate / 数据模板"
+                                     Description="DataTemplate 用 XAML 定义数据的视觉结构；集合控件的 ItemTemplate 就是 DataTemplate。配合 x:DataType 可编译绑定。"
+                                     Xaml="{StaticResource DtBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout x:Name="TemplateHost" Spacing="6">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" BackgroundColor="#F4F4F7" Padding="10">
+                                    <BoxView Color="#512BD4" WidthRequest="28" HeightRequest="28" CornerRadius="6" />
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="{Binding .}" FontFamily="OpenSansSemibold" />
+                                        <Label Text="DataTemplate 渲染 / rendered" FontSize="11" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="DataTemplateSelector / 模板选择器"
+                                     Description="DataTemplateSelector 按数据项内容动态选择模板（OnSelectTemplate）。下面按奇偶数交替样式。"
+                                     Xaml="{StaticResource DtSelectorXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout x:Name="SelectorHost" Spacing="6">
+                        <BindableLayout.ItemTemplate>
+                            <local:AlternatingTemplateSelector>
+                                <local:AlternatingTemplateSelector.EvenTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding .}" BackgroundColor="#EEE6FF" Padding="10" />
+                                    </DataTemplate>
+                                </local:AlternatingTemplateSelector.EvenTemplate>
+                                <local:AlternatingTemplateSelector.OddTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding .}" BackgroundColor="#FCE4EC" Padding="10" />
+                                    </DataTemplate>
+                                </local:AlternatingTemplateSelector.OddTemplate>
+                            </local:AlternatingTemplateSelector>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ControlTemplate / 控件模板"
+                                     Description="ControlTemplate 重绘控件整体外观；ContentPresenter 放置内容，TemplateBinding 绑定宿主属性（见 ContentView 页）。"
+                                     Xaml="{StaticResource DtControlXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="详见“布局 → ContentView 与模板”页面的完整示例。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="MultiBinding / 多值绑定"
+                                     Description="MultiBinding 组合多个绑定，经 IMultiValueConverter 汇总为单一值（如取两个值的最小值）。"
+                                     Xaml="&lt;Label&gt;&#x0a;    &lt;Label.Triggers&gt; &lt;DataTrigger ... /&gt; &lt;/Label.Triggers&gt;&#x0a;&lt;/Label&gt;&#x0a;&#x0a;var multi = new MultiBinding();&#x0a;multi.Bindings.Add(new Binding(nameof(Model.A)));&#x0a;multi.Bindings.Add(new Binding(nameof(Model.B)));&#x0a;multi.Converter = new MinValueConverter();">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="两列宽度的最小值（MinValueConverter）/ min of two bound values:" FontSize="12" />
+                        <BoxView x:Name="MultiBar" HeightRequest="16" BackgroundColor="#512BD4" WidthRequest="120" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

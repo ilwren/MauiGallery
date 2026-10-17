@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.FlexLayoutSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="FlexBasicXaml">&lt;FlexLayout Direction="Row"
+            Wrap="Wrap"
+            JustifyContent="SpaceAround"
+            AlignItems="Center"&gt;
+    &lt;Label Text="1" /&gt;
+    &lt;Label Text="2" /&gt;
+    ...
+&lt;/FlexLayout&gt;</x:String>
+        <x:String x:Key="FlexChildXaml">&lt;!-- 子项附加属性：FlexLayout.Grow / Shrink / Basis / AlignSelf --&gt;
+&lt;Label FlexLayout.Grow="1" FlexLayout.Basis="30%" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="换行与主轴 / Wrap &amp; justify"
+                                     Description="FlexLayout 实现 CSS Flexbox：Direction 决定主轴，Wrap 允许换行，JustifyContent 控制主轴分布，AlignItems 控制交叉轴对齐。"
+                                     Xaml="{StaticResource FlexBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <FlexLayout Direction="Row" Wrap="Wrap" JustifyContent="SpaceAround" AlignItems="Center"
+                                    BackgroundColor="#F4F4F7" Padding="8">
+                            <Label Text="1" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="2" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="3" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="4" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="5" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="6" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="7" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                            <Label Text="8" BackgroundColor="#512BD4" TextColor="White" Padding="14" Margin="2" />
+                        </FlexLayout>
+                        <Label Text="↑ Direction=Row, Wrap=Wrap, JustifyContent=SpaceAround" FontSize="11" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="子项属性 / Child properties"
+                                     Description="FlexLayout.Grow（放大比例）、Shrink（收缩比例）、Basis（初始主轴尺寸，可为百分比）、AlignSelf（单项交叉轴对齐）。"
+                                     Xaml="{StaticResource FlexChildXaml}">
+                <controls:ControlExample.Example>
+                    <FlexLayout Direction="Row" BackgroundColor="#F4F4F7" Padding="8" HeightRequest="80">
+                        <Label Text="Grow=1" FlexLayout.Grow="1" BackgroundColor="#512BD4" TextColor="White" Padding="8" Margin="2" />
+                        <Label Text="Grow=2" FlexLayout.Grow="2" BackgroundColor="#D600AA" TextColor="White" Padding="8" Margin="2" />
+                        <Label Text="Basis=30%" FlexLayout.Basis="30%" BackgroundColor="#2B0B98" TextColor="White" Padding="8" Margin="2" />
+                        <Label Text="AlignSelf=Start" FlexLayout.AlignSelf="Start" BackgroundColor="#9880e5" TextColor="White" Padding="8" Margin="2" />
+                    </FlexLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="垂直主轴 / Column direction"
+                                     Description="Direction=Column 时主轴为纵向；配合 Wrap 可形成瀑布式列。"
+                                     Xaml="{StaticResource FlexBasicXaml}">
+                <controls:ControlExample.Example>
+                    <FlexLayout Direction="Column" Wrap="Wrap" HeightRequest="150" BackgroundColor="#F4F4F7" Padding="8">
+                        <Label Text="A" BackgroundColor="#512BD4" TextColor="White" Padding="12" Margin="2" HeightRequest="60" />
+                        <Label Text="B" BackgroundColor="#D600AA" TextColor="White" Padding="12" Margin="2" HeightRequest="60" />
+                        <Label Text="C" BackgroundColor="#2B0B98" TextColor="White" Padding="12" Margin="2" HeightRequest="60" />
+                        <Label Text="D" BackgroundColor="#9880e5" TextColor="White" Padding="12" Margin="2" HeightRequest="60" />
+                    </FlexLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

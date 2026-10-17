@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:MauiGallery.Pages"
+       x:Class="MauiGallery.AppShell"
+       FlyoutBehavior="Flyout"
+       FlyoutHeaderBehavior="Default"
+       Title="MAUI Gallery">
+
+    <Shell.FlyoutHeader>
+        <Grid Padding="20,24" ColumnDefinitions="Auto,*" ColumnSpacing="12">
+            <Label Grid.Column="0" Text="🎨" FontSize="28" VerticalOptions="Center" />
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                <Label Text="MAUI Gallery" FontFamily="OpenSansSemibold" FontSize="22" />
+                <Label Text="全部 .NET MAUI 控件示例"
+                       FontSize="12"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <ShellContent
+        Title="主页"
+        Route="home"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate pages:HomePage}" />
+
+    <ShellContent
+        Title="所有控件"
+        Route="allcontrols"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate pages:AllControlsPage}" />
+
+    <!-- Control categories are appended here in code-behind (AppShell.xaml.cs). -->
+
+    <ShellContent
+        Title="搜索"
+        Route="search"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate pages:SearchPage}" />
+
+    <ShellContent
+        Title="关于"
+        Route="about"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate pages:AboutPage}" />
+
+</Shell>

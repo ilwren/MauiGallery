@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.StatusInfo.RefreshViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="RvBasicXaml">&lt;RefreshView IsRefreshing="{Binding IsRefreshing}"
+            RefreshCommand="{Binding RefreshCommand}"&gt;
+    &lt;ScrollView&gt; ...内容... &lt;/ScrollView&gt;
+&lt;/RefreshView&gt;</x:String>
+        <x:String x:Key="RvColorXaml">&lt;RefreshView RefreshColor="Purple" /&gt;</x:String>
+        <x:String x:Key="RvEventXaml">&lt;RefreshView Refreshing="OnRefreshing" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="下拉刷新 / Pull to refresh"
+                                     Description="RefreshView 包裹任意可滚动内容。下拉触发 RefreshCommand 或 Refreshing 事件；IsRefreshing 控制刷新指示器显示。"
+                                     Xaml="{StaticResource RvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="在内容区域下拉试试 / Pull down inside" FontSize="12" />
+                        <RefreshView x:Name="DemoRefresh" HeightRequest="220" RefreshColor="#512BD4" Refreshing="OnRefreshing">
+                            <ScrollView>
+                                <VerticalStackLayout x:Name="RefreshContent" Padding="12" Spacing="6">
+                                    <Label Text="内容 1 / Item 1" />
+                                    <Label Text="内容 2 / Item 2" />
+                                    <Label Text="内容 3 / Item 3" />
+                                    <Label Text="内容 4 / Item 4" />
+                                    <Label Text="内容 5 / Item 5" />
+                                    <Label Text="内容 6 / Item 6" />
+                                </VerticalStackLayout>
+                            </ScrollView>
+                        </RefreshView>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="与集合配合 / With CollectionView"
+                                     Description="RefreshView + CollectionView 是最常见的数据列表刷新组合。"
+                                     Xaml="{StaticResource RvEventXaml}">
+                <controls:ControlExample.Example>
+                    <RefreshView HeightRequest="200" RefreshColor="#D600AA" Refreshing="OnListRefreshing">
+                        <CollectionView x:Name="RefreshList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" Padding="0,6" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </RefreshView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

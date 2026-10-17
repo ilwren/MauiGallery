@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Navigation.ShellSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ShellXaml">&lt;Shell FlyoutBehavior="Flyout"&gt;
+    &lt;FlyoutItem Title="首页"&gt;
+        &lt;ShellContent Route="home"
+                      ContentTemplate="{DataTemplate local:HomePage}" /&gt;
+    &lt;/FlyoutItem&gt;
+    &lt;TabBar&gt;
+        &lt;ShellContent Route="list"
+                      ContentTemplate="{DataTemplate local:ListPage}" /&gt;
+        &lt;ShellContent Route="settings"
+                      ContentTemplate="{DataTemplate local:SettingsPage}" /&gt;
+    &lt;/TabBar&gt;
+&lt;/Shell&gt;</x:String>
+        <x:String x:Key="ShellNavXaml">// URI 路由导航（绝对 / 相对）
+await Shell.Current.GoToAsync("//list");
+await Shell.Current.GoToAsync("detail?id=42");
+await Shell.Current.GoToAsync("..");   // 返回
+
+// 注册全局路由
+Routing.RegisterRoute("detail", typeof(DetailPage));</x:String>
+        <x:String x:Key="ShellQueryXaml">// 查询参数传递
+await Shell.Current.GoToAsync($"controlinfo?id={item.UniqueId}");
+
+// 页面实现 IQueryAttributable 接收
+public void ApplyQueryAttributes(IDictionary&lt;string, object&gt; query)
+{
+    var id = query["id"] as string;
+}</x:String>
+        <x:String x:Key="ShellSearchXaml">&lt;Shell.SearchHandler
+    Placeholder="搜索"
+    SearchBoxVisibility="Auto"
+    QueryChanged="OnQueryChanged"
+    QuerySubmitted="OnQuerySubmitted" /&gt;</x:String>
+        <x:String x:Key="ShellBackXaml">&lt;Shell.BackButtonBehavior&gt;
+    &lt;BackButtonBehavior Command="{Binding BackCommand}"
+                        IconOverride="back.png"
+                        IsEnabled="True" /&gt;
+&lt;/Shell.BackButtonBehavior&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Shell 结构 / Shell structure"
+                                     Description="Shell 是应用外壳：FlyoutItem/MenuItem 组成飞出菜单，TabBar/Tab 组成标签栏，ShellContent 承载页面（ContentTemplate 延迟创建）。本画廊自身就基于 Shell。"
+                                     Xaml="{StaticResource ShellXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="当前应用即 Shell 示例：打开左侧飞出菜单可以看到 FlyoutItem 与分类导航。" />
+                        <Button Text="打开飞出菜单 / Open flyout" Clicked="OnOpenFlyout" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="URI 路由导航 / URI navigation"
+                                     Description="GoToAsync 使用 URI 导航：// 开头为绝对路由，../ 为相对返回；Routing.RegisterRoute 注册全局路由（本页按钮即演示）。"
+                                     Xaml="{StaticResource ShellNavXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="导航页演示 / Nav demo" Clicked="OnNavDemo" FontSize="12" />
+                            <Button Text="返回上一页 / Back" Clicked="OnBack" FontSize="12" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="查询参数 / Query parameters"
+                                     Description="导航 URI 的查询参数会传给目标页的 IQueryAttributable.ApplyQueryAttributes（本画廊的 controlinfo?id= 页面即如此实现）。"
+                                     Xaml="{StaticResource ShellQueryXaml}">
+                <controls:ControlExample.Example>
+                    <Button Text="打开 Button 控件页 / Go to button page" Clicked="OnGoButton" HorizontalOptions="Start" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="SearchHandler / 页内搜索"
+                                     Description="SearchHandler 附加到 ShellContent/页面，提供平台搜索框（如 Android 顶部搜索）；SearchBoxVisibility 控制显示方式。"
+                                     Xaml="{StaticResource ShellSearchXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="在 iOS/Android 上，SearchHandler 呈现为导航栏搜索框；本画廊的“搜索”页用 SearchBar 实现了类似功能。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="返回按钮行为 / BackButtonBehavior"
+                                     Description="Shell.BackButtonBehavior 自定义返回按钮的图标、命令与是否启用。"
+                                     Xaml="{StaticResource ShellBackXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="返回按钮行为可在控件页通过附加属性查看与修改。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="SearchHandler / 搜索框"
+                                     Description="Shell.SearchHandler 为 Shell 页面提供导航栏搜索（含建议列表）。点击打开实战页 / live demo page."
+                                     Xaml="&lt;Shell.SearchHandler&gt;&#x0a;    &lt;SearchHandler Placeholder=&quot;搜索…&quot;&#x0a;                   ShowsResults=&quot;True&quot;&#x0a;                   Command=&quot;{Binding SearchCommand}&quot; /&gt;&#x0a;&lt;/Shell.SearchHandler&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="打开 SearchHandler 实战页 / Open demo" Clicked="OnOpenSearchHandlerDemo" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

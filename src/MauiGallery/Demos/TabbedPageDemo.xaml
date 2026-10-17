@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="MauiGallery.Demos.TabbedPageDemo"
+            Title="TabbedPage 演示"
+            BarBackgroundColor="#512BD4"
+            BarTextColor="White">
+    <TabbedPage.Children>
+        <ContentPage Title="首页 / Home">
+            <Grid Padding="20" RowDefinitions="Auto,*">
+                <Label Text="TabbedPage Demo" FontFamily="OpenSansSemibold" FontSize="22" />
+                <Label Grid.Row="1" Text="每个子页对应一个标签（Tab）。BarBackgroundColor/BarTextColor 控制标签栏外观。" VerticalOptions="Start" Margin="0,12,0,0" />
+            </Grid>
+        </ContentPage>
+        <ContentPage Title="列表 / List">
+            <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="8">
+                    <Label Text="第二个标签页" FontFamily="OpenSansSemibold" FontSize="18" />
+                    <Label Text="TabbedPage 的子页就是普通 Page（通常是 ContentPage）。" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </ContentPage>
+        <ContentPage Title="设置 / Settings">
+            <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="8">
+                    <Label Text="第三个标签页" FontFamily="OpenSansSemibold" FontSize="18" />
+                    <Label Text="SelectedPage/SelectedIndex 可用代码切换标签。" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

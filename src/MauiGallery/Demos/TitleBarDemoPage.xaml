@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Demos.TitleBarDemoPage"
+             Title="TitleBar 演示">
+    <TitleBar Title="MAUI Gallery 文档" Subtitle="自定义标题栏演示">
+        <TitleBar.Icon>
+            <FontImageSource Glyph="&#x270E;" Size="16" />
+        </TitleBar.Icon>
+        <TitleBar.LeadingContent>
+            <Button Text="☰" Padding="8,4" MinimumHeightRequest="30" MinimumWidthRequest="36" />
+        </TitleBar.LeadingContent>
+        <TitleBar.TrailingContent>
+            <HorizontalStackLayout Spacing="6">
+                <Button Text="分享" Padding="10,4" MinimumHeightRequest="30" />
+                <Button Text="设置" Padding="10,4" MinimumHeightRequest="30" />
+            </HorizontalStackLayout>
+        </TitleBar.TrailingContent>
+    </TitleBar>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="TitleBar 演示" FontFamily="OpenSansSemibold" FontSize="22" />
+            <Label Text="窗口顶部的标题栏现在是可定制的 TitleBar 控件（Windows 与 Mac Catalyst 支持）。它包含图标、标题、副标题与前置/后置内容。" />
+            <Label Text="移动平台会忽略此控件（使用平台导航栏）。" FontSize="12" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

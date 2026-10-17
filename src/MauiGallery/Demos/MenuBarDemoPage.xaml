@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Demos.MenuBarDemoPage"
+             Title="MenuBar 演示">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="文件 / File">
+            <MenuFlyoutItem Text="新建 / New" Clicked="OnNew">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Modifiers="Ctrl" Key="N" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="打开 / Open" Clicked="OnOpen" />
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Text="退出 / Exit" Clicked="OnExit" />
+        </MenuBarItem>
+        <MenuBarItem Text="编辑 / Edit">
+            <MenuFlyoutSubItem Text="导出 / Export">
+                <MenuFlyoutItem Text="导出为 PDF" Clicked="OnExportPdf" />
+                <MenuFlyoutItem Text="导出为 PNG" Clicked="OnExportPng" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+        <MenuBarItem Text="帮助 / Help">
+            <MenuFlyoutItem Text="关于 / About" Clicked="OnAbout">
+                <MenuFlyoutItem.IconImageSource>
+                    <FontImageSource Glyph="&#x2139;" Size="18" />
+                </MenuFlyoutItem.IconImageSource>
+            </MenuFlyoutItem>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="MenuBar 演示" FontFamily="OpenSansSemibold" FontSize="22" />
+            <Label Text="Windows 顶部与 macOS 系统菜单栏会显示上面定义的菜单（移动端以溢出菜单呈现）。" />
+            <Label x:Name="Output" Text="触发菜单项后消息显示在这里" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

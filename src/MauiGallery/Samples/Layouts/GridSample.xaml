@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.GridSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="GridBasicXaml">&lt;Grid ColumnDefinitions="*,2*"
+      RowDefinitions="Auto,*"
+      RowSpacing="8" ColumnSpacing="8"&gt;
+    &lt;Label Grid.Row="0" Grid.ColumnSpan="2" Text="跨两列 / Span 2" /&gt;
+    &lt;BoxView Grid.Row="1" Grid.Column="0" Color="Purple" /&gt;
+    &lt;BoxView Grid.Row="1" Grid.Column="1" Color="Teal" /&gt;
+&lt;/Grid&gt;</x:String>
+        <x:String x:Key="GridLengthXaml">&lt;Grid ColumnDefinitions="Auto,*,100"&gt;
+&lt;!-- Auto: 按内容; *: 剩余空间按比例; 100: 绝对像素 --&gt;</x:String>
+        <x:String x:Key="GridSpanXaml">&lt;BoxView Grid.Row="1"
+        Grid.Column="1"
+        Grid.RowSpan="2"
+        Grid.ColumnSpan="2" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="行列定义 / Rows &amp; columns"
+                                     Description="RowDefinitions/ColumnDefinitions 用逗号分隔；值可为 Auto（内容大小）、*（比例）或绝对数字。RowSpacing/ColumnSpacing 控制间距。"
+                                     Xaml="{StaticResource GridBasicXaml}">
+                <controls:ControlExample.Example>
+                    <Grid ColumnDefinitions="*,2*" RowDefinitions="Auto,120" RowSpacing="8" ColumnSpacing="8">
+                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="跨两列的标题 / Header spanning 2 columns"
+                               BackgroundColor="#EEE6FF" Padding="8" />
+                        <BoxView Grid.Row="1" Grid.Column="0" Color="#512BD4" />
+                        <BoxView Grid.Row="1" Grid.Column="1" Color="#2B0B98" />
+                    </Grid>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="GridLength 尺寸 / Sizing"
+                                     Description="Auto 列跟随内容宽度；* 平分剩余空间；n* 按权重分配；固定数字为像素。"
+                                     Xaml="{StaticResource GridLengthXaml}">
+                <controls:ControlExample.Example>
+                    <Grid ColumnDefinitions="Auto,*,100" ColumnSpacing="8" HeightRequest="60">
+                        <Label Grid.Column="0" Text="Auto / 自适应" BackgroundColor="#DFD8F7" Padding="4" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="* / 剩余空间" BackgroundColor="#EEE6FF" Padding="4" VerticalOptions="Center" />
+                        <Label Grid.Column="2" Text="100px" BackgroundColor="#C8C8C8" Padding="4" VerticalOptions="Center" />
+                    </Grid>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="跨行跨列 / Spans"
+                                     Description="Grid.RowSpan / Grid.ColumnSpan 让视图跨越多个单元格，是复杂表单与卡片布局的基础。"
+                                     Xaml="{StaticResource GridSpanXaml}">
+                <controls:ControlExample.Example>
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="60,60,60" RowSpacing="6" ColumnSpacing="6">
+                        <BoxView Grid.Row="0" Grid.Column="0" Color="#512BD4" />
+                        <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Color="#D600AA" />
+                        <BoxView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Color="#2B0B98" />
+                        <BoxView Grid.Row="1" Grid.Column="1" Color="#9880e5" />
+                        <BoxView Grid.Row="1" Grid.Column="2" Color="#512BD4" />
+                        <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Color="#DFD8F7" />
+                    </Grid>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

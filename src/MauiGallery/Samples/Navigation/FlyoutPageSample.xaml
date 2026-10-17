@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Navigation.FlyoutPageSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="FlyoutXaml">&lt;FlyoutPage FlyoutLayoutBehavior="Popover"&gt;
+    &lt;FlyoutPage.Flyout&gt;
+        &lt;ContentPage Title="菜单" /&gt;
+    &lt;/FlyoutPage.Flyout&gt;
+    &lt;FlyoutPage.Detail&gt;
+        &lt;NavigationPage&gt;
+            &lt;x:Arguments&gt;
+                &lt;local:HomePage /&gt;
+            &lt;/x:Arguments&gt;
+        &lt;/NavigationPage&gt;
+    &lt;/FlyoutPage.Detail&gt;
+&lt;/FlyoutPage&gt;</x:String>
+        <x:String x:Key="FlyoutBehaviorXaml">&lt;!-- FlyoutLayoutBehavior: Default / Popover / Split / SplitOnLandscape --&gt;
+&lt;FlyoutPage FlyoutLayoutBehavior="SplitOnLandscape" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="FlyoutPage / 主从布局"
+                                     Description="FlyoutPage 由 Flyout（菜单）与 Detail（详情）组成：手机上菜单通常以弹出方式显示（Popover），桌面/平板可分栏（Split）。"
+                                     Xaml="{StaticResource FlyoutXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="点击打开整页演示 / Open full-screen demo" />
+                        <Button Text="打开 FlyoutPage 演示 / Open demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="FlyoutLayoutBehavior / 布局行为"
+                                     Description="Default（按设备选择）、Popover（弹出覆盖）、Split（左右分栏）、SplitOnLandscape（横屏分栏）。"
+                                     Xaml="{StaticResource FlyoutBehaviorXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="本画廊的 Shell 飞出菜单就是 Flyout 概念的现代化实现。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

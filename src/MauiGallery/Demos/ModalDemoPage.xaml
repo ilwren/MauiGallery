@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Demos.ModalDemoPage"
+             Title="模态页">
+    <Grid Padding="20" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+        <Label Grid.Row="0" Text="模态页面 / Modal page" FontFamily="OpenSansSemibold" FontSize="22" />
+        <Label Grid.Row="1" Text="模态页以覆盖方式呈现，不显示导航栏返回按钮时需要用 PopModalAsync 关闭。" />
+        <Button Grid.Row="2" Text="关闭模态 / Close" Clicked="OnClose" />
+    </Grid>
+</ContentPage>

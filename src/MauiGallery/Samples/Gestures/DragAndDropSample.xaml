@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Gestures.DragAndDropSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="DragXaml">&lt;Label Text="拖动我 / Drag me"&gt;
+    &lt;Label.GestureRecognizers&gt;
+        &lt;DragGestureRecognizer CanDrag="True"
+                               DragStarting="OnDragStarting" /&gt;
+    &lt;/Label.GestureRecognizers&gt;
+&lt;/Label&gt;</x:String>
+        <x:String x:Key="DropXaml">&lt;BoxView&gt;
+    &lt;BoxView.GestureRecognizers&gt;
+        &lt;DropGestureRecognizer AllowDrop="True"
+                               DragOver="OnDragOver"
+                               Drop="OnDrop" /&gt;
+    &lt;/BoxView.GestureRecognizers&gt;
+&lt;/BoxView&gt;</x:String>
+        <x:String x:Key="PointerXaml">&lt;PointerGestureRecognizer PointerEntered="OnEntered"
+                          PointerMoved="OnMoved"
+                          PointerExited="OnExited"
+                          PointerPressed="OnPressed"
+                          PointerReleased="OnReleased" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="拖放 / Drag &amp; drop"
+                                     Description="DragGestureRecognizer（CanDrag、DragStarting/DragCompleted）启动拖动；DropGestureRecognizer（AllowDrop、DragOver/Drop）接收放置。可跨视图甚至跨应用（桌面端）。"
+                                     Xaml="{StaticResource DragXaml}">
+                <controls:ControlExample.Example>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16" HeightRequest="140">
+                        <Border Grid.Column="0" BackgroundColor="#EEE6FF" Padding="12">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="8" VerticalOptions="Center">
+                                <Label Text="源 / Source" FontSize="12" />
+                                <Border BackgroundColor="White" Padding="14" x:Name="DragItem">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8" />
+                                    </Border.StrokeShape>
+                                    <Border.GestureRecognizers>
+                                        <DragGestureRecognizer CanDrag="True" DragStarting="OnDragStarting" />
+                                    </Border.GestureRecognizers>
+                                    <Label Text="🧩 拖动我 / Drag me" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="#FCE4EC" Padding="12">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <DropGestureRecognizer AllowDrop="True" DragOver="OnDragOver" Drop="OnDrop" />
+                            </Border.GestureRecognizers>
+                            <Label Text="放置区 / Drop here" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Border>
+                    </Grid>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件输出 / Output"
+                                     Description="DragStartingEventArgs.Data（DataPackage）携带数据；DropEventArgs.Data 读取放置数据。"
+                                     Xaml="{StaticResource DropXaml}">
+                <controls:ControlExample.Example>
+                    <Label x:Name="DragOutput" Text="把左边的卡片拖到右边试试 / Drag the card" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="PointerGestureRecognizer / 指针"
+                                     Description="指针事件（PointerEntered/Move/Exited/Pressed/Released）在支持指针的平台（桌面）可用，用于悬停高亮等交互。"
+                                     Xaml="{StaticResource PointerXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="PointerBox" BackgroundColor="#F4F4F7" Padding="24">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEntered="OnPointerEntered"
+                                                          PointerMoved="OnPointerMoved"
+                                                          PointerExited="OnPointerExited" />
+                            </Border.GestureRecognizers>
+                            <Label Text="移动指针经过这里 / Move pointer over" HorizontalOptions="Center" />
+                        </Border>
+                        <Label x:Name="PointerOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

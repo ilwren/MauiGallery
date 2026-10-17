@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.BindableLayoutSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="BlBasicXaml">&lt;VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}"&gt;
+    &lt;BindableLayout.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;Label Text="{Binding Name}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/BindableLayout.ItemTemplate&gt;
+&lt;/VerticalStackLayout&gt;</x:String>
+        <x:String x:Key="BlEmptyXaml">&lt;VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}"&gt;
+    &lt;BindableLayout.EmptyView&gt;
+        &lt;Label Text="没有内容 / Empty" /&gt;
+    &lt;/BindableLayout.EmptyView&gt;
+    ...
+&lt;/VerticalStackLayout&gt;</x:String>
+        <x:String x:Key="BlHorizontalXaml">&lt;HorizontalStackLayout BindableLayout.ItemsSource="{Binding Tags}"&gt; ... &lt;/HorizontalStackLayout&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="给布局绑定集合 / ItemsSource on any layout"
+                                     Description="BindableLayout.ItemsSource 附加到任意布局（StackLayout/Grid/FlexLayout…），按 DataTemplate 为每个数据项生成子视图。"
+                                     Xaml="{StaticResource BlBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout x:Name="ItemsHost" Spacing="6">
+                        <BindableLayout.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>🍎 苹果 / Apple</x:String>
+                                <x:String>🍌 香蕉 / Banana</x:String>
+                                <x:String>🍊 橙子 / Orange</x:String>
+                                <x:String>🍇 葡萄 / Grape</x:String>
+                            </x:Array>
+                        </BindableLayout.ItemsSource>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="#EEE6FF" Padding="12">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding .}" />
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="空视图 / EmptyView"
+                                     Description="BindableLayout.EmptyView 在集合为空时显示。"
+                                     Xaml="{StaticResource BlEmptyXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Button Text="切换数据 / Toggle data" Clicked="OnToggleData" HorizontalOptions="Start" FontSize="12" />
+                        <VerticalStackLayout x:Name="ToggleHost" Spacing="6">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" BackgroundColor="#F4F4F7" Padding="10" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                            <BindableLayout.EmptyView>
+                                <Label Text="🍃 没有内容 / Empty" Padding="10" />
+                            </BindableLayout.EmptyView>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="标签流 / Tag chips"
+                                     Description="HorizontalStackLayout / FlexLayout + BindableLayout 是实现标签流（chips）的常用技巧。"
+                                     Xaml="{StaticResource BlHorizontalXaml}">
+                <controls:ControlExample.Example>
+                    <FlexLayout Wrap="Wrap" AlignItems="Start">
+                        <BindableLayout.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>MAUI</x:String>
+                                <x:String>XAML</x:String>
+                                <x:String>C#</x:String>
+                                <x:String>Android</x:String>
+                                <x:String>iOS</x:String>
+                                <x:String>Windows</x:String>
+                                <x:String>macCatalyst</x:String>
+                            </x:Array>
+                        </BindableLayout.ItemsSource>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="#DFD8F7" Padding="10,4" Margin="0,0,8,8">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding .}" FontSize="12" />
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

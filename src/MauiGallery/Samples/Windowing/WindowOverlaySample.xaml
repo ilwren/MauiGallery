@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Windowing.WindowOverlaySample">
+
+    <ContentView.Resources>
+        <x:String x:Key="WoXaml">// 实现 IWindowOverlayElement（IDrawable + Contains）
+public class MyElement : IWindowOverlayElement
+{
+    public void Draw(ICanvas canvas, RectF dirtyRect) { ... }
+    public bool Contains(Point point) =&gt; false;
+}
+
+// 用 WindowOverlay 承载元素并挂到窗口
+var overlay = new WindowOverlay(window);
+overlay.AddWindowElement(new MyElement());
+window.AddOverlay(overlay);
+overlay.Invalidate();       // 强制重绘
+window.RemoveOverlay(overlay);</x:String>
+        <x:String x:Key="WoUseXaml">// 典型用途：屏幕标注、水印、调试信息、点击热区可视化
+window.Overlays;   // 当前覆盖层集合</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="IWindowOverlay / 窗口覆盖层"
+                                     Description="在窗口所有内容之上绘制矢量图形。实现 IWindowOverlay.Draw(ICanvas, RectF)，用 Window.AddOverlay 注册。"
+                                     Xaml="{StaticResource WoXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="点击按钮在当前窗口添加“水印”覆盖层（右上角显示当前时间）。" />
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="添加覆盖层 / Add" Clicked="OnAdd" FontSize="12" />
+                            <Button Text="移除覆盖层 / Remove" Clicked="OnRemove" FontSize="12" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="OverlayOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="用途 / Use cases"
+                                     Description="水印、调试信息、无障碍高亮、屏幕标注工具等。覆盖层绘制在所有页面内容之上。"
+                                     Xaml="{StaticResource WoUseXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="添加后查看窗口右上角 / Check the window corner after adding" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

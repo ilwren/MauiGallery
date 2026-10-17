@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Shapes.PathSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="PathDataXaml">&lt;Path Stroke="Purple" StrokeThickness="3"
+      Data="M 10,50 L 60,10 L 110,50 Z" /&gt;
+&lt;!-- Data 语法：M=MoveTo L=LineTo C=CubicBezier Q=QuadraticBezier A=Arc Z=Close --&gt;</x:String>
+        <x:String x:Key="PathGeometryXaml">&lt;Path Stroke="Teal" Fill="LightBlue"&gt;
+    &lt;Path.Data&gt;
+        &lt;PathGeometry&gt;
+            &lt;PathGeometry.Figures&gt;
+                &lt;PathFigure StartPoint="20,20" IsClosed="True"&gt;
+                    &lt;LineSegment Point="80,20" /&gt;
+                    &lt;LineSegment Point="80,80" /&gt;
+                &lt;/PathFigure&gt;
+            &lt;/PathGeometry.Figures&gt;
+        &lt;/PathGeometry&gt;
+    &lt;/Path.Data&gt;
+&lt;/Path&gt;</x:String>
+        <x:String x:Key="PathSegmentsXaml">&lt;BezierSegment Point1="..." Point2="..." Point3="..." /&gt;
+&lt;QuadraticBezierSegment Point1="..." Point2="..." /&gt;
+&lt;PolyBezierSegment Points="..." /&gt;
+&lt;ArcSegment Size="..." Point="..." RotationAngle="0" /&gt;</x:String>
+        <x:String x:Key="PathGeometryOnlyXaml">&lt;LineGeometry StartPoint="0,0" EndPoint="100,100" /&gt;
+&lt;RectangleGeometry Rect="0,0,100,60" /&gt;
+&lt;EllipseGeometry Center="50,50" RadiusX="40" RadiusY="30" /&gt;
+&lt;GeometryGroup&gt; ...多个几何合并... &lt;/GeometryGroup&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Path.Data 字符串 / Path data string"
+                                     Description="Path.Data 接受微型语言（M/L/C/Q/A/Z）描述的路径，等价于 WPF/UWP 的 path mini-language。"
+                                     Xaml="{StaticResource PathDataXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <Path Stroke="#512BD4" StrokeThickness="3" Data="M 10,50 L 60,10 L 110,50 Z" WidthRequest="120" HeightRequest="60" />
+                        <Path Stroke="#D600AA" StrokeThickness="3" Fill="#FCE4EC" Data="M 10,55 Q 60,-5 110,55 Z" WidthRequest="120" HeightRequest="60" />
+                        <Path Stroke="#2B0B98" StrokeThickness="3" Data="M 10,30 A 25,25 0 1 1 110,30" WidthRequest="120" HeightRequest="60" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="PathGeometry / 结构化路径"
+                                     Description="PathGeometry.Figures 由 PathFigure 组成；每个 PathFigure 有 StartPoint、IsClosed 与若干 PathSegment（LineSegment、BezierSegment、ArcSegment…）。"
+                                     Xaml="{StaticResource PathGeometryXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <Path Stroke="#2B0B98" StrokeThickness="3" Fill="#DFD8F7" WidthRequest="110" HeightRequest="110">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="20,20" IsClosed="True">
+                                            <LineSegment Point="90,20" />
+                                            <LineSegment Point="90,90" />
+                                            <LineSegment Point="20,90" />
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <Path Stroke="#D600AA" StrokeThickness="3" WidthRequest="110" HeightRequest="110">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="15,55" IsClosed="False">
+                                            <BezierSegment Point1="35,5" Point2="75,105" Point3="95,55" />
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="几何类型 / Standalone geometries"
+                                     Description="LineGeometry、RectangleGeometry、EllipseGeometry 可独立使用（如 Clip、StrokeShape），GeometryGroup 合并多个几何。"
+                                     Xaml="{StaticResource PathGeometryOnlyXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <Border HeightRequest="120" BackgroundColor="#EEE6FF" Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Path Stroke="#512BD4" StrokeThickness="2" Fill="#FFFFFF">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <EllipseGeometry Center="60,60" RadiusX="45" RadiusY="35" />
+                                        <RectangleGeometry Rect="120,25,90,70" />
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                        </Border>
+                        <Label Text="GeometryGroup：椭圆 + 矩形合并" FontSize="11" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ArcSegment / Poly*Segment"
+                                     Description="路径几何的更多段类型：ArcSegment（椭圆弧，含 RotationAngle/IsLargeArc/SweepDirection）、PolyBezierSegment、PolyLineSegment 等。"
+                                     Xaml="&lt;Path Stroke=&quot;DarkGreen&quot; StrokeThickness=&quot;3&quot;&gt;&#x0a;    &lt;Path.Data&gt;&#x0a;        &lt;PathGeometry&gt;&#x0a;            &lt;PathFigure StartPoint=&quot;20,60&quot;&gt;&#x0a;                &lt;ArcSegment Size=&quot;40,40&quot; Point=&quot;100,60&quot;&#x0a;                            RotationAngle=&quot;45&quot; IsLargeArc=&quot;True&quot;&#x0a;                            SweepDirection=&quot;Clockwise&quot; /&gt;&#x0a;            &lt;/PathFigure&gt;&#x0a;        &lt;/PathGeometry&gt;&#x0a;    &lt;/Path.Data&gt;&#x0a;&lt;/Path&gt;">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <Path Stroke="DarkGreen" StrokeThickness="3" WidthRequest="140" HeightRequest="100">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="20,60">
+                                        <ArcSegment Size="40,40" Point="100,60" RotationAngle="45" IsLargeArc="True" SweepDirection="Clockwise" />
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <Path Stroke="Purple" StrokeThickness="3" WidthRequest="140" HeightRequest="100">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="10,80">
+                                        <PolyBezierSegment Points="10,10 70,10 70,80" />
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

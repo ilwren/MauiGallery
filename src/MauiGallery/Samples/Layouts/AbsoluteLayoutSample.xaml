@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.AbsoluteLayoutSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="AbsBasicXaml">&lt;AbsoluteLayout HeightRequest="200"&gt;
+    &lt;BoxView Color="Purple"
+             AbsoluteLayout.LayoutBounds="20,20,100,60"
+             AbsoluteLayout.LayoutFlags="None" /&gt;
+    &lt;BoxView Color="Teal"
+             AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3"
+             AbsoluteLayout.LayoutFlags="All" /&gt;
+&lt;/AbsoluteLayout&gt;</x:String>
+        <x:String x:Key="AbsFlagsXaml">&lt;!-- LayoutFlags: None / X / Y / WidthProportional / HeightProportional / SizeProportional / PositionProportional / All --&gt;
+&lt;Label AbsoluteLayout.LayoutBounds="0,0,1,0.2"
+       AbsoluteLayout.LayoutFlags="All" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="绝对定位 / Absolute positioning"
+                                     Description="LayoutBounds=&quot;X,Y,Width,Height&quot;，LayoutFlags=Absolute 时 X/Y/W/H 都是像素；适合叠加与自由摆放。"
+                                     Xaml="{StaticResource AbsBasicXaml}">
+                <controls:ControlExample.Example>
+                    <AbsoluteLayout HeightRequest="200" BackgroundColor="#F4F4F7">
+                        <BoxView Color="#512BD4"
+                                 AbsoluteLayout.LayoutBounds="20,20,100,60"
+                                 AbsoluteLayout.LayoutFlags="None" />
+                        <BoxView Color="#D600AA"
+                                 AbsoluteLayout.LayoutBounds="150,40,80,40"
+                                 AbsoluteLayout.LayoutFlags="None" />
+                        <Label Text="像素定位 / Pixel"
+                               AbsoluteLayout.LayoutBounds="20,100,150,30"
+                               AbsoluteLayout.LayoutFlags="None" />
+                    </AbsoluteLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="比例定位 / Proportional"
+                                     Description="LayoutFlags=All/PositionProportional/SizeProportional 时，X/Y/宽/高按父容器比例解释（0~1），适合响应式叠加。"
+                                     Xaml="{StaticResource AbsFlagsXaml}">
+                <controls:ControlExample.Example>
+                    <AbsoluteLayout HeightRequest="200" BackgroundColor="#F4F4F7">
+                        <BoxView Color="#2B0B98"
+                                 AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3"
+                                 AbsoluteLayout.LayoutFlags="All" />
+                        <BoxView Color="#D600AA" Opacity="0.7"
+                                 AbsoluteLayout.LayoutBounds="0.8,0.2,0.3,0.25"
+                                 AbsoluteLayout.LayoutFlags="All" />
+                        <Label Text="中心色块占 30%"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,120,30"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               HorizontalTextAlignment="Center" />
+                    </AbsoluteLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

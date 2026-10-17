@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Navigation.ToolbarSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ToolbarXaml">&lt;ContentPage&gt;
+    &lt;ContentPage.ToolbarItems&gt;
+        &lt;ToolbarItem Text="保存" Clicked="OnSave" Order="Primary" /&gt;
+        &lt;ToolbarItem Text="更多…" Clicked="OnMore" Order="Secondary" /&gt;
+    &lt;/ContentPage.ToolbarItems&gt;
+&lt;/ContentPage&gt;</x:String>
+        <x:String x:Key="ToolbarIconXaml">&lt;ToolbarItem IconImageSource="save.png"
+             Text="保存"
+             Priority="1" /&gt;</x:String>
+        <x:String x:Key="ToolbarShellXaml">&lt;!-- Shell 页面同样使用 ToolbarItems --&gt;
+&lt;ShellContent ContentTemplate="{DataTemplate local:MyPage}" /&gt;
+&lt;!-- MyPage.ToolbarItems 即显示在 Shell 导航栏 --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="ToolbarItem / 工具栏项"
+                                     Description="ToolbarItem 向页面工具栏添加按钮：Order=Primary 直接显示，Order=Secondary 进入溢出菜单；Priority 决定排序；可带图标。"
+                                     Xaml="{StaticResource ToolbarXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="打开演示页查看工具栏（顶部）/ Open demo to see the toolbar" />
+                        <Button Text="打开工具栏演示 / Open demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="图标工具栏项 / Icon items"
+                                     Description="IconImageSource 用图像替代文本（移动端常见）；Priority 低的项先被移入溢出菜单。"
+                                     Xaml="{StaticResource ToolbarIconXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="见演示页与 XAML 源码 / See demo &amp; source" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Shell 中的工具栏 / Toolbar in Shell"
+                                     Description="Shell 页面的 ToolbarItems 显示在 Shell 导航栏；Shell.Toolbar / TitleView 可进一步定制（见 Shell 页）。"
+                                     Xaml="{StaticResource ToolbarShellXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="本画廊每个控件页顶部标题栏即 Shell 工具栏区域。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

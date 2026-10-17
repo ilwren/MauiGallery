@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             xmlns:converters="clr-namespace:MauiGallery.Converters"
+             x:Class="MauiGallery.Samples.Styles.StateTriggerSample">
+
+    <ContentView.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        <x:String x:Key="StAdaptiveXaml">&lt;VisualState x:Name="WideState"&gt;
+    &lt;VisualState.StateTriggers&gt;
+        &lt;AdaptiveTrigger MinWindowWidth="800" /&gt;
+    &lt;/VisualState.StateTriggers&gt;
+    ...
+&lt;/VisualState&gt;</x:String>
+        <x:String x:Key="StCompareXaml">&lt;CompareStateTrigger Property="{Binding Count}"
+                      Value="10" /&gt;
+&lt;!-- Property 与 Value 相等时激活 --&gt;</x:String>
+        <x:String x:Key="StDeviceXaml">&lt;DeviceStateTrigger State="Narrow" /&gt;
+&lt;OrientationStateTrigger Orientation="Portrait" /&gt;
+&lt;StateTrigger IsActive="{Binding IsBusy}" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="StateTrigger 基础 / Manual state"
+                                     Description="StateTrigger.IsActive 手动驱动状态切换；触发器附加到 VisualState.StateTriggers。"
+                                     Xaml="{StaticResource StDeviceXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Switch x:Name="BusySwitch" Toggled="OnBusyToggled" />
+                        <BoxView HeightRequest="60">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="BusyGroup">
+                                        <VisualState x:Name="Idle">
+                                            <VisualState.StateTriggers>
+                                                <StateTrigger IsActive="{Binding Source={x:Reference BusySwitch}, Path=IsToggled, Converter={StaticResource InvertedBoolConverter}}" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Color" Value="#C8C8C8" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Busy">
+                                            <VisualState.StateTriggers>
+                                                <StateTrigger IsActive="{Binding Source={x:Reference BusySwitch}, Path=IsToggled}" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="Color" Value="#512BD4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </BoxView>
+                        <Label Text="切换开关看色块变化 / Toggle the switch" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="CompareStateTrigger / 比较触发"
+                                     Description="当 Value 与 CompareTo 满足比较关系时激活（默认相等，可用 Comparison 条件扩展）。"
+                                     Xaml="{StaticResource StCompareXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Slider x:Name="CountSlider" Minimum="0" Maximum="20" Value="5" ValueChanged="OnCountChanged" />
+                        <Label x:Name="CountLabel" Text="Count = 5">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CountGroup">
+                                        <VisualState x:Name="Low">
+                                            <VisualState.StateTriggers>
+                                                <CompareStateTrigger Property="{Binding Source={x:Reference CountSlider}, Path=Value}" Value="5" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="TextColor" Value="#D600AA" />
+                                                <Setter Property="FontAttributes" Value="Bold" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Other">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="TextColor" Value="#919191" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Label>
+                        <Label Text="Value=5 时标签变色（CompareStateTrigger）" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="AdaptiveTrigger / 窗口宽度触发"
+                                     Description="MinWindowWidth/MaxWindowWidth 按窗口宽度激活状态（响应式布局）。示例：窗口宽度变化时下面布局换向。"
+                                     Xaml="{StaticResource StAdaptiveXaml}">
+                <controls:ControlExample.Example>
+                    <BoxView HeightRequest="80">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="WidthGroup">
+                                    <VisualState x:Name="Narrow">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Color" Value="#DFD8F7" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Wide">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="700" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="Color" Value="#512BD4" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                    </BoxView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="DeviceStateTrigger / OrientationStateTrigger"
+                                     Description="DeviceStateTrigger 依平台类名（如 DeviceInfo.Idiom == Desktop）激活；OrientationStateTrigger 依设备方向（Portrait/Landscape）激活。"
+                                     Xaml="&lt;Style TargetType=&quot;Label&quot;&gt;&#x0a;    &lt;Setter Property=&quot;VisualStateManager.VisualStateGroups&quot;&gt;&#x0a;        &lt;VisualStateGroupList&gt;&#x0a;            &lt;VisualStateGroup&gt;&#x0a;                &lt;VisualState x:Name=&quot;Portrait&quot;&gt;&#x0a;                    &lt;VisualState.StateTriggers&gt;&#x0a;                        &lt;OrientationStateTrigger Orientation=&quot;Portrait&quot; /&gt;&#x0a;                    &lt;/VisualState.StateTriggers&gt;&#x0a;                    &lt;VisualState.Setters&gt; ... &lt;/VisualState.Setters&gt;&#x0a;                &lt;/VisualState&gt;&#x0a;            &lt;/VisualStateGroup&gt;&#x0a;        &lt;/VisualStateGroupList&gt;&#x0a;    &lt;/Setter&gt;&#x0a;&lt;/Style&gt;">
+                <controls:ControlExample.Example>
+                    <Label Text="旋转设备查看方向触发器效果 / rotate the device to see OrientationStateTrigger.&#x0a;Desktop 设备上 DeviceStateTrigger(Desktop) 恒为激活。"
+                           FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

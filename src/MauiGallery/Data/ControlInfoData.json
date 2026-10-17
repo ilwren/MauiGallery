@@ -1,0 +1,1911 @@
+{
+  "groups": [
+    {
+      "uniqueId": "basicinput",
+      "title": "基础输入 / Basic input",
+      "subtitle": "按钮、选择与数值输入控件",
+      "description": "用于触发操作或收集用户选择的控件：Button、CheckBox、RadioButton、Slider、Stepper、Switch、Picker。",
+      "items": [
+        {
+          "uniqueId": "button",
+          "title": "Button 按钮",
+          "subtitle": "响应点击操作的标准按钮",
+          "description": "Button 用于触发命令。支持文本、图像（ImageSource）、内容布局（ContentLayout）、字体、圆角、边距，以及 Clicked/Pressed/Released 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.Button",
+          "baseClasses": [
+            "Button",
+            "View",
+            "VisualElement"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/button"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "button",
+            "click",
+            "command",
+            "按钮"
+          ]
+        },
+        {
+          "uniqueId": "checkbox",
+          "title": "CheckBox 复选框",
+          "subtitle": "独立的布尔选择控件",
+          "description": "CheckBox 表示开/关选择，通过 IsChecked 与 CheckedChanged/Checked/Unchecked 事件交互。可以用 Color 自定义选中颜色。",
+          "apiNamespace": "Microsoft.Maui.Controls.CheckBox",
+          "baseClasses": [
+            "CheckBox",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/checkbox"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "checkbox",
+            "bool",
+            "check",
+            "复选"
+          ]
+        },
+        {
+          "uniqueId": "radiobutton",
+          "title": "RadioButton 单选按钮",
+          "subtitle": "从一组选项中单选",
+          "description": "RadioButton 表示互斥选项。可配合 RadioButtonGroup.GroupName 分组，或用 GroupName 附加属性指定组；支持自定义内容模板与 Value 绑定。",
+          "apiNamespace": "Microsoft.Maui.Controls.RadioButton",
+          "baseClasses": [
+            "RadioButton",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/radio-button"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "radio",
+            "group",
+            "choice",
+            "单选"
+          ]
+        },
+        {
+          "uniqueId": "slider",
+          "title": "Slider 滑块",
+          "subtitle": "在数值范围内拖动选择",
+          "description": "Slider 通过 MinValue/MaxValue/Value 在连续区间内选择数值，支持 ValueChanged 与拖动结束 DragCompleted 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.Slider",
+          "baseClasses": [
+            "Slider",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/slider"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "slider",
+            "range",
+            "value",
+            "滑块"
+          ]
+        },
+        {
+          "uniqueId": "stepper",
+          "title": "Stepper 步进器",
+          "subtitle": "以固定步长增减数值",
+          "description": "Stepper 提供 +/- 按钮，以 Increment 为步长在 MinValue 与 MaxValue 之间调整 Value。",
+          "apiNamespace": "Microsoft.Maui.Controls.Stepper",
+          "baseClasses": [
+            "Stepper",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/stepper"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "stepper",
+            "increment",
+            "number",
+            "步进"
+          ]
+        },
+        {
+          "uniqueId": "switch",
+          "title": "Switch 开关",
+          "subtitle": "开/关切换控件",
+          "description": "Switch 表示布尔状态切换，通过 IsToggled 与 Toggled 事件交互。视觉样式由平台原生控件呈现。",
+          "apiNamespace": "Microsoft.Maui.Controls.Switch",
+          "baseClasses": [
+            "Switch",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/switch"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "switch",
+            "toggle",
+            "bool",
+            "开关"
+          ]
+        },
+        {
+          "uniqueId": "picker",
+          "title": "Picker 选择器",
+          "subtitle": "从列表中选择一项",
+          "description": "Picker 显示可选项列表（Items/ItemsSource）并允许选择其一（SelectedIndex/SelectedItem），支持 Title 与自定义字体。类似其他平台的组合框（ComboBox）。",
+          "apiNamespace": "Microsoft.Maui.Controls.Picker",
+          "baseClasses": [
+            "Picker",
+            "View",
+            "InputView"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/picker"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "picker",
+            "dropdown",
+            "combo",
+            "选择"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "text",
+      "title": "文本 / Text",
+      "subtitle": "文本显示与编辑控件",
+      "description": "显示和编辑文本的控件：Label、Entry、Editor、SearchBar。",
+      "items": [
+        {
+          "uniqueId": "label",
+          "title": "Label 标签",
+          "subtitle": "显示文本（含富文本）",
+          "description": "Label 显示单一样式文本或富文本（FormattedString/Span）。支持字体、颜色、行断模式（LineBreakMode）、TextType（Plain/Html）、语义属性等。",
+          "apiNamespace": "Microsoft.Maui.Controls.Label",
+          "baseClasses": [
+            "Label",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/label"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "label",
+            "text",
+            "span",
+            "formatted",
+            "文本"
+          ]
+        },
+        {
+          "uniqueId": "entry",
+          "title": "Entry 单行输入框",
+          "subtitle": "编辑单行文本",
+          "description": "Entry 提供单行文本输入，支持占位符、密码模式、键盘类型（Keyboard）、清除按钮、回车类型（ReturnType）以及 TextChanged/Completed 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.Entry",
+          "baseClasses": [
+            "Entry",
+            "InputView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/entry"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "entry",
+            "input",
+            "textbox",
+            "password",
+            "输入"
+          ]
+        },
+        {
+          "uniqueId": "editor",
+          "title": "Editor 多行编辑器",
+          "subtitle": "编辑多行文本",
+          "description": "Editor 提供多行文本编辑，支持自动调整高度（AutoSizeText）、最大长度、键盘类型与占位符。",
+          "apiNamespace": "Microsoft.Maui.Controls.Editor",
+          "baseClasses": [
+            "Editor",
+            "InputView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/editor"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "editor",
+            "textarea",
+            "multiline",
+            "多行"
+          ]
+        },
+        {
+          "uniqueId": "searchbar",
+          "title": "SearchBar 搜索栏",
+          "subtitle": "带搜索按钮的输入框",
+          "description": "SearchBar 是带占位符与搜索按钮的输入控件，通过 SearchCommand/CommandParameter、TextChanged 与 SearchButtonPressed 事件工作。",
+          "apiNamespace": "Microsoft.Maui.Controls.SearchBar",
+          "baseClasses": [
+            "SearchBar",
+            "InputView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/searchbar"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "search",
+            "filter",
+            "搜索"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "datetime",
+      "title": "日期与时间 / Date & time",
+      "subtitle": "日期和时间选择控件",
+      "description": "选择日期与时间的控件：DatePicker、TimePicker。",
+      "items": [
+        {
+          "uniqueId": "datepicker",
+          "title": "DatePicker 日期选择器",
+          "subtitle": "选择日期",
+          "description": "DatePicker 以平台原生方式选择日期，支持 Date、Format、MinimumDate、MaximumDate 与 DateSelected 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.DatePicker",
+          "baseClasses": [
+            "DatePicker",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/datepicker"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "date",
+            "calendar",
+            "日期"
+          ]
+        },
+        {
+          "uniqueId": "timepicker",
+          "title": "TimePicker 时间选择器",
+          "subtitle": "选择时间",
+          "description": "TimePicker 以平台原生方式选择时间，支持 Time、Format 与 TimeSelected 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.TimePicker",
+          "baseClasses": [
+            "TimePicker",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/timepicker"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "time",
+            "clock",
+            "时间"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "collections",
+      "title": "集合 / Collections",
+      "subtitle": "列表与集合展示控件",
+      "description": "展示数据集合的控件：CollectionView、CarouselView、ListView、TableView、IndicatorView。",
+      "items": [
+        {
+          "uniqueId": "collectionview",
+          "title": "CollectionView 集合视图",
+          "subtitle": "灵活的列表/网格集合控件",
+          "description": "CollectionView 是展示可绑定数据集合的主推控件：支持线性/网格布局、水平滚动、分组、头尾模板、空视图（EmptyView）、下拉刷新（RefreshView 配合）与多种选择模式。",
+          "apiNamespace": "Microsoft.Maui.Controls.CollectionView",
+          "baseClasses": [
+            "CollectionView",
+            "SelectableItemsView",
+            "ItemsView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/collectionview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "collectionview",
+            "list",
+            "grid",
+            "items",
+            "列表",
+            "集合"
+          ]
+        },
+        {
+          "uniqueId": "carouselview",
+          "title": "CarouselView 轮播视图",
+          "subtitle": "可滑动的项目轮播",
+          "description": "CarouselView 一次展示一个（或一屏）项目，可水平/垂直滑动切换，支持 Loop、PeekAreaInsets，并可与 IndicatorView 联动。",
+          "apiNamespace": "Microsoft.Maui.Controls.CarouselView",
+          "baseClasses": [
+            "CarouselView",
+            "ReorderableItemsView",
+            "StructuredItemsView",
+            "ItemsView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/carouselview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "carousel",
+            "swipe",
+            "banner",
+            "轮播"
+          ]
+        },
+        {
+          "uniqueId": "listview",
+          "title": "ListView 列表（兼容）",
+          "subtitle": "经典列表控件",
+          "description": "ListView 是 Xamarin.Forms 时代的列表控件，在 .NET MAUI 中仍可用但新代码建议使用 CollectionView。支持分组、单元格（Cells）、上下文菜单（ContextActions）与下拉刷新。",
+          "apiNamespace": "Microsoft.Maui.Controls.ListView",
+          "baseClasses": [
+            "ListView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/listview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": true,
+          "tags": [
+            "listview",
+            "grouping",
+            "cell",
+            "列表"
+          ]
+        },
+        {
+          "uniqueId": "tableview",
+          "title": "TableView 表格（兼容）",
+          "subtitle": "设置页风格的表格",
+          "description": "TableView 以 TableRoot/TableSection 组织 Cell（TextCell、EntryCell 等），常用于设置页。新代码可用 CollectionView + Border 替代。",
+          "apiNamespace": "Microsoft.Maui.Controls.TableView",
+          "baseClasses": [
+            "TableView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/tableview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": true,
+          "tags": [
+            "table",
+            "settings",
+            "cell",
+            "表格"
+          ]
+        },
+        {
+          "uniqueId": "indicatorview",
+          "title": "IndicatorView 指示器",
+          "subtitle": "页面/项目位置指示点",
+          "description": "IndicatorView 显示项目位置指示器（小圆点/条形），常与 CarouselView 或 CollectionView 通过 ItemsSourceBy 绑定联动。",
+          "apiNamespace": "Microsoft.Maui.Controls.IndicatorView",
+          "baseClasses": [
+            "IndicatorView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/indicatorview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "indicator",
+            "dots",
+            "pager",
+            "指示器"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "layouts",
+      "title": "布局 / Layouts",
+      "subtitle": "组织子视图的布局控件",
+      "description": "定义子视图排列方式的布局：Grid、堆叠布局、AbsoluteLayout、FlexLayout、ScrollView、Border、ContentView、Frame（遗留）、BindableLayout。",
+      "items": [
+        {
+          "uniqueId": "stacklayouts",
+          "title": "StackLayout 堆叠布局",
+          "subtitle": "垂直/水平顺序排列",
+          "description": "垂直与水平堆叠布局（VerticalStackLayout、HorizontalStackLayout）按顺序排列子视图，Spacing 控制间距。传统 StackLayout（Orientation 属性）为兼容保留。",
+          "apiNamespace": "Microsoft.Maui.Controls.VerticalStackLayout",
+          "baseClasses": [
+            "VerticalStackLayout",
+            "HorizontalStackLayout",
+            "StackLayout",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/stacklayout"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "stack",
+            "linear",
+            "vertical",
+            "horizontal",
+            "堆叠"
+          ]
+        },
+        {
+          "uniqueId": "grid",
+          "title": "Grid 网格布局",
+          "subtitle": "按行列组织子视图",
+          "description": "Grid 以行与列组织子视图。支持 Auto/* 绝对值尺寸（GridLength）、行高列宽定义（RowDefinition/ColumnDefinition）、跨行跨列（RowSpan/ColumnSpan）与间距。",
+          "apiNamespace": "Microsoft.Maui.Controls.Grid",
+          "baseClasses": [
+            "Grid",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/grid"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "grid",
+            "row",
+            "column",
+            "table",
+            "网格"
+          ]
+        },
+        {
+          "uniqueId": "absolutelayout",
+          "title": "AbsoluteLayout 绝对布局",
+          "subtitle": "按坐标与比例定位",
+          "description": "AbsoluteLayout 通过 LayoutBounds 与 LayoutFlags 将子视图定位在精确坐标（Absolute）或按比例（Proportional）布局，常用于叠加场景。",
+          "apiNamespace": "Microsoft.Maui.Controls.AbsoluteLayout",
+          "baseClasses": [
+            "AbsoluteLayout",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/absolutelayout"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "absolute",
+            "position",
+            "bounds",
+            "坐标"
+          ]
+        },
+        {
+          "uniqueId": "flexlayout",
+          "title": "FlexLayout 弹性布局",
+          "subtitle": "类似 CSS Flexbox",
+          "description": "FlexLayout 实现 CSS Flexbox 语义：Direction（主轴方向）、Wrap（换行）、JustifyContent（主轴对齐）、AlignItems/AlignContent（交叉轴对齐），以及子项的 Grow/Shrink/Basis。",
+          "apiNamespace": "Microsoft.Maui.Controls.FlexLayout",
+          "baseClasses": [
+            "FlexLayout",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/flexlayout"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "flexbox",
+            "wrap",
+            "responsive",
+            "弹性"
+          ]
+        },
+        {
+          "uniqueId": "scrollview",
+          "title": "ScrollView 滚动视图",
+          "subtitle": "为内容提供滚动",
+          "description": "ScrollView 为超出可视区域的内容提供滚动，支持 Orientation、ScrollToRequest（ScrollToAsync）、ScrollX/ScrollY 与 Scrolled 事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.ScrollView",
+          "baseClasses": [
+            "ScrollView",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/scrollview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "scroll",
+            "scrollview",
+            "滚动"
+          ]
+        },
+        {
+          "uniqueId": "border",
+          "title": "Border 边框容器",
+          "subtitle": "带描边与圆角的内容容器",
+          "description": "Border 为任意内容提供边框：Stroke、StrokeThickness、StrokeShape（Rectangle/RoundRectangle/Path）、StrokeDashArray、StrokeLineJoin/LineCap，并可搭配 Shadow。",
+          "apiNamespace": "Microsoft.Maui.Controls.Border",
+          "baseClasses": [
+            "Border",
+            "TemplatedView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/border"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "border",
+            "stroke",
+            "corner",
+            "容器"
+          ]
+        },
+        {
+          "uniqueId": "contentview",
+          "title": "ContentView 与模板",
+          "subtitle": "可复用的内容容器",
+          "description": "ContentView 是最简单的可复用容器；TemplatedView + ControlTemplate + ContentPresenter/TemplateBinding 可定义可定制外观的复合控件。",
+          "apiNamespace": "Microsoft.Maui.Controls.ContentView",
+          "baseClasses": [
+            "ContentView",
+            "TemplatedView",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/contentview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "contentview",
+            "template",
+            "controltemplate",
+            "usercontrol",
+            "模板",
+            "容器"
+          ]
+        },
+        {
+          "uniqueId": "frame",
+          "title": "Frame 框架（遗留）",
+          "subtitle": "早期的内容边框控件",
+          "description": "Frame 是 Xamarin.Forms 时代的边框控件（CornerRadius、BorderColor、Padding），官方建议新代码改用 Border。",
+          "apiNamespace": "Microsoft.Maui.Controls.Frame",
+          "baseClasses": [
+            "Frame",
+            "ContentView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/frame"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": true,
+          "tags": [
+            "frame",
+            "legacy",
+            "border",
+            "框架"
+          ]
+        },
+        {
+          "uniqueId": "bindablelayout",
+          "title": "BindableLayout 可绑定布局",
+          "subtitle": "给任意布局绑定集合",
+          "description": "BindableLayout 是附加能力（BindableLayout.ItemsSource + ItemTemplate + EmptyView），可把任意 Layout 变成由数据集合驱动的容器。",
+          "apiNamespace": "Microsoft.Maui.Controls.BindableLayout",
+          "baseClasses": [
+            "IBindableLayout",
+            "Attached"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/layouts/bindablelayout"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "bindablelayout",
+            "items",
+            "collection",
+            "动态布局"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "media",
+      "title": "媒体 / Media",
+      "subtitle": "图像、网页与自定义绘制",
+      "description": "显示多媒体内容的控件：Image、ImageButton、WebView、HybridWebView、GraphicsView、BoxView。",
+      "items": [
+        {
+          "uniqueId": "image",
+          "title": "Image 图像",
+          "subtitle": "显示图像（文件/URI/字体图标/流）",
+          "description": "Image 显示来自 FileImageSource、UriImageSource、FontImageSource 或 StreamImageSource 的图像，支持 Aspect（AspectFill/Fill/Center）与加载事件。",
+          "apiNamespace": "Microsoft.Maui.Controls.Image",
+          "baseClasses": [
+            "Image",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/image"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "image",
+            "picture",
+            "fontimage",
+            "uri",
+            "图像"
+          ]
+        },
+        {
+          "uniqueId": "imagebutton",
+          "title": "ImageButton 图像按钮",
+          "subtitle": "以图像呈现的按钮",
+          "description": "ImageButton 是可点击的图像控件：支持 Aspect、Command/CommandParameter、Clicked/Pressed/Released 事件以及 BorderWidth/BorderColor/CornerRadius。",
+          "apiNamespace": "Microsoft.Maui.Controls.ImageButton",
+          "baseClasses": [
+            "ImageButton",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/imagebutton"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "imagebutton",
+            "button",
+            "icon",
+            "图像按钮"
+          ]
+        },
+        {
+          "uniqueId": "webview",
+          "title": "WebView 网页视图",
+          "subtitle": "显示网页与 HTML 内容",
+          "description": "WebView 加载网页（UrlWebViewSource）、HTML 字符串（HtmlWebViewSource）或本地文件，支持导航事件、GoBackAsync/GoForwardAsync 与 EvaluateJavaScriptAsync。",
+          "apiNamespace": "Microsoft.Maui.Controls.WebView",
+          "baseClasses": [
+            "WebView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/webview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "web",
+            "html",
+            "browser",
+            "网页"
+          ]
+        },
+        {
+          "uniqueId": "hybridwebview",
+          "title": "HybridWebView 混合视图",
+          "subtitle": "JS 与 C# 双向互操作",
+          "description": "HybridWebView 在应用内承载本地 HTML/JS（HybridRoot/DefaultFile），并支持 JS→C#（RawMessageReceived / InvokeDotNet）与 C#→JS（InvokeJavaScriptAsync）双向调用。",
+          "apiNamespace": "Microsoft.Maui.Controls.HybridWebView",
+          "baseClasses": [
+            "HybridWebView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/hybridwebview"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "hybrid",
+            "javascript",
+            "interop",
+            "混合",
+            "js"
+          ]
+        },
+        {
+          "uniqueId": "graphicsview",
+          "title": "GraphicsView 自定义绘制",
+          "subtitle": "用 IDrawable 绘制矢量图",
+          "description": "GraphicsView 通过 IDrawable.Draw(ICanvas, RectF) 在任意画布上进行矢量绘制（路径、填充、渐变、文本），并可配合 StartInteraction 等手势使用。",
+          "apiNamespace": "Microsoft.Maui.Controls.GraphicsView",
+          "baseClasses": [
+            "GraphicsView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/graphicsview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "graphics",
+            "draw",
+            "canvas",
+            "vector",
+            "绘制"
+          ]
+        },
+        {
+          "uniqueId": "boxview",
+          "title": "BoxView 色块",
+          "subtitle": "纯色矩形色块",
+          "description": "BoxView 绘制简单的纯色矩形（Color），常作分隔线、占位块或背景色块，可设置 CornerRadius。",
+          "apiNamespace": "Microsoft.Maui.Controls.BoxView",
+          "baseClasses": [
+            "BoxView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/boxview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "boxview",
+            "color",
+            "rectangle",
+            "色块"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "shapes",
+      "title": "图形 / Shapes & brushes",
+      "subtitle": "矢量图形、路径与画刷",
+      "description": "Microsoft.Maui.Controls.Shapes 提供的矢量图形（Line、Polyline、Polygon、Ellipse、Rectangle、RoundRectangle、Path）与几何、变换、画刷。",
+      "items": [
+        {
+          "uniqueId": "shapes",
+          "title": "Shapes 形状",
+          "subtitle": "Line / Polyline / Polygon / Ellipse / Rectangle / RoundRectangle",
+          "description": "Microsoft.Maui.Controls.Shapes 提供矢量形状：Line、Polyline、Polygon、Ellipse、Rectangle、RoundRectangle。所有形状继承 Shape，支持 Fill、Stroke、StrokeThickness、虚线（StrokeDashArray）与端点/连接样式。",
+          "apiNamespace": "Microsoft.Maui.Controls.Shapes",
+          "baseClasses": [
+            "Shape",
+            "View",
+            "Line",
+            "Ellipse",
+            "Rectangle"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/shapes/"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "shape",
+            "ellipse",
+            "rectangle",
+            "line",
+            "polygon",
+            "vector",
+            "形状"
+          ]
+        },
+        {
+          "uniqueId": "path",
+          "title": "Path 路径",
+          "subtitle": "几何路径与线段",
+          "description": "Path 使用 Geometry（PathGeometry、LineGeometry、EllipseGeometry、RectangleGeometry、GeometryGroup）绘制任意矢量轮廓；PathFigure 与各种 PathSegment（Line/Bezier/Poly*）定义路径细节。",
+          "apiNamespace": "Microsoft.Maui.Controls.Shapes.Path",
+          "baseClasses": [
+            "Path",
+            "Shape",
+            "Geometry",
+            "PathFigure"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/shapes/path"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "path",
+            "geometry",
+            "bezier",
+            "arc",
+            "vector",
+            "路径"
+          ]
+        },
+        {
+          "uniqueId": "brushes",
+          "title": "Brush 画刷与变换",
+          "subtitle": "纯色 / 线性渐变 / 径向渐变 / 图像画刷",
+          "description": "Brush 定义形状与控件的填充：SolidColorBrush、LinearGradientBrush、RadialGradientBrush、ImageBrush，以及 GradientStop。Transform（Rotate/Scale/Skew/Translate/Composite）可作用于形状与视图。",
+          "apiNamespace": "Microsoft.Maui.Controls.Brush",
+          "baseClasses": [
+            "Brush",
+            "SolidColorBrush",
+            "GradientBrush",
+            "Transform"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/shapes/gradient"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "brush",
+            "gradient",
+            "fill",
+            "transform",
+            "画刷",
+            "渐变",
+            "变换"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "statusinfo",
+      "title": "状态与信息 / Status & info",
+      "subtitle": "进度与刷新控件",
+      "description": "向用户展示运行状态的控件：ActivityIndicator、ProgressBar、RefreshView。",
+      "items": [
+        {
+          "uniqueId": "activityindicator",
+          "title": "ActivityIndicator 活动指示器",
+          "subtitle": "忙碌状态指示",
+          "description": "ActivityIndicator 以旋转动画表示进行中的操作：IsRunning 控制显示，Color 控制颜色。",
+          "apiNamespace": "Microsoft.Maui.Controls.ActivityIndicator",
+          "baseClasses": [
+            "ActivityIndicator",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/activityindicator"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "activity",
+            "spinner",
+            "busy",
+            "loading",
+            "加载"
+          ]
+        },
+        {
+          "uniqueId": "progressbar",
+          "title": "ProgressBar 进度条",
+          "subtitle": "确定/不确定进度",
+          "description": "ProgressBar 在 0~1 之间显示进度（Progress），支持 ProgressColor，可用于文件传输等场景。",
+          "apiNamespace": "Microsoft.Maui.Controls.ProgressBar",
+          "baseClasses": [
+            "ProgressBar",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/progressbar"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "progress",
+            "bar",
+            "percent",
+            "进度"
+          ]
+        },
+        {
+          "uniqueId": "refreshview",
+          "title": "RefreshView 下拉刷新",
+          "subtitle": "为滚动内容添加下拉刷新",
+          "description": "RefreshView 包裹可滚动内容（如 CollectionView、ScrollView），提供下拉刷新手势：IsRefreshing 与 RefreshCommand 配合完成数据刷新。",
+          "apiNamespace": "Microsoft.Maui.Controls.RefreshView",
+          "baseClasses": [
+            "RefreshView",
+            "Layout",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/refreshview"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "refresh",
+            "pull",
+            "reload",
+            "刷新"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "navigation",
+      "title": "导航 / Navigation",
+      "subtitle": "Shell 与页面导航",
+      "description": "页面导航与组织：Shell（FlyoutItem/Tab/ShellContent/SearchHandler）、NavigationPage、TabbedPage、FlyoutPage、工具栏。",
+      "items": [
+        {
+          "uniqueId": "shell",
+          "title": "Shell 应用外壳",
+          "subtitle": "导航、菜单与搜索的统一入口",
+          "description": "Shell 提供应用结构：Flyout（飞出菜单）/ TabBar（标签）/ 路由导航（GoToAsync）、URI 路由与查询参数（QueryProperty/IQueryAttributable）、SearchHandler 搜索、BackButtonBehavior、FlyoutHeader/Footer、TitleView 等。",
+          "apiNamespace": "Microsoft.Maui.Controls.Shell",
+          "baseClasses": [
+            "Shell",
+            "Page",
+            "FlyoutItem",
+            "Tab",
+            "ShellContent"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/shell"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "shell",
+            "flyout",
+            "tab",
+            "route",
+            "searchhandler",
+            "导航",
+            "路由"
+          ]
+        },
+        {
+          "uniqueId": "navigationpage",
+          "title": "NavigationPage 堆栈导航",
+          "subtitle": "Push/Pop 页面堆栈",
+          "description": "NavigationPage 维护页面堆栈：PushAsync/PopAsync、模态页（PushModalAsync/PopModalAsync）、导航事件与返回按钮行为。Shell 内部同样基于堆栈导航。",
+          "apiNamespace": "Microsoft.Maui.Controls.NavigationPage",
+          "baseClasses": [
+            "NavigationPage",
+            "Page"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/navigationpage"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "navigation",
+            "stack",
+            "push",
+            "pop",
+            "modal",
+            "导航"
+          ]
+        },
+        {
+          "uniqueId": "tabbedpage",
+          "title": "TabbedPage 标签页",
+          "subtitle": "多页签容器",
+          "description": "TabbedPage 以标签（Tab）组织多个子页，BarBackgroundColor/BarTextColor 控制外观。Shell 的 TabBar 提供类似能力。",
+          "apiNamespace": "Microsoft.Maui.Controls.TabbedPage",
+          "baseClasses": [
+            "TabbedPage",
+            "Page"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/tabbedpage"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "tabbed",
+            "tabs",
+            "pages",
+            "标签页"
+          ]
+        },
+        {
+          "uniqueId": "flyoutpage",
+          "title": "FlyoutPage 侧滑页",
+          "subtitle": "主从式飞出菜单布局",
+          "description": "FlyoutPage 展示一个 Flyout（飞出菜单）与 Detail（详情页）区域，支持 FlyoutLayoutBehavior 与菜单切换。Shell Flyout 是更现代的实现。",
+          "apiNamespace": "Microsoft.Maui.Controls.FlyoutPage",
+          "baseClasses": [
+            "FlyoutPage",
+            "Page"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/flyoutpage"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "flyout",
+            "masterdetail",
+            "menu",
+            "侧滑"
+          ]
+        },
+        {
+          "uniqueId": "toolbar",
+          "title": "ToolbarItem 工具栏项",
+          "subtitle": "页面顶部操作按钮",
+          "description": "ToolbarItem 向导航栏添加操作按钮，支持 Order（Primary/Secondary）、IconImageSource、Priority 与点击命令。",
+          "apiNamespace": "Microsoft.Maui.Controls.ToolbarItem",
+          "baseClasses": [
+            "ToolbarItem",
+            "MenuItem",
+            "Element"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/toolbaritem"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "toolbar",
+            "appbar",
+            "action",
+            "工具栏"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "menus",
+      "title": "菜单 / Menus",
+      "subtitle": "菜单栏、右键菜单与菜单项",
+      "description": "菜单系统：MenuBar、MenuBarItem、MenuFlyout 系列、ContextMenu（FlyoutBase.ContextFlyout）、MenuItem、KeyboardAccelerator。",
+      "items": [
+        {
+          "uniqueId": "menubar",
+          "title": "MenuBar 菜单栏",
+          "subtitle": "桌面端菜单栏与快捷键",
+          "description": "MenuBar（Windows/Mac Catalyst）定义窗口菜单栏：MenuBarItem 为顶级菜单，MenuFlyoutItem/MenuFlyoutSubItem/MenuFlyoutSeparator 组成菜单，并可附加 KeyboardAccelerator 快捷键。",
+          "apiNamespace": "Microsoft.Maui.Controls.MenuBar",
+          "baseClasses": [
+            "MenuBar",
+            "MenuBarItem",
+            "MenuFlyout",
+            "Element"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/menubar"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "menubar",
+            "menu",
+            "accelerator",
+            "shortcut",
+            "菜单",
+            "快捷键"
+          ]
+        },
+        {
+          "uniqueId": "contextflyout",
+          "title": "ContextMenu 上下文菜单",
+          "subtitle": "右键/长按弹出菜单",
+          "description": "通过附加属性 FlyoutBase.ContextFlyout 为任意视图附加上下文菜单（MenuFlyout），支持子菜单、分隔线、图标与快捷键。",
+          "apiNamespace": "Microsoft.Maui.Controls.MenuFlyout",
+          "baseClasses": [
+            "FlyoutBase",
+            "MenuFlyout",
+            "MenuFlyoutItem"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/contextflyout"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "context",
+            "flyout",
+            "rightclick",
+            "menu",
+            "右键",
+            "上下文菜单"
+          ]
+        },
+        {
+          "uniqueId": "menuitem",
+          "title": "MenuItem 菜单项",
+          "subtitle": "Shell 飞出菜单项与列表上下文操作",
+          "description": "MenuItem 表示可点击菜单项（Shell Flyout 的 MenuItems、ListView/Cell 的 ContextActions），支持 Command、IconImageSource 与 IsEnabled。",
+          "apiNamespace": "Microsoft.Maui.Controls.MenuItem",
+          "baseClasses": [
+            "MenuItem",
+            "BaseMenuItem",
+            "Element"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/menuitem"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "menuitem",
+            "contextactions",
+            "shell",
+            "菜单项"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "dialogs",
+      "title": "对话框与浮层 / Dialogs & flyouts",
+      "subtitle": "弹窗、操作表与工具提示",
+      "description": "模态交互：DisplayAlert、DisplayActionSheet、DisplayPrompt、ToolTipProperties。",
+      "items": [
+        {
+          "uniqueId": "alerts",
+          "title": "对话框 Dialogs",
+          "subtitle": "DisplayAlert / ActionSheet / Prompt",
+          "description": "Page 提供平台原态对话框 API：DisplayAlert（确认框）、DisplayActionSheet（操作表）与 DisplayPrompt（输入框），均为异步方法。",
+          "apiNamespace": "Microsoft.Maui.Controls.Page",
+          "baseClasses": [
+            "Page",
+            "DisplayAlert",
+            "DisplayActionSheet"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/dialog"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "alert",
+            "dialog",
+            "actionsheet",
+            "prompt",
+            "弹窗",
+            "对话框"
+          ]
+        },
+        {
+          "uniqueId": "tooltip",
+          "title": "ToolTip 工具提示",
+          "subtitle": "悬停/长按提示",
+          "description": "ToolTipProperties.Text 为任意视图附加工具提示文本（桌面端悬停、移动端长按显示）。",
+          "apiNamespace": "Microsoft.Maui.Controls.ToolTipProperties",
+          "baseClasses": [
+            "ToolTipProperties",
+            "Attached"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/tooltip"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "tooltip",
+            "hint",
+            "悬浮提示"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "gestures",
+      "title": "手势与输入 / Gestures & input",
+      "subtitle": "手势识别与拖放",
+      "description": "交互手势：Tap、Swipe、Pan、Pinch、Pointer 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。",
+      "items": [
+        {
+          "uniqueId": "gestures",
+          "title": "手势识别器 Gestures",
+          "subtitle": "Tap / Swipe / Pan / Pinch / Pointer",
+          "description": "为视图附加手势：TapGestureRecognizer（点按，支持 NumberOfTapsRequired/Buttons/ButtonsMask）、SwipeGestureRecognizer（滑动方向）、PanGestureRecognizer（拖动位移）、PinchGestureRecognizer（缩放）。",
+          "apiNamespace": "Microsoft.Maui.Controls.GestureRecognizer",
+          "baseClasses": [
+            "GestureRecognizer",
+            "TapGestureRecognizer",
+            "PanGestureRecognizer"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/gestures/tap"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "gesture",
+            "tap",
+            "swipe",
+            "pan",
+            "pinch",
+            "手势"
+          ]
+        },
+        {
+          "uniqueId": "draganddrop",
+          "title": "拖放与指针 Drag & Pointer",
+          "subtitle": "拖拽、放置与指针手势",
+          "description": "DragGestureRecognizer 启动拖放（CanDrag、DragStarting），DropGestureRecognizer 接收放置（AllowDrop、Drop、DragOver），PointerGestureRecognizer 处理指针进入/移动/离开。",
+          "apiNamespace": "Microsoft.Maui.Controls.DragGestureRecognizer",
+          "baseClasses": [
+            "DragGestureRecognizer",
+            "DropGestureRecognizer",
+            "PointerGestureRecognizer"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/gestures/drag-and-drop"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "drag",
+            "drop",
+            "pointer",
+            "mouse",
+            "拖放",
+            "指针"
+          ]
+        },
+        {
+          "uniqueId": "swipeview",
+          "title": "SwipeView 滑动操作",
+          "subtitle": "SwipeItem / SwipeItemView / 阈值",
+          "description": "SwipeView 为内容包裹滑动操作区：LeftItems/RightItems/TopItems/BottomItems（SwipeItems）+ SwipeItem（Text/BackgroundColor/Invoked）/SwipeItemView（自定义项），Threshold 控制触发距离，SwipeBehaviorOnInvoked 控制点击后行为。",
+          "apiNamespace": "Microsoft.Maui.Controls.SwipeView",
+          "baseClasses": [
+            "SwipeView",
+            "SwipeItems",
+            "SwipeItem"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/controls/swipeview"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "swipe",
+            "swipeitem",
+            "reveal",
+            "滑动"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "styles",
+      "title": "样式与模板 / Styles & templates",
+      "subtitle": "样式、动画、行为、触发器与模板",
+      "description": "外观与结构复用：Style、VisualStateManager、触发器（Trigger/DataTrigger/EventTrigger/MultiTrigger/StateTrigger）、AppThemeBinding、Shadow/Clip/Transform、DataTemplate/ControlTemplate、CSS 样式表。",
+      "items": [
+        {
+          "uniqueId": "styles",
+          "title": "Style 样式",
+          "subtitle": "显式/隐式样式与资源",
+          "description": "Style 集中定义属性（Setter）：隐式样式（TargetType 自动应用）、显式样式（x:Key + Style 引用）、样式继承（BasedOn）以及 StaticResource/DynamicResource 资源查找。",
+          "apiNamespace": "Microsoft.Maui.Controls.Style",
+          "baseClasses": [
+            "Style",
+            "Setter",
+            "ResourceDictionary"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/styles/"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "style",
+            "setter",
+            "resource",
+            "css",
+            "样式",
+            "资源"
+          ]
+        },
+        {
+          "uniqueId": "visualstates",
+          "title": "VisualStateManager 状态管理",
+          "subtitle": "CommonStates 与自定义状态",
+          "description": "VisualStateManager 定义视图状态组（VisualStateGroup/VisualState），在状态切换时应用 Setter。CommonStates（Normal/Disabled/PointerOver/Pressed/Focused）由控件自动驱动，也可用 GoToState 自定义状态。",
+          "apiNamespace": "Microsoft.Maui.Controls.VisualStateManager",
+          "baseClasses": [
+            "VisualStateManager",
+            "VisualState",
+            "Setter"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/visualstatemanager"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "vsm",
+            "visualstate",
+            "state",
+            "状态"
+          ]
+        },
+        {
+          "uniqueId": "triggers",
+          "title": "Triggers 触发器",
+          "subtitle": "Trigger / DataTrigger / EventTrigger / MultiTrigger",
+          "description": "触发器按条件修改外观：Trigger（属性触发）、DataTrigger（绑定触发）、EventTrigger（事件触发 + TriggerAction）、MultiTrigger（多条件组合）。",
+          "apiNamespace": "Microsoft.Maui.Controls.Trigger",
+          "baseClasses": [
+            "Trigger",
+            "DataTrigger",
+            "EventTrigger",
+            "MultiTrigger"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/triggers"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "trigger",
+            "datatrigger",
+            "eventtrigger",
+            "condition",
+            "触发器"
+          ]
+        },
+        {
+          "uniqueId": "statetriggers",
+          "title": "StateTriggers 状态触发器",
+          "subtitle": "Adaptive / Compare / Device / Orientation",
+          "description": "StateTriggerBase 系列把条件绑定到 VisualState：AdaptiveTrigger（MinWindowWidth）、CompareStateTrigger（比较绑定值）、DeviceStateTrigger（设备状态）、OrientationStateTrigger（横竖屏）、StateTrigger（手动 IsActive）。",
+          "apiNamespace": "Microsoft.Maui.Controls.StateTriggerBase",
+          "baseClasses": [
+            "StateTriggerBase",
+            "AdaptiveTrigger",
+            "CompareStateTrigger"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/visualstatemanager"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "statetrigger",
+            "adaptive",
+            "responsive",
+            "触发器",
+            "响应式"
+          ]
+        },
+        {
+          "uniqueId": "theming",
+          "title": "主题与平台条件 Theming",
+          "subtitle": "AppThemeBinding / OnPlatform / OnIdiom",
+          "description": "按主题与平台切换值：AppThemeBinding（Light/Dark/Default）、OnPlatform（按平台）、OnIdiom（按设备类型）。Application.UserAppTheme 可强制主题。",
+          "apiNamespace": "Microsoft.Maui.Controls.AppThemeBinding",
+          "baseClasses": [
+            "AppThemeBinding",
+            "OnPlatform",
+            "OnIdiom"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/theme"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "theme",
+            "dark",
+            "light",
+            "platform",
+            "idiom",
+            "主题",
+            "深色"
+          ]
+        },
+        {
+          "uniqueId": "shadow",
+          "title": "Shadow / Clip / Transform",
+          "subtitle": "阴影、裁剪与变换",
+          "description": "VisualElement 支持 Shadow（Offset/Radius/Brush/Opacity）、Clip（用 Geometry 裁剪内容）与 Translate/Scale/Rotation/AnchorX/AnchorY 变换。",
+          "apiNamespace": "Microsoft.Maui.Controls.Shadow",
+          "baseClasses": [
+            "Shadow",
+            "VisualElement",
+            "Transform"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/shadow"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "shadow",
+            "clip",
+            "transform",
+            "rotate",
+            "scale",
+            "阴影",
+            "裁剪",
+            "变换"
+          ]
+        },
+        {
+          "uniqueId": "datatemplates",
+          "title": "DataTemplate 与 ControlTemplate",
+          "subtitle": "数据模板、选择器与控件模板",
+          "description": "DataTemplate 为数据定义视觉结构（支持 x:DataType 编译绑定），DataTemplateSelector 按数据切换模板，ControlTemplate + TemplateBinding + ContentPresenter 定义控件外观。",
+          "apiNamespace": "Microsoft.Maui.Controls.DataTemplate",
+          "baseClasses": [
+            "DataTemplate",
+            "DataTemplateSelector",
+            "ControlTemplate"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/fundamentals/datatemplate"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "datatemplate",
+            "selector",
+            "controltemplate",
+            "templatebinding",
+            "模板"
+          ]
+        },
+        {
+          "uniqueId": "animation",
+          "title": "Animation 动画",
+          "subtitle": "ViewExtensions / Animation / Easing",
+          "description": "视图扩展动画 FadeTo/ScaleTo/TranslateTo/RotateTo/RelRotateTo/LayoutTo（Task 异步、AbortAnimation 取消）；Animation 类组合子动画（Insert/WithConcurrent、Commit 循环）；Easing 缓动函数（Sin/Cubic/Bounce…）。",
+          "apiNamespace": "Microsoft.Maui.Controls.Animation",
+          "baseClasses": [
+            "Animation",
+            "ViewExtensions",
+            "Easing"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/animation"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "animation",
+            "easing",
+            "fade",
+            "rotate",
+            "动画",
+            "缓动"
+          ]
+        },
+        {
+          "uniqueId": "behaviors",
+          "title": "Behavior 行为",
+          "subtitle": "Behavior<T> 可复用交互逻辑",
+          "description": "Behavior/Behavior<T> 将交互逻辑封装为可复用对象（OnAttachedTo/OnDetachingFrom 生命周期），可带 BindableProperty，通过 Behaviors 集合附加到任意视图。",
+          "apiNamespace": "Microsoft.Maui.Controls.Behavior",
+          "baseClasses": [
+            "Behavior",
+            "Behavior<T>"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/fundamentals/behaviors"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "behavior",
+            "attached",
+            "logic",
+            "行为"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "accessibility",
+      "title": "辅助功能 / Accessibility",
+      "subtitle": "语义与自动化属性",
+      "description": "无障碍支持：SemanticProperties、AutomationProperties。",
+      "items": [
+        {
+          "uniqueId": "semantics",
+          "title": "语义与自动化 Semantics",
+          "subtitle": "SemanticProperties / AutomationProperties",
+          "description": "SemanticProperties（Description/Hint/HeadingLevel）向屏幕阅读器描述 UI；AutomationProperties 提供自动化支持（IsInAccessibleTree、HelpText、Name）。配合 ToolTipProperties 与视觉焦点顺序。",
+          "apiNamespace": "Microsoft.Maui.Controls.SemanticProperties",
+          "baseClasses": [
+            "SemanticProperties",
+            "AutomationProperties",
+            "Attached"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/accessibility"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "accessibility",
+            "a11y",
+            "screenreader",
+            "semantic",
+            "无障碍",
+            "辅助功能"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "windowing",
+      "title": "窗口 / Windowing",
+      "subtitle": "Window、TitleBar 与窗口覆盖层",
+      "description": "窗口级能力：Window 事件与多窗口、TitleBar（Windows/Mac Catalyst）、IWindowOverlay 自定义覆盖层。",
+      "items": [
+        {
+          "uniqueId": "window",
+          "title": "Window 窗口",
+          "subtitle": "窗口事件与多窗口",
+          "description": "Window 表示应用窗口：提供 Activated/Deactivated/Stopped/Resumed/Destroyed 事件、Title/Width/Height/X/Y 等属性、多窗口创建（Application.OpenWindow）与覆盖层（Overlays）。",
+          "apiNamespace": "Microsoft.Maui.Controls.Window",
+          "baseClasses": [
+            "Window",
+            "Element",
+            "IWindowOverlay"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/window"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "window",
+            "multiwindow",
+            "lifecycle",
+            "窗口",
+            "多窗口"
+          ]
+        },
+        {
+          "uniqueId": "titlebar",
+          "title": "TitleBar 标题栏",
+          "subtitle": "自定义窗口标题栏",
+          "description": "TitleBar（Windows / Mac Catalyst）自定义窗口标题栏：图标、标题/副标题、前置内容（Leading）/后置内容（Trailing）以及标准标题栏视觉状态。",
+          "apiNamespace": "Microsoft.Maui.Controls.TitleBar",
+          "baseClasses": [
+            "TitleBar",
+            "TemplatedView",
+            "View"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/titlebar"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "titlebar",
+            "window",
+            "chrome",
+            "标题栏"
+          ]
+        },
+        {
+          "uniqueId": "windowoverlay",
+          "title": "WindowOverlay 窗口覆盖层",
+          "subtitle": "在窗口上绘制覆盖层",
+          "description": "IWindowOverlay 允许在窗口内容之上绘制自定义覆盖层（Window.AddOverlay），常用于屏幕标注、水印或调试信息。",
+          "apiNamespace": "Microsoft.Maui.Controls.IWindowOverlay",
+          "baseClasses": [
+            "IWindowOverlay",
+            "Window"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/window"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "overlay",
+            "window",
+            "draw",
+            "覆盖层"
+          ]
+        }
+      ]
+    },
+    {
+      "uniqueId": "legacy",
+      "title": "遗留 / Legacy",
+      "subtitle": "兼容保留的控件",
+      "description": "为兼容保留、官方不推荐用于新代码的控件：Cells（TextCell/ImageCell/SwitchCell/EntryCell/ViewCell）、Compatibility 布局与 Effects。",
+      "items": [
+        {
+          "uniqueId": "cells",
+          "title": "Cells 单元格（遗留）",
+          "subtitle": "TextCell / ImageCell / SwitchCell / EntryCell / ViewCell",
+          "description": "Cell 系列是 ListView/TableView 的行模板（TextCell、ImageCell、SwitchCell、EntryCell、ViewCell），支持 ContextActions 上下文菜单。列表新代码请用 CollectionView + DataTemplate。",
+          "apiNamespace": "Microsoft.Maui.Controls.Cell",
+          "baseClasses": [
+            "Cell",
+            "TextCell",
+            "ViewCell"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/cells"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": true,
+          "tags": [
+            "cell",
+            "textcell",
+            "viewcell",
+            "contextactions",
+            "单元格"
+          ]
+        },
+        {
+          "uniqueId": "compat",
+          "title": "Compatibility 兼容层（遗留）",
+          "subtitle": "Compatibility 布局、Effects 与平台配置",
+          "description": "Microsoft.Maui.Controls.Compatibility 保留了 Xamarin.Forms 时代的 RelativeLayout/Constraint* 布局与渲染器；Effects（RoutingEffect/PlatformEffect）与 PlatformConfiguration 用于平台特定定制。新代码建议使用 Handlers 与附加行为。",
+          "apiNamespace": "Microsoft.Maui.Controls.Compatibility",
+          "baseClasses": [
+            "Compatibility",
+            "Effect",
+            "PlatformEffect"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/platform-integration/invoke-platform-code"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": true,
+          "tags": [
+            "compatibility",
+            "effect",
+            "renderer",
+            "platformconfiguration",
+            "兼容"
+          ]
+        }
+      ]
+    }
+  ]
+}

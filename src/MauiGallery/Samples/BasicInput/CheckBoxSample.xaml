@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.CheckBoxSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CheckBoxBasicXaml">&lt;CheckBox IsChecked="True" /&gt;
+&lt;CheckBox IsChecked="False" IsEnabled="False" /&gt;</x:String>
+        <x:String x:Key="CheckBoxColorXaml">&lt;CheckBox IsChecked="True" Color="DarkGreen" /&gt;</x:String>
+        <x:String x:Key="CheckBoxEventXaml">&lt;CheckBox x:Name="AgreeCheckBox"
+          CheckedChanged="OnCheckedChanged" /&gt;</x:String>
+        <x:String x:Key="CheckBoxLayoutXaml">&lt;HorizontalStackLayout&gt;
+    &lt;CheckBox VerticalOptions="Center" /&gt;
+    &lt;Label Text="接受条款 / Accept terms"
+           VerticalOptions="Center" /&gt;
+&lt;/HorizontalStackLayout&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础复选框 / Basic CheckBox"
+                                     Description="IsChecked 表示选中状态；IsEnabled=False 显示禁用外观。"
+                                     Xaml="{StaticResource CheckBoxBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox IsChecked="True" />
+                            <Label Text="选中 / Checked" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox IsChecked="False" />
+                            <Label Text="未选中 / Unchecked" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox IsChecked="True" IsEnabled="False" />
+                            <Label Text="禁用 / Disabled" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自定义颜色 / Color"
+                                     Description="Color 属性设置选中框颜色。"
+                                     Xaml="{StaticResource CheckBoxColorXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox IsChecked="True" Color="DarkGreen" />
+                        <Label Text="绿色复选框 / Green" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件与绑定 / Events &amp; binding"
+                                     Description="CheckedChanged 在状态变化时触发（参数 CheckedChangedEventArgs.IsChecked）。通常与 bool 属性双向绑定。"
+                                     Xaml="{StaticResource CheckBoxEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox x:Name="AgreeCheckBox" CheckedChanged="OnCheckedChanged" />
+                            <Label Text="我同意 / I agree" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="CheckOutput" Text="尚未选择" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="与文本组合 / With label"
+                                     Description="常用做法：把 CheckBox 与 Label 放入 HorizontalStackLayout，并用点击扩展可点区域。"
+                                     Xaml="{StaticResource CheckBoxLayoutXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox VerticalOptions="Center" />
+                        <Label Text="接受条款 / Accept terms" VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLabelTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Gestures.SwipeViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="SvBasicXaml">&lt;SwipeView&gt;
+    &lt;SwipeView.RightItems&gt;
+        &lt;SwipeItems&gt;
+            &lt;SwipeItem Text="删除" BackgroundColor="Red"
+                       Invoked="OnDelete" /&gt;
+        &lt;/SwipeItems&gt;
+    &lt;/SwipeView.RightItems&gt;
+    &lt;Border&gt; ...内容... &lt;/Border&gt;
+&lt;/SwipeView&gt;</x:String>
+        <x:String x:Key="SvBothXaml">&lt;SwipeView&gt;
+    &lt;SwipeView.LeftItems&gt; &lt;SwipeItems&gt; ... &lt;/SwipeItems&gt; &lt;/SwipeView.LeftItems&gt;
+    &lt;SwipeView.RightItems&gt; &lt;SwipeItems&gt; ... &lt;/SwipeItems&gt; &lt;/SwipeView.RightItems&gt;
+    ...内容...
+&lt;/SwipeView&gt;</x:String>
+        <x:String x:Key="SvVerticalXaml">&lt;SwipeView&gt;
+    &lt;SwipeView.TopItems&gt; ...上滑操作... &lt;/SwipeView.TopItems&gt;
+    &lt;SwipeView.BottomItems&gt; ...下滑操作... &lt;/SwipeView.BottomItems&gt;
+    ...内容...
+&lt;/SwipeView&gt;</x:String>
+        <x:String x:Key="SvItemViewXaml">&lt;SwipeItems&gt;
+    &lt;SwipeItemView&gt;
+        &lt;Grid BackgroundColor="Teal" Padding="16"&gt;
+            &lt;Label Text="自定义滑动项" TextColor="White" /&gt;
+        &lt;/Grid&gt;
+    &lt;/SwipeItemView&gt;
+&lt;/SwipeItems&gt;</x:String>
+        <x:String x:Key="SvPropsXaml">&lt;SwipeView Threshold="80"&gt;
+    &lt;SwipeView.RightItems&gt;
+        &lt;SwipeItems SwipeBehaviorOnInvoked="RemainOpen"&gt; ... &lt;/SwipeItems&gt;
+    &lt;/SwipeView.RightItems&gt;
+&lt;/SwipeView&gt;
+&lt;!-- SwipeBehaviorOnInvoked: AutoClose / Close / RemainOpen --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="SwipeItem / 滑动操作按钮"
+                                     Description="SwipeView 为任意内容包裹滑动操作区（左滑/右滑/上滑/下滑）。SwipeItem 继承 MenuItem，含 Text、BackgroundColor、IconImageSource 与 Invoked 事件。"
+                                     Xaml="{StaticResource SvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="← 在内容上向左滑动 / Swipe left" FontSize="12" />
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="收藏" BackgroundColor="#512BD4" Invoked="OnFavorite" />
+                                    <SwipeItem Text="删除" BackgroundColor="Red" Invoked="OnDelete" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border BackgroundColor="#EEE6FF" Padding="16">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Label Text="邮件标题 / Mail item #1" />
+                            </Border>
+                        </SwipeView>
+                        <Label x:Name="SwipeOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="双向操作 / Left &amp; right items"
+                                     Description="LeftItems 与 RightItems 同时定义，左右滑动分别显示不同操作组。"
+                                     Xaml="{StaticResource SvBothXaml}">
+                <controls:ControlExample.Example>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="已读" BackgroundColor="Green" Invoked="OnRead" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="归档" BackgroundColor="Orange" Invoked="OnArchive" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Border BackgroundColor="#F4F4F7" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="左滑“已读” / 右滑“归档”" />
+                        </Border>
+                    </SwipeView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="垂直滑动 / Top &amp; bottom items"
+                                     Description="TopItems/BottomItems 定义上下滑动的操作（如顶部下拉标记重要）。"
+                                     Xaml="{StaticResource SvVerticalXaml}">
+                <controls:ControlExample.Example>
+                    <SwipeView>
+                        <SwipeView.TopItems>
+                            <SwipeItems>
+                                <SwipeItem Text="置顶 / Pin" BackgroundColor="#2B0B98" Invoked="OnPin" />
+                            </SwipeItems>
+                        </SwipeView.TopItems>
+                        <SwipeView.BottomItems>
+                            <SwipeItems>
+                                <SwipeItem Text="静音 / Mute" BackgroundColor="#6E6E6E" Invoked="OnMute" />
+                            </SwipeItems>
+                        </SwipeView.BottomItems>
+                        <Border BackgroundColor="#FCE4EC" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="↑↓ 上下滑动试试 / Swipe up or down" />
+                        </Border>
+                    </SwipeView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="SwipeItemView / 自定义滑动项"
+                                     Description="SwipeItemView 可承载任意视图，实现自定义外观的滑动操作。"
+                                     Xaml="{StaticResource SvItemViewXaml}">
+                <controls:ControlExample.Example>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItemView>
+                                    <Grid BackgroundColor="Teal" Padding="20" WidthRequest="120">
+                                        <Label Text="自定义项 ✨" TextColor="White" VerticalOptions="Center" />
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnCustomSwipeItem" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Border BackgroundColor="#DFD8F7" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="左滑显示自定义项 / Swipe left" />
+                        </Border>
+                    </SwipeView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="行为选项 / Threshold &amp; SwipeBehaviorOnInvoked"
+                                     Description="Threshold 是触发滑动的最小像素；SwipeBehaviorOnInvoked（AutoClose/Close/RemainOpen）决定点击操作后的关闭行为。"
+                                     Xaml="{StaticResource SvPropsXaml}">
+                <controls:ControlExample.Example>
+                    <SwipeView Threshold="60">
+                        <SwipeView.RightItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                <SwipeItem Text="保持打开" BackgroundColor="#D600AA" Invoked="OnRemainOpen" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Border BackgroundColor="#EEE6FF" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="点击操作后保持打开（RemainOpen）" />
+                        </Border>
+                    </SwipeView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

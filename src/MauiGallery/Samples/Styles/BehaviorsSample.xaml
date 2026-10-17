@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             xmlns:local="clr-namespace:MauiGallery.Samples.Styles"
+             x:Class="MauiGallery.Samples.Styles.BehaviorsSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="BehXaml">&lt;Entry Placeholder="只能输入数字 / digits only"&gt;
+    &lt;Entry.Behaviors&gt;
+        &lt;local:NumericValidationBehavior /&gt;
+    &lt;/Entry.Behaviors&gt;
+&lt;/Entry&gt;</x:String>
+        <x:String x:Key="BehClassXaml">public class NumericValidationBehavior : Behavior&lt;Entry&gt;
+{
+    protected override void OnAttachedTo(Entry entry)
+    {
+        entry.TextChanged += OnTextChanged;   // 挂接逻辑
+        base.OnAttachedTo(entry);
+    }
+
+    protected override void OnDetachingFrom(Entry entry)
+    {
+        entry.TextChanged -= OnTextChanged;   // 解除，防止泄漏
+        base.OnDetachingFrom(entry);
+    }
+}</x:String>
+        <x:String x:Key="BehPropsXaml">&lt;!-- 行为也是 BindableObject，可带可绑定属性 --&gt;
+&lt;local:MaxLengthBehavior MaxLength="5" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Behavior&lt;T&gt; / 可复用行为"
+                                     Description="Behavior 把交互逻辑封装为可复用对象，通过 Behaviors 集合附加到任意视图（MVVM 中常用 EventToCommandBehavior）。"
+                                     Xaml="{StaticResource BehXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry x:Name="DigitEntry" Placeholder="只能输入数字 / digits only">
+                            <Entry.Behaviors>
+                                <local:NumericValidationBehavior />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label x:Name="BehOutput" Text="输入字母会被自动清除 / letters are stripped" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="生命周期 / Lifecycle"
+                                     Description="OnAttachedTo/OnDetachingFrom 在行为附加/移除（或控件销毁）时调用，是订阅与退订事件的时机。"
+                                     Xaml="{StaticResource BehClassXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="附加到视图时挂接事件，分离时解除 —— 这是 Behavior 的核心契约。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="可绑定属性 / Bindable properties"
+                                     Description="行为继承 BindableObject，可定义 BindableProperty 并支持绑定（如 MaxLength）。"
+                                     Xaml="{StaticResource BehPropsXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry Placeholder="最多 5 个字符 / max 5 chars">
+                            <Entry.Behaviors>
+                                <local:MaxLengthBehavior MaxLength="5" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

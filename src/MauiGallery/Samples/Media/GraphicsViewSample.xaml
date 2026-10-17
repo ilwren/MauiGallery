@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Media.GraphicsViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="GvBasicXaml">&lt;GraphicsView x:Name="graphicsView" HeightRequest="200" /&gt;
+// code-behind:
+graphicsView.Drawable = new MyDrawable();</x:String>
+        <x:String x:Key="GvDrawableXaml">// IDrawable.Draw(ICanvas canvas, RectF dirtyRect)
+public void Draw(ICanvas canvas, RectF dirtyRect)
+{
+    canvas.FillColor = Colors.Purple;
+    canvas.FillCircle(100, 100, 60);
+    canvas.StrokeSize = 4;
+    canvas.StrokeColor = Colors.Black;
+    canvas.DrawLine(10, 10, 190, 190);
+}</x:String>
+        <x:String x:Key="GvInteractXaml">&lt;GraphicsView StartInteraction="OnStart"
+               DragInteraction="OnMove"
+               EndInteraction="OnEnd" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="自定义绘制 / Custom drawing"
+                                     Description="GraphicsView 通过 IDrawable.Draw(ICanvas, RectF) 绘制矢量内容：FillCircle、FillRoundedRectangle、DrawPath、DrawString、渐变画笔等。"
+                                     Xaml="{StaticResource GvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <Border BackgroundColor="{AppThemeBinding Light=#F7F7FA, Dark=#1B1B20}" Padding="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <GraphicsView x:Name="ShapesCanvas" HeightRequest="220" />
+                    </Border>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="绘制接口 / ICanvas API"
+                                     Description="ICanvas 提供 Fill*（填充）与 Draw*（描边）两组方法，配合 FillColor/StrokeColor/StrokeSize/Font 等状态属性。"
+                                     Xaml="{StaticResource GvDrawableXaml}">
+                <controls:ControlExample.Example>
+                    <Border BackgroundColor="{AppThemeBinding Light=#F7F7FA, Dark=#1B1B20}" Padding="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <GraphicsView x:Name="GradientCanvas" HeightRequest="180" />
+                    </Border>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="手势与触摸 / Interaction"
+                                     Description="StartInteraction/MoveInteraction/EndInteraction（PointerEventArgs）让 GraphicsView 响应手指/鼠标，可实现画板、图表交互等。"
+                                     Xaml="{StaticResource GvInteractXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="{AppThemeBinding Light=#F7F7FA, Dark=#1B1B20}" Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <GraphicsView x:Name="TouchCanvas" HeightRequest="180"
+                                          StartInteraction="OnStart" DragInteraction="OnMove" EndInteraction="OnEnd" />
+                        </Border>
+                        <Label x:Name="TouchOutput" Text="在上方区域拖动 / Drag above" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

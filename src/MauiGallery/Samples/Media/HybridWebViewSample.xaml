@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Media.HybridWebViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="HwvXaml">&lt;HybridWebView x:Name="hybridWebView"
+              HybridRoot="wwwroot"
+              DefaultFile="index.html" /&gt;</x:String>
+        <x:String x:Key="HwvJsXaml">// JS → C#
+window.HybridWebView.SendRawMessage("hello");
+const r = await window.HybridWebView.InvokeDotNet("Greet", { name: "MAUI" });</x:String>
+        <x:String x:Key="HwvCsXaml">// C# → JS（两种方式）
+await hybridWebView.EvaluateJavaScriptAsync("greetFromCsharp('MAUI')");
+await hybridWebView.InvokeJavaScriptAsync("greetFromCsharp", ...);
+
+// JS → .NET 方法调用的接收端：
+hybridWebView.SetInvokeJavaScriptTarget(this);   // 注册调用目标
+public string Greet(string name) =&gt; $"Hello {name}"; // JS 反射调用此方法
+
+// JS 原始消息接收：
+hybridWebView.RawMessageReceived += (s, e) =&gt; { /* e.Message */ };</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="本地 Web 内容 / Local web content"
+                                     Description="HybridWebView 加载应用包内 wwwroot 目录（MauiAsset）的 HTML/JS；DefaultFile 为入口页。网页里的按钮演示 JS→C# 通信。"
+                                     Xaml="{StaticResource HwvXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HybridWebView x:Name="HybridView" HeightRequest="300"
+                                       HybridRoot="wwwroot" DefaultFile="index.html" />
+                        <Label x:Name="HybridOutput" Text="JS 消息将显示在这里 / JS messages appear here" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="C# 调用 JS / Invoke JavaScript"
+                                     Description="EvaluateJavaScriptAsync 执行任意 JS 并返回字符串；InvokeJavaScriptAsync 按方法名调用全局函数（需传 JsonTypeInfo）。"
+                                     Xaml="{StaticResource HwvCsXaml}">
+                <controls:ControlExample.Example>
+                    <Button Text="调用 JS greetFromCsharp / Invoke JS" Clicked="OnInvokeJs" HorizontalOptions="Start" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="JS 调用 C# / Invoke .NET"
+                                     Description="JS 用 SendRawMessage 发原始消息（RawMessageReceived 事件），或用 InvokeDotNet 调用 SetInvokeJavaScriptTarget 注册对象上的公共方法（JSON 序列化参数/返回值）。"
+                                     Xaml="{StaticResource HwvJsXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="点击上方网页里的按钮，观察 C# 收到的消息。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

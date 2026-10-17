@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Dialogs.ToolTipSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TipBasicXaml">&lt;Button Text="悬停/长按 / Hover or long-press"
+        ToolTipProperties.Text="这是一个工具提示 / This is a tooltip" /&gt;</x:String>
+        <x:String x:Key="TipAnyXaml">&lt;!-- 任何视图都可附加 ToolTipProperties.Text --&gt;
+&lt;Label ToolTipProperties.Text="Label 的提示" /&gt;
+&lt;Image ToolTipProperties.Text="Image 的提示" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础工具提示 / Basic ToolTip"
+                                     Description="ToolTipProperties.Text 附加属性为视图提供提示：桌面端悬停显示，移动端长按显示。"
+                                     Xaml="{StaticResource TipBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <Button Text="悬停/长按 / Hover or long-press"
+                                ToolTipProperties.Text="这是一个工具提示 / This is a tooltip"
+                                HorizontalOptions="Start" />
+                        <Label Text="把鼠标悬停在按钮上（或移动端长按）/ Hover the button" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="任意视图 / Any view"
+                                     Description="ToolTipProperties 适用于所有 View：Label、Image、BoxView、自定义控件等。"
+                                     Xaml="{StaticResource TipAnyXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <Label Text="悬停我 / Hover me"
+                               ToolTipProperties.Text="Label 的提示 / Label tooltip"
+                               BackgroundColor="#EEE6FF" Padding="12" />
+                        <BoxView Color="#512BD4" WidthRequest="50" HeightRequest="50" CornerRadius="8"
+                                 ToolTipProperties.Text="BoxView 的提示 / BoxView tooltip" />
+                        <Border Stroke="#D600AA" Padding="12">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="Border / 容器" ToolTipProperties.Text="Border 的提示 / Border tooltip" />
+                        </Border>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Styles.VisualStateSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="VsmCommonXaml">&lt;Button&gt;
+    &lt;VisualStateManager.VisualStateGroups&gt;
+        &lt;VisualStateGroupList&gt;
+            &lt;VisualStateGroup x:Name="CommonStates"&gt;
+                &lt;VisualState x:Name="Normal" /&gt;
+                &lt;VisualState x:Name="Disabled"&gt;
+                    &lt;VisualState.Setters&gt;
+                        &lt;Setter Property="Opacity" Value="0.4" /&gt;
+                    &lt;/VisualState.Setters&gt;
+                &lt;/VisualState&gt;
+            &lt;/VisualStateGroup&gt;
+        &lt;/VisualStateGroupList&gt;
+    &lt;/VisualStateManager.VisualStateGroups&gt;
+&lt;/Button&gt;</x:String>
+        <x:String x:Key="VsmCustomXaml">&lt;VisualStateManager.GoToStateNames&gt;
+    &lt;x:String&gt;Expanded&lt;/x:String&gt;
+    &lt;x:String&gt;Collapsed&lt;/x:String&gt;
+&lt;/VisualStateManager.GoToStateNames&gt;
+// VisualStateManager.GoToState(view, "Expanded");</x:String>
+        <x:String x:Key="VsmEntryXaml">&lt;!-- Entry 的 Focused/Disabled 等状态同样可用 --&gt;
+&lt;Entry&gt; ... VisualStateGroups ... &lt;/Entry&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="CommonStates / 通用状态"
+                                     Description="大多数控件内置 CommonStates（Normal/Disabled/PointerOver/Pressed/Focused）。在 VisualStateGroup 中用 Setter 定义各状态外观。"
+                                     Xaml="{StaticResource VsmCommonXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="正常按钮 / Normal" />
+                        <Button Text="禁用按钮 / Disabled" IsEnabled="False">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Disabled">
+                                            <VisualState.Setters>
+                                                <Setter Property="Opacity" Value="0.4" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Button>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自定义状态 / Custom states"
+                                     Description="VisualStateManager.GoToState(view, name) 手动切换自定义状态（如 Expanded/Collapsed）。"
+                                     Xaml="{StaticResource VsmCustomXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="切换展开/收起 / Toggle" Clicked="OnToggle" HorizontalOptions="Start" />
+                        <Border x:Name="ExpandBox" BackgroundColor="#EEE6FF" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="ExpandStates">
+                                        <VisualState x:Name="Expanded">
+                                            <VisualState.Setters>
+                                                <Setter Property="HeightRequest" Value="120" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Collapsed">
+                                            <VisualState.Setters>
+                                                <Setter Property="HeightRequest" Value="40" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                            <Label Text="内容区域 / Content area（Expanded: 120px, Collapsed: 40px）" />
+                        </Border>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="输入控件状态 / Input states"
+                                     Description="Entry/Editor 的 Focused 状态可高亮边框；结合 StateTrigger 可响应任意条件。"
+                                     Xaml="{StaticResource VsmEntryXaml}">
+                <controls:ControlExample.Example>
+                    <Entry Placeholder="聚焦看效果 / Focus me">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Focused">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#EEE6FF" />
+                                            <Setter Property="TextColor" Value="#2B0B98" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+                    </Entry>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Legacy.CompatSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CompatLayoutXaml">&lt;!-- Microsoft.Maui.Controls.Compatibility（Xamarin.Forms 布局）--&gt;
+&lt;compat:RelativeLayout&gt;
+    &lt;compat:RelativeLayout.Constraints&gt; ... &lt;/compat:RelativeLayout.Constraints&gt;
+&lt;/compat:RelativeLayout&gt;
+&lt;!-- 建议：用 Grid / AbsoluteLayout / FlexLayout 替代 --&gt;</x:String>
+        <x:String x:Key="CompatEffectXaml">&lt;!-- Effects：平台级轻量定制 --&gt;
+&lt;Entry&gt;
+    &lt;Entry.Effects&gt;
+        &lt;local:FocusEffect /&gt;
+    &lt;/Entry.Effects&gt;
+&lt;/Entry&gt;
+
+public class FocusEffect : RoutingEffect { public FocusEffect() : base("MyApp.FocusEffect") {} }</x:String>
+        <x:String x:Key="CompatPlatformXaml">&lt;!-- PlatformConfiguration：平台特定 API --&gt;
+&lt;Page xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"&gt;
+    &lt;NavigationPage.BackButtonTitle&gt;返回&lt;/NavigationPage.BackButtonTitle&gt;
+&lt;/Page&gt;
+On&lt;iOS.PlatformConfiguration&gt;().SetUseSafeArea(true);</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Compatibility 布局 / Legacy layouts"
+                                     Description="Microsoft.Maui.Controls.Compatibility 包保留了 Xamarin.Forms 的 RelativeLayout/Constraint* 与 StackLayout 渲染管线，供迁移应用使用。新代码请使用 Grid/AbsoluteLayout/FlexLayout。"
+                                     Xaml="{StaticResource CompatLayoutXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="Compatibility 布局需要额外引入 Microsoft.Maui.Controls.Compatibility 包；迁移完成后应逐步移除。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Effects / 平台效果"
+                                     Description="RoutingEffect + PlatformEffect 为控件附加平台级轻量定制（不替换渲染器）。现代方案是 Handler Mapper 或自定义 Handler。"
+                                     Xaml="{StaticResource CompatEffectXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="Effect 通过 ResolutionGroupName + ExportEffect 注册，跨平台行为由各平台实现决定。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="PlatformConfiguration / 平台配置"
+                                     Description="On&lt;Platform&gt;() 流式 API 配置平台特定行为（如 iOS 大标题、Android 软键盘模式）。"
+                                     Xaml="{StaticResource CompatPlatformXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="例如：ContentPage.On&lt;iOS&gt;().SetUseSafeArea(true)。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
