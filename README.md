@@ -12,7 +12,7 @@
 
 ## 功能特性 / Features
 
-- **64 个控件示例页面**，覆盖 16 个分类（基础输入、文本、日期时间、集合、布局、媒体、图形画刷、状态、导航、菜单、对话框、手势、样式模板、辅助功能、窗口、遗留控件）
+- **67 个控件示例页面**，覆盖 16 个分类（基础输入、文本、日期时间、集合、布局、媒体、图形画刷、状态、导航、菜单、对话框、手势、样式模板、辅助功能、窗口、遗留控件）
 - 每页多个 `ControlExample` 示例块：**实时演示 + 参数选项 + XAML/C# 源码（可一键复制）**
 - 参考 WinUI Gallery 的导航体验：主页 / 全部控件 / 分类 / 搜索 / 控件详情
 - Shell 飞出菜单按分类导航，支持搜索（标题、副标题、描述、标签、API 命名空间）
@@ -35,8 +35,8 @@
 | 导航 / Navigation | 5 | **Shell**、**NavigationPage**、**TabbedPage**、**FlyoutPage**、**ToolbarItem** |
 | 菜单 / Menus | 3 | **MenuBar**、**ContextMenu**、**MenuItem** |
 | 对话框与浮层 / Dialogs & flyouts | 2 | **对话框**、**ToolTip** |
-| 手势与输入 / Gestures & input | 2 | **手势识别器**、**拖放与指针** |
-| 样式与模板 / Styles & templates | 7 | **Style**、**VisualStateManager**、**Triggers**、**StateTriggers**、**主题与平台条件**、**Shadow**、**DataTemplate** |
+| 手势与输入 / Gestures & input | 3 | **手势识别器**、**拖放与指针**、**SwipeView 滑动操作** |
+| 样式与模板 / Styles & templates | 9 | **Style**、**VisualStateManager**、**Triggers**、**StateTriggers**、**主题与平台条件**、**Shadow**、**DataTemplate**、**Animation 动画**、**Behavior 行为** |
 | 辅助功能 / Accessibility | 1 | **语义与自动化** |
 | 窗口 / Windowing | 3 | **Window**、**TitleBar**、**WindowOverlay** |
 | 遗留 / Legacy | 2 | **Cells**、**Compatibility** |
@@ -94,7 +94,7 @@ MauiGallery/
     ├── Helpers/              # 数据源、SampleRegistry、示例契约
     ├── Controls/             # 画廊外壳组件：ControlExample、PageHeader
     ├── Pages/                # 主页 / 全部控件 / 分类 / 控件详情 / 搜索 / 关于
-    ├── Samples/<分类>/*Sample.xaml(.cs)            # 64 个控件示例（ContentView）
+    ├── Samples/<分类>/*Sample.xaml(.cs)            # 67 个控件示例（ContentView）
     ├── Demos/                # 整页演示（TabbedPage、FlyoutPage、TitleBar 等）
     └── Resources/            # 图标、字体、样式、HybridWebView wwwroot 资产
 ```
