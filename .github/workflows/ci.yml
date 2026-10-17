@@ -18,9 +18,26 @@ jobs:
       - name: Validate XAML / catalog / registry
         run: python3 tools/validate.py
 
-  build-android:
-    name: Build (net10.0-android)
-    runs-on: windows-latest
+  build:
+    name: Build ${{ matrix.tfm }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            tfm: net10.0-android
+            workload: maui-android
+          - os: windows-latest
+            tfm: net10.0-windows10.0.19041.0
+            workload: maui-windows
+          - os: macos-latest
+            tfm: net10.0-ios
+            workload: maui-ios
+            extra: -p:RuntimeIdentifier=iossimulator-arm64
+          - os: macos-latest
+            tfm: net10.0-maccatalyst
+            workload: maui-maccatalyst
     steps:
       - uses: actions/checkout@v4
 
@@ -29,13 +46,13 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Install MAUI Android workload
-        run: dotnet workload install maui-android
+      - name: Install workload ${{ matrix.workload }}
+        run: dotnet workload install ${{ matrix.workload }}
 
-      - name: Build
+      - name: Build ${{ matrix.tfm }}
         shell: pwsh
         run: |
-          dotnet build src/MauiGallery/MauiGallery.csproj -f net10.0-android -c Release 2>&1 | Tee-Object -FilePath build.log
+          dotnet build src/MauiGallery/MauiGallery.csproj -f ${{ matrix.tfm }} ${{ matrix.extra }} 2>&1 | Tee-Object -FilePath build.log
           exit $LASTEXITCODE
 
       - name: Report errors on PR
@@ -46,8 +63,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           $errs = Select-String -Path build.log -Pattern ' error ' | ForEach-Object { $_.Line } | Sort-Object -Unique | Select-Object -First 80
-          $tail = Get-Content build.log -Tail 60
-          "## CI build errors @ ${{ github.sha }}" | Out-File errors.md -Encoding utf8
+          $tail = Get-Content build.log -Tail 40
+          "## CI build errors (${{ matrix.tfm }}) @ ${{ github.sha }}" | Out-File errors.md -Encoding utf8
           '' | Out-File errors.md -Append -Encoding utf8
           '### error lines' | Out-File errors.md -Append -Encoding utf8
           '````' | Out-File errors.md -Append -Encoding utf8
@@ -59,12 +76,3 @@ jobs:
           $tail | Out-File errors.md -Append -Encoding utf8
           '````' | Out-File errors.md -Append -Encoding utf8
           gh pr comment 1 --body-file errors.md
-
-      - name: Upload build artifacts
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-build
-          path: src/MauiGallery/bin/Release/net10.0-android/**/*.apk
-          if-no-files-found: ignore
-          retention-days: 7
