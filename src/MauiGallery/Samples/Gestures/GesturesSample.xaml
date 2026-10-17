@@ -17,8 +17,10 @@
 // e.TotalX / e.TotalY / e.StatusType (Started/Running/Completed)</x:String>
         <x:String x:Key="PinchXaml">&lt;PinchGestureRecognizer PinchUpdated="OnPinchUpdated" /&gt;
 // e.Scale / e.Status</x:String>
-        <x:String x:Key="ClickXaml">&lt;ClickGestureRecognizer Clicked="OnClicked"
-                       Buttons="Primary" /&gt;</x:String>
+        <x:String x:Key="ClickXaml">&lt;TapGestureRecognizer Tapped="OnButtonTap"
+                       Buttons="Primary, Secondary" /&gt;
+// TappedEventArgs.Buttons 告知触发按键（鼠标左/右键）
+// （ClickGestureRecognizer 已在 .NET 10 移除）</x:String>
     </ContentView.Resources>
 
     <ScrollView>

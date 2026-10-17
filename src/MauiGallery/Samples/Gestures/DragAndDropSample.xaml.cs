@@ -13,7 +13,7 @@ public partial class DragAndDropSample : ContentView
 		DragOutput.Text = "DragStarting：数据已放入 DataPackage";
 	}
 
-	private void OnDragOver(object? sender, DragOverEventArgs e)
+	private void OnDragOver(object? sender, DragEventArgs e)
 	{
 		e.AcceptedOperation = DataPackageOperation.Copy;
 	}

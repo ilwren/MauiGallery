@@ -6,7 +6,7 @@
              Title="SearchHandler">
 
     <Shell.SearchHandler>
-        <SearchHandler x:Name="Handler"
+        <SearchHandler x:Name="SearchBox"
                        Placeholder="搜索水果 / Search fruits"
                        ShowsResults="True"
                       

@@ -9,13 +9,13 @@ public partial class SearchHandlerDemoPage : ContentPage
 		InitializeComponent();
 		BindingContext = this;
 
-		Handler.PropertyChanged += (s, e) =>
+		SearchBox.PropertyChanged += (s, e) =>
 		{
-			if (e.PropertyName == SearchHandler.QueryProperty.PropertyName && !string.IsNullOrEmpty(Handler.Query))
+			if (e.PropertyName == SearchSearchBox.QueryProperty.PropertyName && !string.IsNullOrEmpty(SearchBox.Query))
 			{
-				var hits = _fruits.Where(f => f.Contains(Handler.Query, StringComparison.OrdinalIgnoreCase)).ToArray();
+				var hits = _fruits.Where(f => f.Contains(SearchBox.Query, StringComparison.OrdinalIgnoreCase)).ToArray();
 				ResultLabel.Text = hits.Length > 0 ? "结果 / Results: " + string.Join(", ", hits) : "无匹配 / no matches";
-				Handler.ItemsSource = hits;
+				SearchBox.ItemsSource = hits;
 			}
 		};
 	}

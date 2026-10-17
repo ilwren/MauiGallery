@@ -26,7 +26,10 @@ public partial class CollectionViewSample : ContentView
 /// <summary>Small demo model used by several collection samples.</summary>
 public sealed record SampleItem(string Name, string Detail);
 
-public sealed record SampleGroup(string Title, List<SampleItem> Items) : List<SampleItem>(Items);
+public sealed class SampleGroup(string title, List<SampleItem> items) : List<SampleItem>(items)
+{
+	public string Title { get; } = title;
+}
 
 public static class SampleData
 {
