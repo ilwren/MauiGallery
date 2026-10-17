@@ -22,9 +22,9 @@ public sealed class ShakeAction : TriggerAction<VisualElement>
 	{
 		for (var i = 0; i < 4; i++)
 		{
-			await sender.TranslateTo(-6, 0, 40);
-			await sender.TranslateTo(6, 0, 40);
+			await sender.TranslateToAsync(-6, 0, 40);
+			await sender.TranslateToAsync(6, 0, 40);
 		}
-		await sender.TranslateTo(0, 0, 40);
+		await sender.TranslateToAsync(0, 0, 40);
 	}
 }

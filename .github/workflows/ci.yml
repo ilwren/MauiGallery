@@ -5,6 +5,10 @@ on:
     branches: [main, 'arena/**']
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   static-checks:
     name: Static checks (python)
@@ -29,7 +33,32 @@ jobs:
         run: dotnet workload install maui-android
 
       - name: Build
-        run: dotnet build src/MauiGallery/MauiGallery.csproj -f net10.0-android -c Release
+        shell: pwsh
+        run: |
+          dotnet build src/MauiGallery/MauiGallery.csproj -f net10.0-android -c Release 2>&1 | Tee-Object -FilePath build.log
+          exit $LASTEXITCODE
+
+      - name: Report errors on PR
+        if: failure()
+        continue-on-error: true
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $errs = Select-String -Path build.log -Pattern ' error ' | ForEach-Object { $_.Line } | Sort-Object -Unique | Select-Object -First 80
+          $tail = Get-Content build.log -Tail 60
+          "## CI build errors @ ${{ github.sha }}" | Out-File errors.md -Encoding utf8
+          '' | Out-File errors.md -Append -Encoding utf8
+          '### error lines' | Out-File errors.md -Append -Encoding utf8
+          '````' | Out-File errors.md -Append -Encoding utf8
+          $errs | Out-File errors.md -Append -Encoding utf8
+          '````' | Out-File errors.md -Append -Encoding utf8
+          '' | Out-File errors.md -Append -Encoding utf8
+          '### build.log tail' | Out-File errors.md -Append -Encoding utf8
+          '````' | Out-File errors.md -Append -Encoding utf8
+          $tail | Out-File errors.md -Append -Encoding utf8
+          '````' | Out-File errors.md -Append -Encoding utf8
+          gh pr comment 1 --body-file errors.md
 
       - name: Upload build artifacts
         if: success()

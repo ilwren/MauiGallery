@@ -45,7 +45,7 @@ public partial class GesturesSample : ContentView
 		{
 			case GestureStatus.Running:
 				PinchOutput.Text = $"Scale: {e.Scale:F2}";
-				await PinchBox.ScaleTo(PinchBox.Scale * e.Scale, 50);
+				await PinchBox.ScaleToAsync(PinchBox.Scale * e.Scale, 50);
 				break;
 			case GestureStatus.Completed:
 				PinchOutput.Text = $"完成 / Completed，最终缩放 {PinchBox.Scale:F2}";
