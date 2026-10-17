@@ -1381,13 +1381,13 @@
       "uniqueId": "gestures",
       "title": "手势与输入 / Gestures & input",
       "subtitle": "手势识别与拖放",
-      "description": "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。",
+      "description": "交互手势：Tap、Swipe、Pan、Pinch、Pointer 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。",
       "items": [
         {
           "uniqueId": "gestures",
           "title": "手势识别器 Gestures",
-          "subtitle": "Tap / Click / Swipe / Pan / Pinch",
-          "description": "为视图附加手势：TapGestureRecognizer（点按，支持 NumberOfTapsRequired/Buttons）、ClickGestureRecognizer、SwipeGestureRecognizer（滑动方向）、PanGestureRecognizer（拖动位移）、PinchGestureRecognizer（缩放）。",
+          "subtitle": "Tap / Swipe / Pan / Pinch / Pointer",
+          "description": "为视图附加手势：TapGestureRecognizer（点按，支持 NumberOfTapsRequired/Buttons/ButtonsMask）、SwipeGestureRecognizer（滑动方向）、PanGestureRecognizer（拖动位移）、PinchGestureRecognizer（缩放）。",
           "apiNamespace": "Microsoft.Maui.Controls.GestureRecognizer",
           "baseClasses": [
             "GestureRecognizer",

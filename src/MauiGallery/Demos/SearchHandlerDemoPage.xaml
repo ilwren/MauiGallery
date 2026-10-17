@@ -9,9 +9,9 @@
         <SearchHandler x:Name="Handler"
                        Placeholder="搜索水果 / Search fruits"
                        ShowsResults="True"
-                       Query="{Binding Query, Mode=TwoWay}"
+                      
                        QueryIcon="dotnet_bot.png"
-                       Command="{Binding SearchCommand}" />
+                       />
     </Shell.SearchHandler>
 
     <ScrollView>

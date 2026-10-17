@@ -14,7 +14,8 @@ await box.RelRotateTo(90, 300);
 await box.LayoutTo(new Rect(0, 0, 200, 100), 400);
 
 // 取消全部动画
-box.AbortAnimation();  /  this.CancelAnimations(box);</x:String>
+box.CancelAnimations();           // ViewExtensions.CancelAnimations(VisualElement)
+this.AbortAnimation(&quot;Spin&quot;);      // 按名称中止 Animation.Commit 的动画</x:String>
         <x:String x:Key="AnimClassXaml">// Animation 类：组合与并行
 var animation = new Animation(v =&gt; box.Rotation = v, 0, 360, Easing.CubicOut);
 animation.Insert(0.5, 1.0, new Animation(v =&gt; box.Scale = v, 1, 0.5));

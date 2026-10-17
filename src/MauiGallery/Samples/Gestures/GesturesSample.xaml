@@ -110,18 +110,18 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
-            <controls:ControlExample Title="ClickGestureRecognizer / 点击手势（辅助功能）"
-                                     Description="ClickGestureRecognizer 提供跨平台的点击语义（支持键盘/开关设备访问），单击次数由 NumberOfClicksRequired 指定。"
-                                     Xaml="&lt;Label Text=&quot;点我 / click me&quot;&gt;&#x0a;    &lt;Label.GestureRecognizers&gt;&#x0a;        &lt;ClickGestureRecognizer Clicked=&quot;OnClickGesture&quot;&#x0a;                                NumberOfClicksRequired=&quot;1&quot; /&gt;&#x0a;    &lt;/Label.GestureRecognizers&gt;&#x0a;&lt;/Label&gt;">
+            <controls:ControlExample Title="鼠标按键 / ButtonsMask (.NET 10)"
+                                     Description="TapGestureRecognizer.Buttons 指定响应的按键（Primary/Secondary/Alternate…），TappedEventArgs.Buttons 告知实际触发按键——鼠标右键/中键交互。（ClickGestureRecognizer 已在 .NET 10 移除，TapGestureRecognizer 是其替代。）"
+                                     Xaml="&lt;Label Text=&quot;点击（含右键）/ click (any button)&quot;&gt;&#x0a;    &lt;Label.GestureRecognizers&gt;&#x0a;        &lt;TapGestureRecognizer Tapped=&quot;OnButtonTap&quot;&#x0a;                              Buttons=&quot;Primary, Secondary&quot; /&gt;&#x0a;    &lt;/Label.GestureRecognizers&gt;&#x0a;&lt;/Label&gt;">
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="8">
                         <Border BackgroundColor="#EEE6FF" Padding="16">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
-                            <Label Text="ClickGestureRecognizer / 点击（可访问）">
+                            <Label Text="鼠标左键/右键点我 / tap or right-click me">
                                 <Label.GestureRecognizers>
-                                    <ClickGestureRecognizer Clicked="OnClickGesture" NumberOfClicksRequired="1" />
+                                    <TapGestureRecognizer Tapped="OnButtonTap" Buttons="Primary, Secondary" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </Border>

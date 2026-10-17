@@ -59,7 +59,7 @@ CATEGORIES = [
     ("dialogs", "对话框与浮层 / Dialogs & flyouts", "弹窗、操作表与工具提示",
      "模态交互：DisplayAlert、DisplayActionSheet、DisplayPrompt、ToolTipProperties。"),
     ("gestures", "手势与输入 / Gestures & input", "手势识别与拖放",
-     "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。"),
+     "交互手势：Tap、Swipe、Pan、Pinch、Pointer 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。"),
     ("styles", "样式与模板 / Styles & templates", "样式、动画、行为、触发器与模板",
      "外观与结构复用：Style、VisualStateManager、触发器（Trigger/DataTrigger/EventTrigger/MultiTrigger/StateTrigger）、AppThemeBinding、Shadow/Clip/Transform、DataTemplate/ControlTemplate、CSS 样式表。"),
     ("accessibility", "辅助功能 / Accessibility", "语义与自动化属性",
@@ -299,8 +299,8 @@ SAMPLES = [
      ["tooltip", "hint", "悬浮提示"], doc("tooltip"), True, False),
 
     # ------------------------------ gestures -----------------------------
-    ("gestures", "gestures", "GesturesSample", "手势识别器 Gestures", "Tap / Click / Swipe / Pan / Pinch",
-     "为视图附加手势：TapGestureRecognizer（点按，支持 NumberOfTapsRequired/Buttons）、ClickGestureRecognizer、SwipeGestureRecognizer（滑动方向）、PanGestureRecognizer（拖动位移）、PinchGestureRecognizer（缩放）。",
+    ("gestures", "gestures", "GesturesSample", "手势识别器 Gestures", "Tap / Swipe / Pan / Pinch / Pointer",
+     "为视图附加手势：TapGestureRecognizer（点按，支持 NumberOfTapsRequired/Buttons/ButtonsMask）、SwipeGestureRecognizer（滑动方向）、PanGestureRecognizer（拖动位移）、PinchGestureRecognizer（缩放）。",
      ["GestureRecognizer", "TapGestureRecognizer", "PanGestureRecognizer"], "Microsoft.Maui.Controls.GestureRecognizer",
      ["gesture", "tap", "swipe", "pan", "pinch", "手势"], doc("gestures/tap"), False, False),
     ("draganddrop", "gestures", "DragAndDropSample", "拖放与指针 Drag & Pointer", "拖拽、放置与指针手势",

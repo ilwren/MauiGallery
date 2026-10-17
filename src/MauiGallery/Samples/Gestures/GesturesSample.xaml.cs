@@ -53,6 +53,6 @@ public partial class GesturesSample : ContentView
 		}
 	}
 
-	private void OnClickGesture(object? sender, ClickEventArgs e) =>
-		ClickGestureOutput.Text = "ClickGestureRecognizer 触发 / fired (accessible click)";
+	private void OnButtonTap(object? sender, TappedEventArgs e) =>
+		ClickGestureOutput.Text = $"Tapped: {e.Buttons} / 触发按键 {e.Buttons}";
 }

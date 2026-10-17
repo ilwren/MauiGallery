@@ -35,7 +35,7 @@ public partial class AnimationSample : ContentView
 
 	private void OnReset(object? sender, EventArgs e)
 	{
-		AnimBox.AbortAnimation();
+		AnimBox.CancelAnimations();
 		AnimBox.Opacity = 1;
 		AnimBox.Scale = 1;
 		AnimBox.TranslationX = 0;
