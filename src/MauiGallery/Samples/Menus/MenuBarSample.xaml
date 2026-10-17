@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Menus.MenuBarSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="MenuBarXaml">&lt;ContentPage.MenuBarItems&gt;
+    &lt;MenuBarItem Text="文件 / File"&gt;
+        &lt;MenuFlyoutItem Text="新建 / New" Clicked="OnNew" /&gt;
+        &lt;MenuFlyoutItem Text="打开 / Open" Clicked="OnOpen" /&gt;
+        &lt;MenuFlyoutSeparator /&gt;
+        &lt;MenuFlyoutItem Text="退出 / Exit" Clicked="OnExit" /&gt;
+    &lt;/MenuBarItem&gt;
+    &lt;MenuBarItem Text="编辑 / Edit"&gt;
+        &lt;MenuFlyoutSubItem Text="导出 / Export"&gt;
+            &lt;MenuFlyoutItem Text="导出为 PDF" Clicked="OnExportPdf" /&gt;
+            &lt;MenuFlyoutItem Text="导出为 PNG" Clicked="OnExportPng" /&gt;
+        &lt;/MenuFlyoutSubItem&gt;
+    &lt;/MenuBarItem&gt;
+&lt;/ContentPage.MenuBarItems&gt;</x:String>
+        <x:String x:Key="MenuAccelXaml">&lt;MenuFlyoutItem Text="新建 / New"&gt;
+    &lt;MenuFlyoutItem.KeyboardAccelerators&gt;
+        &lt;KeyboardAccelerator Modifiers="Control" Key="N" /&gt;
+    &lt;/MenuFlyoutItem.KeyboardAccelerators&gt;
+&lt;/MenuFlyoutItem&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="MenuBar / 窗口菜单栏"
+                                     Description="MenuBar（Windows / Mac Catalyst 顶部菜单栏）：MenuBarItem 是顶级菜单，内含 MenuFlyoutItem/MenuFlyoutSubItem/MenuFlyoutSeparator。点击按钮打开带菜单栏的演示页。"
+                                     Xaml="{StaticResource MenuBarXaml}">
+                <controls:ControlExample.Example>
+                    <Button Text="打开菜单栏演示 / Open demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="KeyboardAccelerator / 快捷键"
+                                     Description="KeyboardAccelerator 为菜单项附加键盘快捷键（Modifiers: Control/Shift/Alt/Command 的组合）。"
+                                     Xaml="{StaticResource MenuAccelXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="在桌面端打开演示页后按 Ctrl+N 触发“新建”。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="菜单结构 / Menu anatomy"
+                                     Description="层级：MenuBarItem（顶级）→ MenuFlyoutItem / MenuFlyoutSubItem（子菜单）→ MenuFlyoutItem…；MenuFlyoutSeparator 添加分隔线；IconImageSource 可设图标。"
+                                     Xaml="{StaticResource MenuBarXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="📂 文件 / File" />
+                        <Label Text="    📄 新建 / New" />
+                        <Label Text="    📂 打开 / Open" />
+                        <Label Text="    ────────" />
+                        <Label Text="    🚪 退出 / Exit" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

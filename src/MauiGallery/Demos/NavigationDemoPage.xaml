@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Demos.NavigationDemoPage"
+             Title="导航演示">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="NavigationPage / 堆栈导航" FontFamily="OpenSansSemibold" FontSize="22" />
+            <Label Text="这是被 PushAsync 压入堆栈的页面。点击下面的按钮继续压入新页，或弹出返回。" />
+            <Button Text="再推入一页 / Push another" Clicked="OnPush" />
+            <Button Text="弹出返回 / Pop" Clicked="OnPop" />
+            <Button Text="以模态方式打开 / Push modal" Clicked="OnPushModal" />
+            <Label x:Name="DepthLabel" FontSize="12" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

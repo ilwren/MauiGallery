@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Text.EditorSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="EditorBasicXaml">&lt;Editor Placeholder="请输入多行文本 / Multi-line text"
+        HeightRequest="100" /&gt;</x:String>
+        <x:String x:Key="EditorAutoXaml">&lt;Editor AutoSize="TextChanges"
+        Placeholder="自动长高 / Auto size" /&gt;</x:String>
+        <x:String x:Key="EditorOptionsXaml">&lt;Editor MaxLength="120"
+        IsSpellCheckEnabled="False"
+        IsTextPredictionEnabled="False"
+        Keyboard="Chat" /&gt;</x:String>
+        <x:String x:Key="EditorEventXaml">&lt;Editor TextChanged="OnTextChanged"
+        Completed="OnCompleted" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础编辑器 / Basic Editor"
+                                     Description="Editor 是多行文本编辑控件，属性与 Entry 类似，但默认支持换行。"
+                                     Xaml="{StaticResource EditorBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Editor Placeholder="请输入多行文本 / Multi-line text" HeightRequest="100" />
+                        <Editor Text="预置内容 A\n预置内容 B\n预置内容 C" HeightRequest="80" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自动调整高度 / Auto size"
+                                     Description="AutoSize=TextChanges 时控件随文本增长（AutoSizeOption 枚举：TextChanges/None）。"
+                                     Xaml="{StaticResource EditorAutoXaml}">
+                <controls:ControlExample.Example>
+                    <Editor AutoSize="TextChanges"
+                            Placeholder="输入多行观察自动长高 / Type to grow"
+                            MaxLength="200" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="选项 / Options"
+                                     Description="MaxLength 限制长度；IsSpellCheckEnabled/IsTextPredictionEnabled 控制拼写检查与联想；Keyboard 选择键盘。"
+                                     Xaml="{StaticResource EditorOptionsXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Editor x:Name="OptionEditor"
+                                Placeholder="最多 120 字符 / Max 120 chars"
+                                MaxLength="120"
+                                IsSpellCheckEnabled="False"
+                                IsTextPredictionEnabled="False"
+                                HeightRequest="80" />
+                        <Label x:Name="LengthOutput" FontSize="12" Text="0 / 120" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+                <controls:ControlExample.Options>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox x:Name="SpellCheckBox" IsChecked="True" CheckedChanged="OnSpellCheckChanged" />
+                            <Label Text="拼写检查 / Spell check" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox x:Name="PredictionBox" IsChecked="True" CheckedChanged="OnPredictionChanged" />
+                            <Label Text="输入联想 / Text prediction" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Options>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="TextChanged 与 Completed 的行为和 Entry 一致。"
+                                     Xaml="{StaticResource EditorEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Editor Placeholder="试试输入 / Type here"
+                                HeightRequest="70"
+                                TextChanged="OnTextChanged"
+                                Completed="OnCompleted" />
+                        <Label x:Name="EditorOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

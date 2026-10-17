@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.StepperSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="StepperBasicXaml">&lt;Stepper Minimum="0" Maximum="10" Increment="1" Value="5" /&gt;</x:String>
+        <x:String x:Key="StepperEventXaml">&lt;Stepper ValueChanged="OnValueChanged" /&gt;</x:String>
+        <x:String x:Key="StepperLayoutXaml">&lt;HorizontalStackLayout Spacing="12"&gt;
+    &lt;Stepper ValueChanged="OnValueChanged" VerticalOptions="Center" /&gt;
+    &lt;Label x:Name="ValueLabel" FontSize="24" VerticalOptions="Center" /&gt;
+&lt;/HorizontalStackLayout&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础步进器 / Basic Stepper"
+                                     Description="Stepper 以 Increment 为步长在 Minimum 与 Maximum 之间调整 Value（默认 0~10，步长 1）。"
+                                     Xaml="{StaticResource StepperBasicXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="12">
+                        <Stepper x:Name="BasicStepper" Minimum="0" Maximum="10" Increment="1" Value="5"
+                                 ValueChanged="OnBasicChanged" VerticalOptions="Center" />
+                        <Label x:Name="BasicOutput" Text="Value = 5" FontSize="20" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="小数步长 / Decimal increment"
+                                     Description="Increment 支持小数（如 0.5），Minimum/Maximum 也可为负。"
+                                     Xaml="{StaticResource StepperEventXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="12">
+                        <Stepper Minimum="-1" Maximum="1" Increment="0.25" Value="0"
+                                 ValueChanged="OnDecimalChanged" VerticalOptions="Center" />
+                        <Label x:Name="DecimalOutput" Text="Value = 0" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="常用组合 / Common layout"
+                                     Description="步进器与大字号数值并排，是设置页常见布局。"
+                                     Xaml="{StaticResource StepperLayoutXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="12">
+                        <Stepper Minimum="1" Maximum="5" Value="2" ValueChanged="OnRoomChanged" VerticalOptions="Center" />
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="房间数 / Rooms" FontSize="12" />
+                            <Label x:Name="RoomLabel" Text="2" FontSize="28" FontFamily="OpenSansSemibold" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

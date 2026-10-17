@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.StatusInfo.ProgressBarSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="PbBasicXaml">&lt;ProgressBar Progress="0.6" /&gt;</x:String>
+        <x:String x:Key="PbColorXaml">&lt;ProgressBar Progress="0.4"
+             ProgressColor="DarkGreen" /&gt;</x:String>
+        <x:String x:Key="PbAnimatedXaml">&lt;ProgressBar Progress="{Binding DownloadProgress}" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础进度条 / Basic ProgressBar"
+                                     Description="Progress 取值 0~1，表示确定进度。"
+                                     Xaml="{StaticResource PbBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <ProgressBar Progress="0.6" />
+                        <Label Text="60%" FontSize="12" />
+                        <ProgressBar Progress="0.15" />
+                        <Label Text="15%" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="颜色 / Color"
+                                     Description="ProgressColor 控制进度条颜色（轨道颜色由平台样式决定）。"
+                                     Xaml="{StaticResource PbColorXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <ProgressBar Progress="0.4" ProgressColor="DarkGreen" />
+                        <ProgressBar Progress="0.7" ProgressColor="#D600AA" />
+                        <ProgressBar Progress="0.9" ProgressColor="#512BD4" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="动态进度 / Animated progress"
+                                     Description="把 Progress 与任务进度绑定（或代码更新），配合 AnimationExtensions 可做平滑过渡。"
+                                     Xaml="{StaticResource PbAnimatedXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <ProgressBar x:Name="LiveProgress" Progress="0" />
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="开始 / Start" Clicked="OnStart" FontSize="12" />
+                            <Label x:Name="ProgressOutput" Text="0%" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

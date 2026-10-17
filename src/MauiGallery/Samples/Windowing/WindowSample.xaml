@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Windowing.WindowSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="WindowXaml">// App.CreateWindow 创建窗口
+protected override Window CreateWindow(IActivationState? state)
+    =&gt; new Window(new AppShell()) { Title = "MAUI Gallery" };
+
+// 多窗口（桌面端）
+Application.Current.OpenWindow(new Window(new MyPage()));
+Application.Current.CloseWindow(window);</x:String>
+        <x:String x:Key="WindowEventsXaml">// 生命周期事件
+window.Activated += ...;
+window.Deactivated += ...;
+window.Stopped += ...;
+window.Resumed += ...;
+window.Destroyed += ...;
+window.DisplayDensityChanged += ...;</x:String>
+        <x:String x:Key="WindowPropsXaml">// 常用属性
+window.Title; window.Width; window.Height; window.X; window.Y;
+window.Page;            // 根页面
+window.Overlays;        // IWindowOverlay 集合</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Window / 窗口"
+                                     Description="Window 表示一个应用窗口（App.CreateWindow 返回根窗口）。桌面平台支持多窗口。"
+                                     Xaml="{StaticResource WindowXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label x:Name="WindowInfo" />
+                        <Button Text="打印窗口信息 / Print window info" Clicked="OnInfo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="生命周期事件 / Lifecycle events"
+                                     Description="Activated/Deactivated/Stopped/Resumed/Destroyed 跟踪窗口生命周期；应用级事件（Application.Stopped 等）对应整个应用。"
+                                     Xaml="{StaticResource WindowEventsXaml}">
+                <controls:ControlExample.Example>
+                    <Label x:Name="LifecycleOutput" Text="事件输出 / Events…" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="属性与覆盖层 / Properties &amp; overlays"
+                                     Description="Title/Width/Height/X/Y 描述窗口几何；Overlays 集合管理 IWindowOverlay（见 WindowOverlay 页）。"
+                                     Xaml="{StaticResource WindowPropsXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="多窗口演示需要桌面平台（Windows/macOS）。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.DateTime.DatePickerSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="DatePickerBasicXaml">&lt;DatePicker Date="2026-10-17" /&gt;</x:String>
+        <x:String x:Key="DatePickerFormatXaml">&lt;DatePicker Format="yyyy年MM月dd日" /&gt;
+&lt;DatePicker Format="D" /&gt;</x:String>
+        <x:String x:Key="DatePickerRangeXaml">&lt;DatePicker MinimumDate="2020-01-01"
+           MaximumDate="2030-12-31" /&gt;</x:String>
+        <x:String x:Key="DatePickerEventXaml">&lt;DatePicker DateSelected="OnDateSelected" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础日期选择 / Basic DatePicker"
+                                     Description="DatePicker 以平台原生选择器选择日期；Date 为当前值（DateTime）。"
+                                     Xaml="{StaticResource DatePickerBasicXaml}">
+                <controls:ControlExample.Example>
+                    <DatePicker x:Name="BasicDatePicker" Date="2026-10-17" DateSelected="OnBasicDateSelected" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="格式 / Format"
+                                     Description="Format 使用 .NET 日期格式字符串（如 yyyy-MM-dd、D）。"
+                                     Xaml="{StaticResource DatePickerFormatXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <DatePicker Date="2026-10-17" Format="yyyy年MM月dd日" />
+                        <DatePicker Date="2026-10-17" Format="D" />
+                        <DatePicker Date="2026-10-17" Format="dddd" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="范围限制 / Date range"
+                                     Description="MinimumDate 与 MaximumDate 限制可选范围。"
+                                     Xaml="{StaticResource DatePickerRangeXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <DatePicker Date="2026-01-01" MinimumDate="2020-01-01" MaximumDate="2030-12-31" />
+                        <Label Text="只能选择 2020-01-01 至 2030-12-31" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="DateSelected 在日期变化时触发（DateChangedEventArgs.PreviousDate/NewDate）。"
+                                     Xaml="{StaticResource DatePickerEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <DatePicker Date="2026-10-17" DateSelected="OnDateSelected" />
+                        <Label x:Name="DateOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

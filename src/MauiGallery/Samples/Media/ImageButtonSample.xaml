@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Media.ImageButtonSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="IbBasicXaml">&lt;ImageButton Source="dotnet_bot.png"
+            Clicked="OnClicked"
+            Aspect="AspectFit" /&gt;</x:String>
+        <x:String x:Key="IbStyleXaml">&lt;ImageButton Source="dotnet_bot.png"
+            CornerRadius="12"
+            BorderWidth="2"
+            BorderColor="Purple"
+            Padding="8" /&gt;</x:String>
+        <x:String x:Key="IbFontXaml">&lt;ImageButton&gt;
+    &lt;ImageButton.Source&gt;
+        &lt;FontImageSource Glyph="&#x2764;" Size="32" /&gt;
+    &lt;/ImageButton.Source&gt;
+&lt;/ImageButton&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础图像按钮 / Basic ImageButton"
+                                     Description="ImageButton 是可点击的 Image：支持 Command/CommandParameter 与 Clicked/Pressed/Released 事件。"
+                                     Xaml="{StaticResource IbBasicXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <ImageButton Source="dotnet_bot.png" HeightRequest="60" WidthRequest="60"
+                                     Clicked="OnClicked" Pressed="OnPressed" Released="OnReleased" />
+                        <Label x:Name="IbOutput" Text="点击按钮 / Click it" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="圆角与描边 / Rounded &amp; bordered"
+                                     Description="CornerRadius、BorderWidth、BorderColor、Padding 可做出图标按钮；IsEnabled 控制可用状态。"
+                                     Xaml="{StaticResource IbStyleXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <ImageButton Source="dotnet_bot.png" HeightRequest="64" WidthRequest="64"
+                                     CornerRadius="12" BorderWidth="2" BorderColor="#512BD4" Padding="6" />
+                        <ImageButton Source="dotnet_bot.png" HeightRequest="64" WidthRequest="64"
+                                     CornerRadius="32" BorderWidth="2" BorderColor="#D600AA" Padding="6" />
+                        <ImageButton Source="dotnet_bot.png" HeightRequest="64" WidthRequest="64"
+                                     IsEnabled="False" Opacity="0.5" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="字体图标按钮 / Font icon button"
+                                     Description="FontImageSource 让 ImageButton 直接显示矢量字体图标。"
+                                     Xaml="{StaticResource IbFontXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <ImageButton HeightRequest="56" WidthRequest="56" CornerRadius="28" BackgroundColor="#FCE4EC">
+                            <ImageButton.Source>
+                                <FontImageSource Glyph="&#x2764;" Size="28" Color="#D600AA" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                        <ImageButton HeightRequest="56" WidthRequest="56" CornerRadius="28" BackgroundColor="#EEE6FF">
+                            <ImageButton.Source>
+                                <FontImageSource Glyph="&#x2B50;" Size="28" Color="#512BD4" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Navigation.NavigationPageSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="NavPageXaml">&lt;NavigationPage&gt;
+    &lt;x:Arguments&gt;
+        &lt;local:HomePage /&gt;
+    &lt;/x:Arguments&gt;
+&lt;/NavigationPage&gt;
+
+// 或在代码中：
+MainPage = new NavigationPage(new HomePage());</x:String>
+        <x:String x:Key="NavPushXaml">// 压栈 / 弹栈
+await Navigation.PushAsync(new DetailPage());
+await Navigation.PopAsync();
+await Navigation.PopToRootAsync();
+
+// 模态
+await Navigation.PushModalAsync(new ModalPage());
+await Navigation.PopModalAsync();</x:String>
+        <x:String x:Key="NavEventsXaml">&lt;!-- 事件：Pushed / Popped / PoppedToRoot --&gt;
+Navigation.Pushed += (s, e) =&gt; { ... };
+Navigation.Popped += (s, e) =&gt; { ... };</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="页面堆栈 / Page stack"
+                                     Description="NavigationPage 维护页面栈，显示导航栏（标题 + 返回按钮）。Shell 与 TabbedPage 内部也使用同样的堆栈导航。"
+                                     Xaml="{StaticResource NavPageXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="下面的按钮用 Shell 路由模拟 PushAsync 的效果（打开整页演示）。" />
+                        <Button Text="打开导航演示页 / Open nav demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Push/Pop API / 导航 API"
+                                     Description="PushAsync/PopAsync/PopToRootAsync 操作栈；PushModalAsync/PopModalAsync 管理模态栈；可传参数对象。"
+                                     Xaml="{StaticResource NavPushXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="8">
+                        <Button Text="模态演示 / Modal demo" Clicked="OnOpenModal" FontSize="12" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="导航事件 / Navigation events"
+                                     Description="NavigationPage 提供 Pushed/Popped/PoppedToRoot 事件；页面本身有 OnAppearing/OnDisappearing。"
+                                     Xaml="{StaticResource NavEventsXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="当前画廊的 Navigation.Shell 路由栈：controlinfo 页面可被 PopAsync 返回。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

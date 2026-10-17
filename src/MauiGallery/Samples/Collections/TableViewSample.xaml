@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Collections.TableViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TvBasicXaml">&lt;TableView Intent="Settings" HasUnevenRows="True"&gt;
+    &lt;TableRoot Title="设置 / Settings"&gt;
+        &lt;TableSection Title="账号 / Account"&gt;
+            &lt;TextCell Text="用户名" Detail="maui_user" /&gt;
+            &lt;SwitchCell Text="通知" IsOn="True" /&gt;
+        &lt;/TableSection&gt;
+    &lt;/TableRoot&gt;
+&lt;/TableView&gt;</x:String>
+        <x:String x:Key="TvDataXaml">&lt;TableView Intent="Data"&gt;
+    &lt;TableRoot&gt;
+        &lt;TableSection&gt;
+            &lt;ViewCell&gt; ...自定义行... &lt;/ViewCell&gt;
+        &lt;/TableSection&gt;
+    &lt;/TableRoot&gt;
+&lt;/TableView&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="设置页表格 / Settings table"
+                                     Description="TableView 用 TableRoot/TableSection 组织 Cell（TextCell、EntryCell、SwitchCell、ImageCell、ViewCell）。Intent（Settings/Data）影响行渲染风格。"
+                                     Xaml="{StaticResource TvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <TableView Intent="Settings" HasUnevenRows="True" HeightRequest="280">
+                        <TableRoot Title="设置 / Settings">
+                            <TableSection Title="账号 / Account">
+                                <TextCell Text="用户名 / Username" Detail="maui_user" />
+                                <TextCell Text="邮箱 / Email" Detail="user@example.com" />
+                            </TableSection>
+                            <TableSection Title="偏好 / Preferences">
+                                <SwitchCell Text="接收通知 / Notifications" IsOn="True" />
+                                <SwitchCell Text="深色模式 / Dark mode" IsOn="False" />
+                            </TableSection>
+                            <TableSection Title="其他 / Other">
+                                <EntryCell Label="昵称 / Nickname" Placeholder="输入昵称" />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自定义行 / ViewCell rows"
+                                     Description="ViewCell 可放入任意布局，构造复杂的行模板（类似 CollectionView 的 ItemTemplate）。"
+                                     Xaml="{StaticResource TvDataXaml}">
+                <controls:ControlExample.Example>
+                    <TableView Intent="Data" HasUnevenRows="True" HeightRequest="170">
+                        <TableRoot>
+                            <TableSection>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Padding="8">
+                                        <BoxView Color="#512BD4" WidthRequest="40" HeightRequest="40" CornerRadius="8" />
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label Text="自定义行 / Custom row" FontFamily="OpenSansSemibold" />
+                                            <Label Text="ViewCell + Grid 布局" FontSize="12" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </ViewCell>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Padding="8">
+                                        <BoxView Color="#D600AA" WidthRequest="40" HeightRequest="40" CornerRadius="8" />
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label Text="第二行 / Second row" FontFamily="OpenSansSemibold" />
+                                            <Label Text="可包含任意控件" FontSize="12" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

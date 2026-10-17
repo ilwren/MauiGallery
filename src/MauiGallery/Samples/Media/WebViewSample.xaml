@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Media.WebViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="WvHtmlXaml">&lt;WebView&gt;
+    &lt;WebView.Source&gt;
+        &lt;HtmlWebViewSource Html="&amp;lt;h1&amp;gt;Hello MAUI&amp;lt;/h1&amp;gt;" /&gt;
+    &lt;/WebView.Source&gt;
+&lt;/WebView&gt;</x:String>
+        <x:String x:Key="WvUrlXaml">&lt;WebView Source="https://dotnet.microsoft.com" /&gt;
+&lt;!-- UrlWebViewSource --&gt;</x:String>
+        <x:String x:Key="WvEventXaml">&lt;WebView Navigated="OnNavigated"
+         Navigating="OnNavigating" /&gt;
+&lt;await webView.EvaluateJavaScriptAsync("document.title");&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="HTML 内容 / HtmlWebViewSource"
+                                     Description="HtmlWebViewSource 直接渲染 HTML 字符串；Base 与 Html 配合可指定基准地址。"
+                                     Xaml="{StaticResource WvHtmlXaml}">
+                <controls:ControlExample.Example>
+                    <WebView HeightRequest="160">
+                        <WebView.Source>
+                            <HtmlWebViewSource Html="&lt;h2 style='font-family:sans-serif;color:#512BD4'&gt;Hello, .NET MAUI!&lt;/h2&gt;&lt;p&gt;HtmlWebViewSource 渲染的 &lt;b&gt;HTML&lt;/b&gt; 内容。&lt;/p&gt;" />
+                        </WebView.Source>
+                    </WebView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="导航控制 / Navigation"
+                                     Description="GoBackAsync/GoForwardAsync/ReloadAsync 控制历史；CanGoBack/CanGoGoForward 查询状态。下方按钮用代码切换源。"
+                                     Xaml="{StaticResource WvUrlXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="加载 HTML / Load HTML" Clicked="OnLoadHtml" FontSize="12" />
+                            <Button Text="执行 JS / Eval JS" Clicked="OnEvalJs" FontSize="12" />
+                        </HorizontalStackLayout>
+                        <WebView x:Name="NavWebView" HeightRequest="160" />
+                        <Label x:Name="WebOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="Navigating（WebNavigatingEventArgs，可取消）在跳转前触发；Navigated（WebNavigatedEventArgs）在完成后触发；WebResourceRequested 可拦截请求。"
+                                     Xaml="{StaticResource WvEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <WebView x:Name="EventWebView" HeightRequest="140" Navigating="OnNavigating" Navigated="OnNavigated">
+                            <WebView.Source>
+                                <HtmlWebViewSource Html="&lt;a href='https://dotnet.microsoft.com'&gt;点击链接测试导航事件 / Tap link&lt;/a&gt;" />
+                            </WebView.Source>
+                        </WebView>
+                        <Label x:Name="EventOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

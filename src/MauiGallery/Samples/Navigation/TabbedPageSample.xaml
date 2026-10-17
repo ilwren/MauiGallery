@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Navigation.TabbedPageSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TabbedXaml">&lt;TabbedPage BarBackgroundColor="Purple"
+            BarTextColor="White"&gt;
+    &lt;TabbedPage.Children&gt;
+        &lt;ContentPage Title="首页" /&gt;
+        &lt;ContentPage Title="列表" /&gt;
+        &lt;ContentPage Title="设置" /&gt;
+    &lt;/TabbedPage.Children&gt;
+&lt;/TabbedPage&gt;</x:String>
+        <x:String x:Key="TabbedShellXaml">&lt;!-- Shell 等价物：TabBar --&gt;
+&lt;TabBar&gt;
+    &lt;ShellContent Title="首页" ContentTemplate="{DataTemplate local:HomePage}" /&gt;
+    &lt;ShellContent Title="设置" ContentTemplate="{DataTemplate local:SettingsPage}" /&gt;
+&lt;/TabBar&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="TabbedPage / 标签页容器"
+                                     Description="TabbedPage 以标签栏切换多个子页；SelectedPage/SelectedIndex 控制当前页；BarBackgroundColor/BarTextColor 设置标签栏外观。"
+                                     Xaml="{StaticResource TabbedXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="TabbedPage 需要整屏呈现，点击按钮打开演示 / Open full-screen demo" />
+                        <Button Text="打开 TabbedPage 演示 / Open demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Shell TabBar / Shell 标签栏"
+                                     Description="在 Shell 中通常用 TabBar + ShellContent 实现同样的标签体验（本画廊的飞出菜单 + ShellContent 即为其变体）。"
+                                     Xaml="{StaticResource TabbedShellXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="示例见上方 XAML 源码 / See source above" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

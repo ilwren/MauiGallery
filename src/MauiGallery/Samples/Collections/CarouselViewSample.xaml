@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Collections.CarouselViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CarouselBasicXaml">&lt;CarouselView ItemsSource="{Binding Items}"
+              HeightRequest="180"
+              Loop="True"&gt;
+    &lt;CarouselView.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;Label Text="{Binding Name}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/CarouselView.ItemTemplate&gt;
+&lt;/CarouselView&gt;</x:String>
+        <x:String x:Key="CarouselIndicatorXaml">&lt;CarouselView IndicatorView="indicator" /&gt;
+&lt;IndicatorView x:Name="indicator" /&gt;</x:String>
+        <x:String x:Key="CarouselEventXaml">&lt;CarouselView CurrentItemChanged="OnCurrentItemChanged"
+              PositionChanged="OnPositionChanged" /&gt;</x:String>
+        <x:String x:Key="CarouselSnapXaml">&lt;CarouselView PeekAreaInsets="40"
+              Margin="-40,0"&gt;
+    ...
+&lt;/CarouselView&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础轮播 / Basic CarouselView"
+                                     Description="CarouselView 每页显示一个项目，可左右滑动。Loop=True 循环滚动；IsSwipeEnabled 控制手势。"
+                                     Xaml="{StaticResource CarouselBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CarouselView x:Name="BasicCarousel" HeightRequest="170" Loop="True">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}" Margin="4" Padding="20">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="16" />
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout VerticalOptions="Center" Spacing="6">
+                                            <Label Text="{Binding Name}" FontSize="22" FontFamily="OpenSansSemibold" HorizontalOptions="Center" />
+                                            <Label Text="{Binding Detail}" HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <Label Text="← 左右滑动 / Swipe →" FontSize="12" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="与 IndicatorView 联动 / With IndicatorView"
+                                     Description="CarouselView.IndicatorView 关联 IndicatorView；圆点数量自动跟随项目数，当前页高亮。"
+                                     Xaml="{StaticResource CarouselIndicatorXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CarouselView x:Name="IndicatorCarousel" HeightRequest="150" IndicatorView="PageIndicator">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{AppThemeBinding Light=#F4F4F7, Dark=#222228}" Margin="4" Padding="16">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Name}" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+                                    </Border>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <IndicatorView x:Name="PageIndicator" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="CurrentItemChanged（CurrentItemChangedEventArgs）与 PositionChanged（PositionChangedEventArgs）跟踪当前页。"
+                                     Xaml="{StaticResource CarouselEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CarouselView x:Name="EventCarousel" HeightRequest="120" Loop="False">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="#2B0B98" Margin="4" Padding="12">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Name}" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+                                    </Border>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <Label x:Name="CarouselOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="露出相邻页 / PeekAreaInsets"
+                                     Description="PeekAreaInsets 让前后项目部分露出，提示可滑动；配合负 Margin 可占满宽度。"
+                                     Xaml="{StaticResource CarouselSnapXaml}">
+                <controls:ControlExample.Example>
+                    <CarouselView x:Name="PeekCarousel" HeightRequest="140" PeekAreaInsets="40">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="{AppThemeBinding Light=#DFD8F7, Dark=#3B2A6B}" Margin="4" Padding="16">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

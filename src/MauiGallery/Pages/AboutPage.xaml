@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Pages.AboutPage"
+             Title="关于">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16" Spacing="12">
+
+            <Label Text="关于 MAUI Gallery" Style="{StaticResource GalleryTitleLabel}" />
+            <Label Text="本应用是 .NET MAUI（Microsoft.Maui.Controls）的完整控件画廊：每个控件一页，包含可交互示例、可调选项与对应 XAML / C# 源码。控件清单与 API 摘自 dotnet/maui 官方源码（PublicAPI 与 Controls 源码目录），页面组织方式参考微软 WinUI 3 Gallery。" />
+
+            <Label Text="主题 / Theme" Style="{StaticResource SectionHeaderLabel}" />
+            <Border Style="{StaticResource CardBorder}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout Spacing="12">
+                        <Button Text="跟随系统" Clicked="OnThemeSystem" />
+                        <Button Text="浅色" Clicked="OnThemeLight" />
+                        <Button Text="深色" Clicked="OnThemeDark" />
+                    </HorizontalStackLayout>
+                    <Label x:Name="ThemeLabel" FontSize="12" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="构建信息 / Build info" Style="{StaticResource SectionHeaderLabel}" />
+            <Border Style="{StaticResource CardBorder}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="{Binding AppVersion}" FontSize="13" />
+                    <Label Text="{Binding RuntimeInfo}" FontSize="13" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="许可 / License" Style="{StaticResource SectionHeaderLabel}" />
+            <Label Text="示例代码以 MIT 协议提供。.NET MAUI 与 WinUI Gallery 源码版权归 Microsoft 所有（MIT）。"
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Gestures.GesturesSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TapXaml">&lt;BoxView&gt;
+    &lt;BoxView.GestureRecognizers&gt;
+        &lt;TapGestureRecognizer Tapped="OnTapped"
+                              NumberOfTapsRequired="1" /&gt;
+    &lt;/BoxView.GestureRecognizers&gt;
+&lt;/BoxView&gt;</x:String>
+        <x:String x:Key="SwipeXaml">&lt;SwipeGestureRecognizer Direction="Left"
+                          Swiped="OnSwiped" /&gt;</x:String>
+        <x:String x:Key="PanXaml">&lt;PanGestureRecognizer PanUpdated="OnPanUpdated" /&gt;
+// e.TotalX / e.TotalY / e.StatusType (Started/Running/Completed)</x:String>
+        <x:String x:Key="PinchXaml">&lt;PinchGestureRecognizer PinchUpdated="OnPinchUpdated" /&gt;
+// e.Scale / e.Status</x:String>
+        <x:String x:Key="ClickXaml">&lt;ClickGestureRecognizer Clicked="OnClicked"
+                       Buttons="Primary" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="TapGestureRecognizer / 点按"
+                                     Description="附加到任意视图（GestureRecognizers 集合）。NumberOfTapsRequired 支持双击，Buttons 指定鼠标按键。"
+                                     Xaml="{StaticResource TapXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#EEE6FF" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapped" NumberOfTapsRequired="1" />
+                            </Border.GestureRecognizers>
+                            <Label Text="点我 / Tap me" HorizontalOptions="Center" />
+                        </Border>
+                        <Border BackgroundColor="#FCE4EC" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDoubleTapped" NumberOfTapsRequired="2" />
+                            </Border.GestureRecognizers>
+                            <Label Text="双击我 / Double-tap me" HorizontalOptions="Center" />
+                        </Border>
+                        <Label x:Name="TapOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="SwipeGestureRecognizer / 滑动"
+                                     Description="Direction（Left/Right/Up/Down/All）指定方向；Swiped 事件携带 SwipedEventArgs.Direction。"
+                                     Xaml="{StaticResource SwipeXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#DFD8F7" Padding="24">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipedLeft" />
+                                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipedRight" />
+                            </Border.GestureRecognizers>
+                            <Label Text="← 左右滑动 / Swipe left or right →" HorizontalOptions="Center" />
+                        </Border>
+                        <Label x:Name="SwipeOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="PanGestureRecognizer / 拖动"
+                                     Description="PanUpdated 在拖动过程中持续触发：e.TotalX/TotalY 为累计位移，e.StatusType 为 Started/Running/Completed。"
+                                     Xaml="{StaticResource PanXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="PanBox" BackgroundColor="#EEE6FF" Padding="20" HeightRequest="100">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+                            </Border.GestureRecognizers>
+                            <Label Text="拖动我 / Drag me" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label x:Name="PanOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="PinchGestureRecognizer / 缩放"
+                                     Description="PinchUpdated 提供 e.Scale（本次手势的缩放系数）。通常配合 ScaleTo 动画更新视觉元素。"
+                                     Xaml="{StaticResource PinchXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="PinchBox" BackgroundColor="#FCE4EC" Padding="30">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+                            </Border.GestureRecognizers>
+                            <Label Text="双指缩放 / Pinch to scale" HorizontalOptions="Center" />
+                        </Border>
+                        <Label x:Name="PinchOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

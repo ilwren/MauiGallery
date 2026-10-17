@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Legacy.CellsSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CellTextXaml">&lt;TextCell Text="标题 / Title"
+          Detail="详细信息 / Detail"
+          TextColor="Purple" /&gt;</x:String>
+        <x:String x:Key="CellTypesXaml">&lt;ImageCell ImageSource="dotnet_bot.png" Text="..." /&gt;
+&lt;SwitchCell Text="通知" IsOn="True" /&gt;
+&lt;EntryCell Label="昵称" Placeholder="输入..." /&gt;
+&lt;ViewCell&gt; ...任意布局... &lt;/ViewCell&gt;</x:String>
+        <x:String x:Key="CellContextXaml">&lt;TextCell Text="右键/长按我"&gt;
+    &lt;TextCell.ContextActions&gt;
+        &lt;MenuItem Text="复制" /&gt;
+        &lt;MenuItem Text="删除" IsDestructive="True" /&gt;
+    &lt;/TextCell.ContextActions&gt;
+&lt;/TextCell&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="TextCell / 文本单元格"
+                                     Description="Cell 是 ListView/TableView 的行模板。TextCell 显示主副两行文本（Text/Detail）。新代码建议 CollectionView + DataTemplate。"
+                                     Xaml="{StaticResource CellTextXaml}">
+                <controls:ControlExample.Example>
+                    <TableView Intent="Settings" HeightRequest="130">
+                        <TableRoot>
+                            <TableSection>
+                                <TextCell Text="标题 / Title" Detail="详细信息 / Detail" />
+                                <TextCell Text="第二行 / Second" Detail="Detail text" />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="单元格类型 / Cell types"
+                                     Description="ImageCell（带图）、SwitchCell（开关）、EntryCell（行内输入）、ViewCell（自定义布局）。"
+                                     Xaml="{StaticResource CellTypesXaml}">
+                <controls:ControlExample.Example>
+                    <TableView Intent="Data" HasUnevenRows="True" HeightRequest="240">
+                        <TableRoot>
+                            <TableSection>
+                                <ImageCell ImageSource="dotnet_bot.png" Text="图像单元格 / ImageCell" Detail="图标 + 两行文本" />
+                                <SwitchCell Text="接收通知 / Notifications" IsOn="True" OnChanged="OnSwitchChanged" />
+                                <EntryCell Label="昵称 / Nick" Placeholder="输入昵称" />
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Padding="8">
+                                        <Label Text="🧩" FontSize="20" />
+                                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label Text="ViewCell" FontFamily="OpenSansSemibold" />
+                                            <Label Text="任意自定义布局 / Any layout" FontSize="11" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ContextActions / 上下文操作"
+                                     Description="Cell.ContextActions 提供行级操作菜单（桌面右键 / 移动端滑动）。IsDestructive 标记破坏性操作。"
+                                     Xaml="{StaticResource CellContextXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="右键/长按行试试 / Right-click or long-press" FontSize="12" />
+                        <ListView HeightRequest="130" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="右键/长按我 / Act on me" Detail="ContextActions">
+                                        <TextCell.ContextActions>
+                                            <MenuItem Text="复制 / Copy" Clicked="OnCopy" />
+                                            <MenuItem Text="删除 / Delete" IsDestructive="True" Clicked="OnDelete" />
+                                        </TextCell.ContextActions>
+                                    </TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>行 1 / Row 1</x:String>
+                                    <x:String>行 2 / Row 2</x:String>
+                                </x:Array>
+                            </ListView.ItemsSource>
+                        </ListView>
+                        <Label x:Name="CellOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

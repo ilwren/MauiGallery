@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Shapes.ShapesSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ShapeLineXaml">&lt;Line X1="10" Y1="10" X2="150" Y2="80"
+      Stroke="Purple" StrokeThickness="4" /&gt;</x:String>
+        <x:String x:Key="ShapePolygonXaml">&lt;Polyline Points="0,40 40,40 40,0 80,0 80,40 120,40"
+          Stroke="Teal" StrokeThickness="3" /&gt;
+&lt;Polygon Points="0,40 40,40 40,0 80,0 80,40 120,40"
+         Fill="Purple" /&gt;</x:String>
+        <x:String x:Key="ShapeEllipseXaml">&lt;Ellipse Fill="Purple" Stroke="Black" StrokeThickness="2" /&gt;
+&lt;Rectangle Fill="Teal" /&gt;
+&lt;RoundRectangle Fill="DarkOrange" CornerRadius="12" /&gt;</x:String>
+        <x:String x:Key="ShapeDashXaml">&lt;Line StrokeDashArray="4,2" StrokeDashOffset="2"
+      StrokeLineCap="Round" StrokeLineJoin="Round" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Line / 线段"
+                                     Description="Line 由 (X1,Y1) 到 (X2,Y2) 的坐标定义；Stroke 控制描边颜色，StrokeThickness 控制粗细。"
+                                     Xaml="{StaticResource ShapeLineXaml}">
+                <controls:ControlExample.Example>
+                    <Line X1="10" Y1="10" X2="150" Y2="80" Stroke="#512BD4" StrokeThickness="4" HeightRequest="100" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Polyline 与 Polygon / 多段线与多边形"
+                                     Description="Points 以空格分隔 &quot;x,y&quot; 顶点。Polyline 是开放路径（只有描边），Polygon 自动闭合并可填充。"
+                                     Xaml="{StaticResource ShapePolygonXaml}">
+                <controls:ControlExample.Example>
+                    <FlexLayout Wrap="Wrap">
+                        <VerticalStackLayout Margin="0,0,12,8">
+                            <Polyline Points="0,40 40,40 40,0 80,0 80,40 120,40" Stroke="#2B0B98" StrokeThickness="3" WidthRequest="130" HeightRequest="50" />
+                            <Label Text="Polyline（描边）" FontSize="11" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Polygon Points="0,40 40,40 40,0 80,0 80,40 120,40" Fill="#512BD4" WidthRequest="130" HeightRequest="50" />
+                            <Label Text="Polygon（填充）" FontSize="11" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Ellipse / Rectangle / RoundRectangle / 基本形状"
+                                     Description="Ellipse（椭圆/圆）、Rectangle（矩形）、RoundRectangle（圆角矩形，CornerRadius）都支持 Fill 与 Stroke。"
+                                     Xaml="{StaticResource ShapeEllipseXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Ellipse Fill="#512BD4" Stroke="Black" StrokeThickness="2" WidthRequest="80" HeightRequest="80" />
+                            <Label Text="Ellipse" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <Rectangle Fill="#2B0B98" WidthRequest="80" HeightRequest="80" />
+                            <Label Text="Rectangle" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="4">
+                            <RoundRectangle Fill="#D600AA" CornerRadius="16" WidthRequest="80" HeightRequest="80" />
+                            <Label Text="RoundRectangle" FontSize="11" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="虚线与端点 / Stroke styles"
+                                     Description="StrokeDashArray（虚线节奏）、StrokeDashOffset、StrokeLineCap（端点）、StrokeLineJoin（连接）适用于所有形状。"
+                                     Xaml="{StaticResource ShapeDashXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <Line X1="10" Y1="10" X2="300" Y2="10" Stroke="#512BD4" StrokeThickness="4" HeightRequest="20" />
+                        <Line X1="10" Y1="10" X2="300" Y2="10" Stroke="#D600AA" StrokeThickness="4" StrokeLineCap="Round" HeightRequest="20">
+                            <Line.StrokeDashArray>
+                                <DoubleCollection>
+                                    <x:Double>6</x:Double>
+                                    <x:Double>3</x:Double>
+                                </DoubleCollection>
+                            </Line.StrokeDashArray>
+                        </Line>
+                        <Label Text="实线 vs 圆头虚线" FontSize="11" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.SliderSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="SliderBasicXaml">&lt;Slider Minimum="0" Maximum="100" Value="40" /&gt;</x:String>
+        <x:String x:Key="SliderColorXaml">&lt;Slider MinimumTrackColor="Green"
+        MaximumTrackColor="LightGray"
+        ThumbColor="DarkGreen" /&gt;</x:String>
+        <x:String x:Key="SliderEventXaml">&lt;Slider ValueChanged="OnValueChanged"
+        DragCompleted="OnDragCompleted" /&gt;</x:String>
+        <x:String x:Key="SliderBindXaml">&lt;Slider Value="{Binding Size}" /&gt;
+&lt;Label FontSize="{Binding Size}" Text="动态字号 / Dynamic size" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础滑块 / Basic Slider"
+                                     Description="MinValue/MaxValue 定义范围（默认 0~1），Value 为当前值。"
+                                     Xaml="{StaticResource SliderBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="4">
+                        <Slider x:Name="BasicSlider" Minimum="0" Maximum="100" Value="40" ValueChanged="OnBasicChanged" />
+                        <Label x:Name="BasicOutput" Text="Value = 40" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="颜色 / Colors"
+                                     Description="MinimumTrackColor、MaximumTrackColor 与 ThumbColor 控制轨道与滑块颜色。"
+                                     Xaml="{StaticResource SliderColorXaml}">
+                <controls:ControlExample.Example>
+                    <Slider Minimum="0" Maximum="10" Value="7"
+                            MinimumTrackColor="Green"
+                            MaximumTrackColor="LightGray"
+                            ThumbColor="DarkGreen" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="ValueChanged 在拖动过程中持续触发；DragCompleted 在拖动结束时触发，适合提交最终值。"
+                                     Xaml="{StaticResource SliderEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="4">
+                        <Slider Value="0.5" ValueChanged="OnValueChanged" DragCompleted="OnDragCompleted" />
+                        <Label x:Name="EventOutput" Text="拖动滑块试试 / Drag the slider" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="绑定与选项 / Binding &amp; options"
+                                     Description="Value 常与视图模型属性双向绑定，实现所见即所得的调整（下面用选项区演示实时改变字号）。"
+                                     Xaml="{StaticResource SliderBindXaml}">
+                <controls:ControlExample.Example>
+                    <Label x:Name="DynamicLabel" Text="动态字号 / Dynamic size" FontSize="16" />
+                </controls:ControlExample.Example>
+                <controls:ControlExample.Options>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="字号 / Font size" FontSize="12" />
+                        <Slider Minimum="10" Maximum="40" Value="16" ValueChanged="OnFontSizeChanged" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Options>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Collections.CollectionViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CvListXaml">&lt;CollectionView ItemsSource="{Binding Items}"&gt;
+    &lt;CollectionView.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;Label Text="{Binding Name}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/CollectionView.ItemTemplate&gt;
+&lt;/CollectionView&gt;</x:String>
+        <x:String x:Key="CvGridXaml">&lt;CollectionView&gt;
+    &lt;CollectionView.ItemsLayout&gt;
+        &lt;GridItemsLayout Span="2"
+                         Orientation="Vertical"
+                         HorizontalItemSpacing="8"
+                         VerticalItemSpacing="8" /&gt;
+    &lt;/CollectionView.ItemsLayout&gt;
+    ...
+&lt;/CollectionView&gt;</x:String>
+        <x:String x:Key="CvHorizontalXaml">&lt;CollectionView.ItemsLayout&gt;
+    &lt;LinearItemsLayout Orientation="Horizontal"
+                       SnapPointsType="MandatorySingle" /&gt;
+&lt;/CollectionView.ItemsLayout&gt;</x:String>
+        <x:String x:Key="CvGroupXaml">&lt;CollectionView IsGrouped="True" ItemsSource="{Binding Groups}"&gt;
+    &lt;CollectionView.GroupHeaderTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;Label Text="{Binding Title}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/CollectionView.GroupHeaderTemplate&gt;
+&lt;/CollectionView&gt;</x:String>
+        <x:String x:Key="CvEmptyXaml">&lt;CollectionView EmptyView="没有数据 / No items" /&gt;
+&lt;!-- 或 EmptyView="{DataTemplate ...}" 提供自定义空视图 --&gt;</x:String>
+        <x:String x:Key="CvSelectionXaml">&lt;CollectionView SelectionMode="Single"
+                SelectionChanged="OnSelectionChanged" /&gt;</x:String>
+        <x:String x:Key="CvHeaderXaml">&lt;CollectionView.Header&gt;
+    &lt;Label Text="表头 / Header" /&gt;
+&lt;/CollectionView.Header&gt;
+&lt;CollectionView.Footer&gt;
+    &lt;Label Text="表尾 / Footer" /&gt;
+&lt;/CollectionView.Footer&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="线性列表 / Linear list"
+                                     Description="默认垂直单列。ItemTemplate 用 DataTemplate 定义每一项的外观（可配合 x:DataType 编译绑定）。"
+                                     Xaml="{StaticResource CvListXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="ListCollectionView" HeightRequest="220">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Padding="0,6">
+                                    <BoxView Grid.Column="0" Color="#512BD4" WidthRequest="36" HeightRequest="36" CornerRadius="8" />
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontFamily="OpenSansSemibold" />
+                                        <Label Text="{Binding Detail}" FontSize="12" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="网格布局 / Grid layout"
+                                     Description="GridItemsLayout 设置列数（Span）与方向，ItemSpacing 控制间距。"
+                                     Xaml="{StaticResource CvGridXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="GridCollectionView" HeightRequest="240">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Span="2" Orientation="Vertical" HorizontalItemSpacing="8" VerticalItemSpacing="8" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}" Padding="12" HeightRequest="70">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontFamily="OpenSansSemibold" />
+                                        <Label Text="{Binding Detail}" FontSize="11" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="水平滚动 / Horizontal"
+                                     Description="LinearItemsLayout Orientation=Horizontal 实现横向列表；SnapPointsType 可启用对齐吸附。"
+                                     Xaml="{StaticResource CvHorizontalXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="HCollectionView" HeightRequest="130">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" SnapPointsType="MandatorySingle" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="{AppThemeBinding Light=#F4F4F7, Dark=#222228}" Padding="14" WidthRequest="140">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12" />
+                                    </Border.StrokeShape>
+                                    <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                                        <Label Text="{Binding Name}" FontFamily="OpenSansSemibold" />
+                                        <Label Text="{Binding Detail}" FontSize="11" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="分组 / Grouping"
+                                     Description="IsGrouped=True 时 ItemsSource 是“组的集合”，每组本身是项的集合；GroupHeaderTemplate/GroupFooterTemplate 定义组头尾。"
+                                     Xaml="{StaticResource CvGroupXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="GroupCollectionView" HeightRequest="260">
+                        <CollectionView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Title}" FontFamily="OpenSansSemibold" BackgroundColor="#EEE6FF" Padding="8,4" />
+                            </DataTemplate>
+                        </CollectionView.GroupHeaderTemplate>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Name}" Padding="12,6" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="空视图 / EmptyView"
+                                     Description="EmptyView 在数据为空时显示，可为字符串或任意视图模板。"
+                                     Xaml="{StaticResource CvEmptyXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="EmptyCollectionView" HeightRequest="120">
+                        <CollectionView.EmptyView>
+                            <VerticalStackLayout Padding="16" Spacing="6">
+                                <Label Text="🍃" FontSize="28" HorizontalOptions="Center" />
+                                <Label Text="没有数据 / No items" HorizontalOptions="Center" FontFamily="OpenSansSemibold" />
+                                <Label Text="设置 ItemsSource 后这里会显示内容" HorizontalOptions="Center" FontSize="12" />
+                            </VerticalStackLayout>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="选择模式 / Selection"
+                                     Description="SelectionMode：None / Single / Multiple。SelectionChanged 提供 SelectionChangedEventArgs。"
+                                     Xaml="{StaticResource CvSelectionXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CollectionView x:Name="SelectionCollectionView" HeightRequest="150" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding Name}" Padding="0,6" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label x:Name="SelectionOutput" Text="未选择任何项 / Nothing selected" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="表头表尾 / Header &amp; Footer"
+                                     Description="Header/Footer 可以是任意视图（字符串、布局、甚至另一个控件）。"
+                                     Xaml="{StaticResource CvHeaderXaml}">
+                <controls:ControlExample.Example>
+                    <CollectionView x:Name="HeaderCollectionView" HeightRequest="200">
+                        <CollectionView.Header>
+                            <Label Text="📋 表头 / Header" FontFamily="OpenSansSemibold" Padding="0,6" />
+                        </CollectionView.Header>
+                        <CollectionView.Footer>
+                            <Label Text="📎 表尾 / Footer" FontSize="12" Padding="0,6" />
+                        </CollectionView.Footer>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Name}" Padding="0,4" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

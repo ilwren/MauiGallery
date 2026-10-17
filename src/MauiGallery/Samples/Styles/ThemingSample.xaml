@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Styles.ThemingSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ThemeXaml">&lt;Label BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
+       TextColor="{AppThemeBinding Light=Black, Dark=White}" /&gt;</x:String>
+        <x:String x:Key="OnPlatformXaml">&lt;Label FontSize="{OnPlatform Android=16, iOS=17, WinUI=18}" /&gt;
+&lt;BoxView Color="{OnPlatform iOS=Blue, Android=Green, WinUI=Red}" /&gt;</x:String>
+        <x:String x:Key="OnIdiomXaml">&lt;Label FontSize="{OnIdiom Phone=14, Tablet=18, Desktop=20}" /&gt;</x:String>
+        <x:String x:Key="ThemeApiXaml">// 强制主题
+Application.Current.UserAppTheme = AppTheme.Dark;
+Application.Current.RequestedTheme      // 只读，系统主题
+Application.Current.PlatformAppTheme    // 平台实际主题
+Application.Current.RequestedThemeChanged += ...;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="AppThemeBinding / 主题绑定"
+                                     Description="AppThemeBinding 按系统/应用主题（Light/Dark/Default）返回不同值，可用于任何属性。"
+                                     Xaml="{StaticResource ThemeXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="{AppThemeBinding Light=White, Dark=#1B1B20}" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Label Text="这个卡片随主题变化 / This card follows the theme"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        </Border>
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="浅色 / Light" Clicked="OnLight" FontSize="12" />
+                            <Button Text="深色 / Dark" Clicked="OnDark" FontSize="12" />
+                            <Button Text="跟随系统 / System" Clicked="OnSystem" FontSize="12" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="ThemeOutput" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="OnPlatform / 平台条件值"
+                                     Description="OnPlatform 按运行平台返回不同值（Android/iOS/MacCatalyst/WinUI/Tizen）。"
+                                     Xaml="{StaticResource OnPlatformXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="字体大小按平台不同 / Font size varies by platform"
+                               FontSize="{OnPlatform Android=16, iOS=17, WinUI=18, MacCatalyst=17}" />
+                        <BoxView Color="{OnPlatform iOS=Blue, Android=Green, WinUI=Red, MacCatalyst=Purple}"
+                                 HeightRequest="40" CornerRadius="8" />
+                        <Label x:Name="PlatformOutput" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="OnIdiom / 设备类型条件值"
+                                     Description="OnIdiom 按设备类型（Phone/Tablet/Desktop/TV/Watch）返回不同值。"
+                                     Xaml="{StaticResource OnIdiomXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="字号按设备类型调整 / Size by idiom"
+                           FontSize="{OnIdiom Phone=14, Tablet=18, Desktop=20, Default=15}" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="主题 API / Theme API"
+                                     Description="Application.Current.UserAppTheme 强制主题；RequestedThemeChanged 事件监听变化；PlatformAppTheme 查询系统实际主题。"
+                                     Xaml="{StaticResource ThemeApiXaml}">
+                <controls:ControlExample.Example>
+                    <Label x:Name="ThemeApiOutput" Text="Application.Current.PlatformAppTheme 将显示在这里" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

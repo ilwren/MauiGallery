@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Styles.TriggerSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TriggerPropXaml">&lt;Label Text="输入内容后我变绿"&gt;
+    &lt;Label.Triggers&gt;
+        &lt;Trigger TargetType="Label" Property="Text" Value="完成"&gt;
+            &lt;Setter Property="TextColor" Value="Green" /&gt;
+        &lt;/Trigger&gt;
+    &lt;/Label.Triggers&gt;
+&lt;/Label&gt;</x:String>
+        <x:String x:Key="TriggerDataXaml">&lt;Label Text="数据触发"&gt;
+    &lt;Label.Triggers&gt;
+        &lt;DataTrigger TargetType="Label"
+                     Binding="{Binding IsBusy}"
+                     Value="True"&gt;
+            &lt;Setter Property="Opacity" Value="0.5" /&gt;
+        &lt;/DataTrigger&gt;
+    &lt;/Label.Triggers&gt;
+&lt;/Label&gt;</x:String>
+        <x:String x:Key="TriggerEventXaml">&lt;BoxView&gt;
+    &lt;BoxView.Triggers&gt;
+        &lt;EventTrigger TargetType="BoxView" Event="Clicked"&gt;
+            &lt;local:ChangeColorAction /&gt;
+        &lt;/EventTrigger&gt;
+    &lt;/BoxView.Triggers&gt;
+&lt;/BoxView&gt;</x:String>
+        <x:String x:Key="TriggerMultiXaml">&lt;MultiTrigger TargetType="Button"&gt;
+    &lt;MultiTrigger.Conditions&gt;
+        &lt;BindingCondition Binding="{Binding Text}" Value="保存" /&gt;
+        &lt;PropertyCondition Property="IsEnabled" Value="True" /&gt;
+    &lt;/MultiTrigger.Conditions&gt;
+    &lt;Setter Property="BackgroundColor" Value="Green" /&gt;
+&lt;/MultiTrigger&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Trigger / 属性触发器"
+                                     Description="当目标属性等于指定值时应用 Setter；值不匹配时恢复。"
+                                     Xaml="{StaticResource TriggerPropXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry x:Name="TriggerEntry" Placeholder="输入“完成”二字试试" TextChanged="OnTextChanged" />
+                        <Label x:Name="TriggerLabel" Text="输入内容后我变色">
+                            <Label.Triggers>
+                                <Trigger TargetType="Label" Property="Text" Value="完成">
+                                    <Setter Property="TextColor" Value="Green" />
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </Trigger>
+                            </Label.Triggers>
+                        </Label>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="DataTrigger / 绑定触发器"
+                                     Description="Binding 的值等于 Value 时应用 Setter（适合视图模型驱动的外观）。"
+                                     Xaml="{StaticResource TriggerDataXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <CheckBox x:Name="BusyCheck" CheckedChanged="OnBusyChanged" />
+                            <Label Text="IsBusy = true" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label Text="数据绑定触发器示例 / DataTrigger demo">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding Source={x:Reference BusyCheck}, Path=IsChecked}"
+                                             Value="True">
+                                    <Setter Property="Opacity" Value="0.5" />
+                                    <Setter Property="TextColor" Value="Gray" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="MultiTrigger / 多条件触发器"
+                                     Description="多个 BindingCondition/PropertyCondition 同时满足才触发（AND 语义）。"
+                                     Xaml="{StaticResource TriggerMultiXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry x:Name="WordEntry" Placeholder="输入“保存”" TextChanged="OnWordChanged" />
+                        <Button x:Name="SaveButton" Text="保存">
+                            <Button.Triggers>
+                                <MultiTrigger TargetType="Button">
+                                    <MultiTrigger.Conditions>
+                                        <BindingCondition Binding="{Binding Source={x:Reference WordEntry}, Path=Text}" Value="保存" />
+                                        <PropertyCondition Property="IsEnabled" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="BackgroundColor" Value="Green" />
+                                </MultiTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Menus.ContextFlyoutSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CtxBasicXaml">&lt;Button Text="右键点击我 / Right-click me"&gt;
+    &lt;FlyoutBase.ContextFlyout&gt;
+        &lt;MenuFlyout&gt;
+            &lt;MenuFlyoutItem Text="复制 / Copy" Clicked="OnCopy" /&gt;
+            &lt;MenuFlyoutItem Text="粘贴 / Paste" Clicked="OnPaste" /&gt;
+        &lt;/MenuFlyout&gt;
+    &lt;/FlyoutBase.ContextFlyout&gt;
+&lt;/Button&gt;</x:String>
+        <x:String x:Key="CtxSubXaml">&lt;MenuFlyout&gt;
+    &lt;MenuFlyoutSubItem Text="导出为 / Export as"&gt;
+        &lt;MenuFlyoutItem Text="PDF" /&gt;
+        &lt;MenuFlyoutItem Text="PNG" /&gt;
+    &lt;/MenuFlyoutSubItem&gt;
+    &lt;MenuFlyoutSeparator /&gt;
+    &lt;MenuFlyoutItem Text="删除 / Delete" /&gt;
+&lt;/MenuFlyout&gt;</x:String>
+        <x:String x:Key="CtxIconXaml">&lt;MenuFlyoutItem Text="红色 / Red"&gt;
+    &lt;MenuFlyoutItem.IconImageSource&gt;
+        &lt;FontImageSource Glyph="&#x25CF;" Color="Red" /&gt;
+    &lt;/MenuFlyoutItem.IconImageSource&gt;
+&lt;/MenuFlyoutItem&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="右键菜单 / Context menu"
+                                     Description="FlyoutBase.ContextFlyout 附加属性为任意视图提供上下文菜单（桌面右键 / 移动端长按）。MenuFlyout 内可放 MenuFlyoutItem、MenuFlyoutSubItem、MenuFlyoutSeparator。"
+                                     Xaml="{StaticResource CtxBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="右键点击我 / Right-click me" HorizontalOptions="Start">
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="复制 / Copy" Clicked="OnCopy" />
+                                    <MenuFlyoutItem Text="粘贴 / Paste" Clicked="OnPaste" />
+                                    <MenuFlyoutSeparator />
+                                    <MenuFlyoutItem Text="属性 / Properties" Clicked="OnProperties" />
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Button>
+                        <Label x:Name="CtxOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="子菜单与分隔线 / Submenus"
+                                     Description="MenuFlyoutSubItem 创建子菜单；MenuFlyoutSeparator 分隔分组。"
+                                     Xaml="{StaticResource CtxSubXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="右键点击这段文本 / Right-click this text">
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutSubItem Text="导出为 / Export as">
+                                    <MenuFlyoutItem Text="PDF" Clicked="OnExportPdf" />
+                                    <MenuFlyoutItem Text="PNG" Clicked="OnExportPng" />
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutSeparator />
+                                <MenuFlyoutItem Text="删除 / Delete" Clicked="OnDelete" />
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Label>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="图标菜单项 / Icons"
+                                     Description="MenuFlyoutItem.IconImageSource 设置菜单项图标。"
+                                     Xaml="{StaticResource CtxIconXaml}">
+                <controls:ControlExample.Example>
+                    <BoxView Color="{AppThemeBinding Light=#C8C8C8, Dark=#404040}" HeightRequest="80" CornerRadius="10">
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="红色 / Red" Clicked="OnRed">
+                                    <MenuFlyoutItem.IconImageSource>
+                                        <FontImageSource Glyph="&#x25CF;" Color="Red" Size="14" />
+                                    </MenuFlyoutItem.IconImageSource>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="紫色 / Purple" Clicked="OnPurple">
+                                    <MenuFlyoutItem.IconImageSource>
+                                        <FontImageSource Glyph="&#x25CF;" Color="Purple" Size="14" />
+                                    </MenuFlyoutItem.IconImageSource>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </BoxView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

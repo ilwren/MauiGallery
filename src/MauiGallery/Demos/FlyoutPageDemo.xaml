@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="MauiGallery.Demos.FlyoutPageDemo">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="菜单 / Flyout">
+            <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="10">
+                    <Label Text="Flyout 菜单" FontFamily="OpenSansSemibold" FontSize="20" />
+                    <Button Text="打开页面 A / Open A" Clicked="OnOpenA" />
+                    <Button Text="打开页面 B / Open B" Clicked="OnOpenB" />
+                    <Label Text="FlyoutLayoutBehavior 控制手机上以弹出方式显示菜单。" FontSize="12" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <!-- Detail is created in code-behind (NavigationPage wrapping a detail page). -->
+</FlyoutPage>

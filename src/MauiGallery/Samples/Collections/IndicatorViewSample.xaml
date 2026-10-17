@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Collections.IndicatorViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="IvBasicXaml">&lt;IndicatorView Count="5" Position="0" /&gt;</x:String>
+        <x:String x:Key="IvCarouselXaml">&lt;CarouselView IndicatorView="indicator" /&gt;
+&lt;IndicatorView x:Name="indicator"
+               IndicatorColor="Gray"
+               SelectedIndicatorColor="Black" /&gt;</x:String>
+        <x:String x:Key="IvStyleXaml">&lt;IndicatorView IndicatorsShape="Square"
+               IndicatorSize="8,4"
+               MaximumVisible="6" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础指示器 / Basic IndicatorView"
+                                     Description="Count 设置指示点数量，Position 表示当前选中位置。"
+                                     Xaml="{StaticResource IvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <IndicatorView x:Name="BasicIndicator" Count="5" Position="0" HorizontalOptions="Center" />
+                        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Button Text="◀" Clicked="OnPrev" WidthRequest="60" />
+                            <Button Text="▶" Clicked="OnNext" WidthRequest="60" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="样式 / Styles"
+                                     Description="IndicatorsShape（Circle/Square）、IndicatorSize、MaximumVisible、IndicatorColor、SelectedIndicatorColor 控制外观。"
+                                     Xaml="{StaticResource IvStyleXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="12">
+                        <IndicatorView Count="8" Position="2" IndicatorsShape="Circle" HorizontalOptions="Center"
+                                       IndicatorColor="#C8C8C8" SelectedIndicatorColor="#512BD4" />
+                        <IndicatorView Count="8" Position="3" IndicatorsShape="Square" IndicatorSize="10,4" HorizontalOptions="Center"
+                                       IndicatorColor="#C8C8C8" SelectedIndicatorColor="#D600AA" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="与 CarouselView 联动 / With CarouselView"
+                                     Description="通过 ItemsSourceBy（或 CarouselView.IndicatorView）共享数据源，自动同步位置。"
+                                     Xaml="{StaticResource IvCarouselXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CarouselView x:Name="IndicatorCarousel" HeightRequest="120" IndicatorView="LinkedIndicator">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}" Margin="4" Padding="16">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="18" />
+                                    </Border>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <IndicatorView x:Name="LinkedIndicator" HorizontalOptions="Center"
+                                       IndicatorColor="#C8C8C8" SelectedIndicatorColor="#512BD4" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

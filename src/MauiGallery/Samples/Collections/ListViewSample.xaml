@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Collections.ListViewSample"
+             x:Name="Root">
+
+    <ContentView.Resources>
+        <x:String x:Key="LvBasicXaml">&lt;ListView ItemsSource="{Binding Items}"
+          HasUnevenRows="True"
+          ItemTapped="OnItemTapped"&gt;
+    &lt;ListView.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;TextCell Text="{Binding Name}"
+                      Detail="{Binding Detail}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/ListView.ItemTemplate&gt;
+&lt;/ListView&gt;</x:String>
+        <x:String x:Key="LvGroupXaml">&lt;ListView IsGroupingEnabled="True"
+          GroupDisplayBinding="{Binding Title}"
+          ItemsSource="{Binding Groups}" /&gt;</x:String>
+        <x:String x:Key="LvContextXaml">&lt;ViewCell&gt;
+    &lt;ViewCell.ContextActions&gt;
+        &lt;MenuItem Text="删除 / Delete"
+                  IsDestructive="True"
+                  Clicked="OnDelete" /&gt;
+    &lt;/ViewCell.ContextActions&gt;
+    ...
+&lt;/ViewCell&gt;</x:String>
+        <x:String x:Key="LvRefreshXaml">&lt;ListView IsPullToRefreshEnabled="True"
+          IsRefreshing="{Binding IsBusy}"
+          RefreshCommand="{Binding RefreshCommand}" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础列表 / Basic ListView"
+                                     Description="ListView 是经典列表控件（建议新代码用 CollectionView）。ItemTapped/ItemSelected 提供交互，ItemTemplate 支持 TextCell/ImageCell/ViewCell。"
+                                     Xaml="{StaticResource LvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <ListView x:Name="BasicListView" HeightRequest="200" HasUnevenRows="True" ItemTapped="OnItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="分组 / Grouping"
+                                     Description="IsGroupingEnabled=True 启用分组；GroupDisplayBinding 显示组标题，GroupHeaderTemplate 可自定义组头。"
+                                     Xaml="{StaticResource LvGroupXaml}">
+                <controls:ControlExample.Example>
+                    <ListView x:Name="GroupListView" HeightRequest="230" IsGroupingEnabled="True"
+                              GroupDisplayBinding="{Binding Title}" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="上下文操作 / ContextActions"
+                                     Description="Cell.ContextActions 添加滑动/右键菜单（MenuItem），IsDestructive 标记破坏性操作。"
+                                     Xaml="{StaticResource LvContextXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="👉 在行上右键（桌面）或长按（移动端）/ Right-click or long-press a row" FontSize="12" />
+                        <ListView x:Name="ContextListView" HeightRequest="160" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}">
+                                        <TextCell.ContextActions>
+                                            <MenuItem Text="收藏 / Favorite" Clicked="OnFavorite" />
+                                            <MenuItem Text="删除 / Delete" IsDestructive="True" Clicked="OnDeleteRow" />
+                                        </TextCell.ContextActions>
+                                    </TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Label x:Name="ContextOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="下拉刷新 / Pull to refresh"
+                                     Description="IsPullToRefreshEnabled=True 允许下拉；RefreshCommand 执行刷新逻辑，IsRefreshing 控制刷新指示。"
+                                     Xaml="{StaticResource LvRefreshXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="下拉列表试试 / Pull down the list" FontSize="12" />
+                        <ListView x:Name="RefreshListView" HeightRequest="150"
+                                  IsPullToRefreshEnabled="True"
+                                  IsRefreshing="False"
+                                  RefreshCommand="OnRefresh">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

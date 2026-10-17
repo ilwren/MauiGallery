@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Menus.MenuItemSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="MenuShellXaml">&lt;Shell&gt;
+    &lt;FlyoutItem Title="主页"&gt;
+        &lt;FlyoutItem.MenuItems&gt;
+            &lt;MenuItem Text="设置" Clicked="OnSettings" /&gt;
+            &lt;MenuItem Text="帮助" Clicked="OnHelp" /&gt;
+        &lt;/FlyoutItem.MenuItems&gt;
+        ...
+    &lt;/FlyoutItem&gt;
+&lt;/Shell&gt;</x:String>
+        <x:String x:Key="MenuContextXaml">&lt;ViewCell.ContextActions&gt;
+    &lt;MenuItem Text="收藏" Command="{Binding FavoriteCommand}" /&gt;
+    &lt;MenuItem Text="删除" IsDestructive="True" /&gt;
+&lt;/ViewCell.ContextActions&gt;</x:String>
+        <x:String x:Key="MenuPropsXaml">&lt;!-- MenuItem 常用属性 --&gt;
+&lt;MenuItem Text="..." IconImageSource="gear.png"
+          IsEnabled="True" IsDestructive="False"
+          Command="{Binding Cmd}" CommandParameter="x" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="Shell 飞出菜单项 / Shell flyout items"
+                                     Description="MenuItem 放入 FlyoutItem/ShellItem 的 MenuItems，显示在飞出菜单底部区域（常用于设置、帮助等入口）。"
+                                     Xaml="{StaticResource MenuShellXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="本画廊飞出菜单底部的“搜索/关于”即 ShellContent；MenuItem 常用作纯命令入口。" />
+                        <Button Text="打开飞出菜单 / Open flyout" Clicked="OnOpenFlyout" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="上下文操作 / ContextActions"
+                                     Description="Cell.ContextActions 里的 MenuItem 提供行级操作（见 ListView 页的示例）；IsDestructive 标红破坏性操作。"
+                                     Xaml="{StaticResource MenuContextXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="参见 Collections → ListView 的“上下文操作”示例。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="MenuItem 属性 / Properties"
+                                     Description="Text、IconImageSource、IsEnabled、IsDestructive、Command/CommandParameter、AutomationId 等。"
+                                     Xaml="{StaticResource MenuPropsXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="⚙" FontSize="20" VerticalOptions="Center" />
+                            <Label Text="设置 / Settings（模拟菜单项）" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

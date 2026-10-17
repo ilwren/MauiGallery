@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.DateTime.TimePickerSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TimePickerBasicXaml">&lt;TimePicker Time="14:30" /&gt;</x:String>
+        <x:String x:Key="TimePickerFormatXaml">&lt;TimePicker Format="hh:mm tt" /&gt;
+&lt;TimePicker Format="HH时mm分" /&gt;</x:String>
+        <x:String x:Key="TimePickerEventXaml">&lt;TimePicker TimeSelected="OnTimeSelected" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础时间选择 / Basic TimePicker"
+                                     Description="TimePicker 以平台原生选择器选择时间；Time 为 TimeSpan 值。"
+                                     Xaml="{StaticResource TimePickerBasicXaml}">
+                <controls:ControlExample.Example>
+                    <TimePicker x:Name="BasicTimePicker" Time="14:30" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="格式 / Format"
+                                     Description="Format 使用 .NET 时间格式字符串；不同平台呈现 12/24 小时制的方式略有差异。"
+                                     Xaml="{StaticResource TimePickerFormatXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <TimePicker Time="14:30" Format="hh:mm tt" />
+                        <TimePicker Time="14:30" Format="HH时mm分" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="TimeSelected 在时间变化时触发（TimeChangedEventArgs.OldTime/NewTime）。"
+                                     Xaml="{StaticResource TimePickerEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <TimePicker Time="09:00" TimeSelected="OnTimeSelected" />
+                        <Label x:Name="TimeOutput" Text="—" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

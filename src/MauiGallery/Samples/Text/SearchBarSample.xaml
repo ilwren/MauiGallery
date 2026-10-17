@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Text.SearchBarSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="SearchBarBasicXaml">&lt;SearchBar Placeholder="搜索控件 / Search" /&gt;</x:String>
+        <x:String x:Key="SearchBarCommandXaml">&lt;SearchBar SearchCommand="{Binding SearchCommand}"
+           CommandParameter="{Binding Text}"
+           Placeholder="命令绑定 / Command" /&gt;</x:String>
+        <x:String x:Key="SearchBarEventXaml">&lt;SearchBar TextChanged="OnTextChanged"
+           SearchButtonPressed="OnSearchPressed"
+           Placeholder="事件 / Events" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础搜索栏 / Basic SearchBar"
+                                     Description="SearchBar 由搜索图标、输入区和搜索按钮组成，Placeholder 设置提示文字。"
+                                     Xaml="{StaticResource SearchBarBasicXaml}">
+                <controls:ControlExample.Example>
+                    <SearchBar Placeholder="搜索控件 / Search" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="TextChanged 在输入时触发；SearchButtonPressed 在点击搜索按钮（或回车）时触发。"
+                                     Xaml="{StaticResource SearchBarEventXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <SearchBar x:Name="EventSearchBar"
+                                   Placeholder="输入后按搜索 / Type &amp; press search"
+                                   TextChanged="OnTextChanged"
+                                   SearchButtonPressed="OnSearchPressed" />
+                        <Label x:Name="SearchOutput" Text="—" />
+                        <VerticalStackLayout x:Name="ResultList" Spacing="2" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="命令绑定 / Command binding"
+                                     Description="SearchCommand + CommandParameter 实现 MVVM 搜索；常把 CommandParameter 绑定到 Text。"
+                                     Xaml="{StaticResource SearchBarCommandXaml}">
+                <controls:ControlExample.Example>
+                    <SearchBar x:Name="CommandSearchBar"
+                               Placeholder="回车执行命令 / Press enter"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference CommandSearchBar}}" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.RadioButtonSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="RadioBasicXaml">&lt;StackLayout RadioButtonGroup.GroupName="colors"&gt;
+    &lt;RadioButton Content="红 / Red" /&gt;
+    &lt;RadioButton Content="绿 / Green" /&gt;
+    &lt;RadioButton Content="蓝 / Blue" /&gt;
+&lt;/StackLayout&gt;</x:String>
+        <x:String x:Key="RadioCustomXaml">&lt;RadioButton GroupName="size" Value="L"&gt;
+    &lt;RadioButton.ControlTemplate&gt;
+        ... 自定义外观模板 ...
+    &lt;/RadioButton.ControlTemplate&gt;
+&lt;/RadioButton&gt;</x:String>
+        <x:String x:Key="RadioBindXaml">&lt;RadioButton GroupName="layout" Value="list"
+            CheckedChanged="OnRadioChanged" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="单选组 / Radio group"
+                                     Description="同一组内的 RadioButton 互斥。RadioButtonGroup.GroupName 附加在容器上即对所有子项生效。"
+                                     Xaml="{StaticResource RadioBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout RadioButtonGroup.GroupName="colors" Spacing="4">
+                        <RadioButton Content="红 / Red" />
+                        <RadioButton Content="绿 / Green" />
+                        <RadioButton Content="蓝 / Blue" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="自定义外观 / Custom template"
+                                     Description="RadioButton 的内容与外观都可定制：Content 任意视图，ControlTemplate 重绘圆点，Value 保存业务值。"
+                                     Xaml="{StaticResource RadioCustomXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout RadioButtonGroup.GroupName="size" Spacing="8">
+                        <RadioButton Value="S">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <BoxView Grid.Column="0" Color="#C8C8C8" WidthRequest="28" HeightRequest="28" CornerRadius="6" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="小 / Small" FontFamily="OpenSansSemibold" />
+                                    <Label Text="适合单人使用" FontSize="11" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </RadioButton>
+                        <RadioButton Value="L">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <BoxView Grid.Column="0" Color="#512BD4" WidthRequest="28" HeightRequest="28" CornerRadius="6" />
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="大 / Large" FontFamily="OpenSansSemibold" />
+                                    <Label Text="适合团队使用" FontSize="11" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </RadioButton>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件 / Events"
+                                     Description="CheckedChanged 获取 CheckedChangedEventArgs.IsChecked；结合 Value 可得到所选值。"
+                                     Xaml="{StaticResource RadioBindXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="4">
+                        <VerticalStackLayout RadioButtonGroup.GroupName="layout" Spacing="4">
+                            <RadioButton Content="列表 / List" Value="list" CheckedChanged="OnRadioChanged" />
+                            <RadioButton Content="网格 / Grid" Value="grid" CheckedChanged="OnRadioChanged" />
+                            <RadioButton Content="轮播 / Carousel" Value="carousel" CheckedChanged="OnRadioChanged" />
+                        </VerticalStackLayout>
+                        <Label x:Name="RadioOutput" Text="尚未选择" Margin="0,8,0,0" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

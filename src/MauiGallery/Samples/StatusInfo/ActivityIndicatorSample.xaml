@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.StatusInfo.ActivityIndicatorSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="AiBasicXaml">&lt;ActivityIndicator IsRunning="True" /&gt;</x:String>
+        <x:String x:Key="AiColorXaml">&lt;ActivityIndicator IsRunning="True"
+           Color="DarkOrange" /&gt;</x:String>
+        <x:String x:Key="AiBusyXaml">&lt;ActivityIndicator IsRunning="{Binding IsBusy}" /&gt;
+&lt;!-- 常与异步任务的 IsBusy 状态绑定 --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础指示器 / Basic ActivityIndicator"
+                                     Description="IsRunning=True 显示旋转动画；False 隐藏。是表达“忙碌中”的轻量控件。"
+                                     Xaml="{StaticResource AiBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="12">
+                            <ActivityIndicator IsRunning="True" />
+                            <Label Text="加载中… / Loading" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="12">
+                            <ActivityIndicator IsRunning="False" />
+                            <Label Text="已停止 / Stopped" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="颜色与尺寸 / Color &amp; size"
+                                     Description="Color 设置颜色；WidthRequest/HeightRequest 调整大小（最小 40×40 建议触控尺寸）。"
+                                     Xaml="{StaticResource AiColorXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <ActivityIndicator IsRunning="True" Color="DarkOrange" />
+                        <ActivityIndicator IsRunning="True" Color="#512BD4" WidthRequest="50" HeightRequest="50" />
+                        <ActivityIndicator IsRunning="True" Color="Teal" WidthRequest="60" HeightRequest="60" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="与任务绑定 / With async work"
+                                     Description="常见模式：启动异步任务时 IsRunning=True，完成后隐藏并显示结果。"
+                                     Xaml="{StaticResource AiBusyXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <Button Text="模拟加载 / Simulate work" Clicked="OnSimulate" HorizontalOptions="Start" />
+                        <HorizontalStackLayout Spacing="12">
+                            <ActivityIndicator x:Name="BusyIndicator" IsRunning="False" />
+                            <Label x:Name="BusyOutput" Text="空闲 / Idle" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

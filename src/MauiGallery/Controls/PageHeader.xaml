@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Controls.PageHeader">
+    <VerticalStackLayout Spacing="6" Padding="0,0,0,4">
+
+        <HorizontalStackLayout Spacing="8">
+            <Label Text="{Binding Title}" Style="{StaticResource GalleryTitleLabel}" />
+            <Border BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}"
+                    Padding="8,2"
+                    VerticalOptions="Center"
+                    StrokeThickness="0"
+                    IsVisible="{Binding HasBadge}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Label Text="{Binding BadgeText}"
+                       FontSize="11"
+                       FontFamily="OpenSansSemibold"
+                       TextColor="{AppThemeBinding Light=#512BD4, Dark=#DFD8F7}" />
+            </Border>
+        </HorizontalStackLayout>
+
+        <Label Text="{Binding Subtitle}" Style="{StaticResource GallerySubtitleLabel}" />
+        <Label Text="{Binding Description}" />
+
+        <!-- API information -->
+        <VerticalStackLayout Spacing="2" Margin="0,8,0,0">
+            <Label Text="API 命名空间 / API namespace:"
+                   FontSize="12"
+                   FontFamily="OpenSansSemibold"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+            <Label Text="{Binding ApiNamespace}"
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+            <Label Text="{Binding BaseClassesText}"
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+        </VerticalStackLayout>
+
+        <!-- Documentation links -->
+        <VerticalStackLayout Spacing="4" Margin="0,8,0,0"
+                             BindableLayout.ItemsSource="{Binding Docs}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding Title}"
+                            FontSize="12"
+                            Padding="10,6"
+                            MinimumHeightRequest="34"
+                            HorizontalOptions="Start"
+                            BackgroundColor="{AppThemeBinding Light=#E1E1E1, Dark=#404040}"
+                            TextColor="{AppThemeBinding Light=#141414, Dark=#E1E1E1}"
+                            Clicked="OnDocLinkClicked" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentView>

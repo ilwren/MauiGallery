@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.BasicInput.SwitchSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="SwitchBasicXaml">&lt;Switch IsToggled="True" /&gt;
+&lt;Switch IsToggled="False" IsEnabled="False" /&gt;</x:String>
+        <x:String x:Key="SwitchColorXaml">&lt;Switch OnColor="Purple" ThumbColor="White" /&gt;</x:String>
+        <x:String x:Key="SwitchEventXaml">&lt;Switch Toggled="OnToggled" /&gt;</x:String>
+        <x:String x:Key="SwitchRowXaml">&lt;HorizontalStackLayout&gt;
+    &lt;Label Text="飞行模式 / Airplane mode" VerticalOptions="Center" /&gt;
+    &lt;Switch Toggled="OnToggled" HorizontalOptions="End" /&gt;
+&lt;/HorizontalStackLayout&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础开关 / Basic Switch"
+                                     Description="IsToggled 表示开/关状态；IsEnabled=False 为禁用外观。Switch 使用平台原生样式。"
+                                     Xaml="{StaticResource SwitchBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="12">
+                            <Switch IsToggled="True" />
+                            <Label Text="开 / On" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="12">
+                            <Switch IsToggled="False" />
+                            <Label Text="关 / Off" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="12">
+                            <Switch IsToggled="True" IsEnabled="False" />
+                            <Label Text="禁用 / Disabled" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="颜色 / Colors"
+                                     Description="OnColor 为开启轨道色，ThumbColor 为滑块颜色。"
+                                     Xaml="{StaticResource SwitchColorXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="12">
+                        <Switch IsToggled="True" OnColor="Purple" ThumbColor="White" />
+                        <Label Text="自定义颜色 / Custom colors" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="事件与行布局 / Events &amp; row"
+                                     Description="Toggled 事件携带 ToggledEventArgs.Value。设置页常见布局是标签在左、开关在右。"
+                                     Xaml="{StaticResource SwitchRowXaml}">
+                <controls:ControlExample.Example>
+                    <Border Style="{StaticResource CardBorder}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                                <Label Text="飞行模式 / Airplane mode" FontFamily="OpenSansSemibold" />
+                                <Label x:Name="SwitchOutput" Text="当前：关 / Off" FontSize="12" />
+                            </VerticalStackLayout>
+                            <Switch Grid.Column="1" Toggled="OnToggled" />
+                        </Grid>
+                    </Border>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

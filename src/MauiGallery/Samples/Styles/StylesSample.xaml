@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Styles.StylesSample">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- 显式样式 / explicit -->
+            <Style x:Key="CardTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="OpenSansSemibold" />
+                <Setter Property="TextColor" Value="#512BD4" />
+            </Style>
+            <!-- 隐式样式（本资源字典范围内自动应用）/ implicit -->
+            <Style TargetType="Button" x:Key="RoundedButton">
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="20,10" />
+                <Setter Property="BackgroundColor" Value="#512BD4" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <!-- 样式继承 / BasedOn -->
+            <Style x:Key="BigRoundedButton" TargetType="Button" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Padding" Value="28,14" />
+            </Style>
+        </ResourceDictionary>
+        <x:String x:Key="StyleExplicitXaml">&lt;Style x:Key="CardTitle" TargetType="Label"&gt;
+    &lt;Setter Property="FontSize" Value="18" /&gt;
+    &lt;Setter Property="TextColor" Value="Purple" /&gt;
+&lt;/Style&gt;
+&lt;Label Style="{StaticResource CardTitle}" Text="应用样式" /&gt;</x:String>
+        <x:String x:Key="StyleImplicitXaml">&lt;Style TargetType="Button"&gt; ... &lt;/Style&gt;
+&lt;!-- 隐式样式自动应用于同资源字典范围内的所有 Button --&gt;</x:String>
+        <x:String x:Key="StyleBasedOnXaml">&lt;Style x:Key="Big" TargetType="Button"
+       BasedOn="{StaticResource RoundedButton}"&gt;
+    &lt;Setter Property="FontSize" Value="18" /&gt;
+&lt;/Style&gt;</x:String>
+        <x:String x:Key="StyleResourceXaml">&lt;!-- StaticResource：加载时解析；DynamicResource：运行时可更新 --&gt;
+&lt;Button BackgroundColor="{DynamicResource PrimaryBrush}" /&gt;</x:String>
+        <x:String x:Key="StyleCssXaml">&lt;StyleSheet&gt;
+    &lt;![CDATA[
+        .header { color: #512BD4; font-size: 20; }
+        button { background-color: #DFD8F7; }
+    ]]&gt;
+&lt;/StyleSheet&gt;
+// 或加载 .css 文件：
+this.Resources.Add(StyleSheet.FromFile("styles.css"));</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="显式样式 / Explicit style"
+                                     Description="带 x:Key 的样式通过 Style=&quot;{StaticResource Key}&quot; 手动应用。"
+                                     Xaml="{StaticResource StyleExplicitXaml}">
+                <controls:ControlExample.Example>
+                    <Label Style="{StaticResource CardTitle}" Text="这个 Label 使用了 CardTitle 样式" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="样式与 BasedOn / Inheritance"
+                                     Description="BasedOn 继承另一个样式的 Setter，再追加或覆盖属性。"
+                                     Xaml="{StaticResource StyleBasedOnXaml}">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="10">
+                        <Button Text="RoundedButton" Style="{StaticResource RoundedButton}" />
+                        <Button Text="BigRoundedButton" Style="{StaticResource BigRoundedButton}" />
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="资源查找 / StaticResource vs DynamicResource"
+                                     Description="StaticResource 在加载时一次性解析；DynamicResource 在资源变化时更新（适合主题切换）。应用级 Resources/Styles.xaml 就是全局样式资源。"
+                                     Xaml="{StaticResource StyleResourceXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="DynamicResource: PrimaryBrush" BackgroundColor="{DynamicResource Primary}" />
+                        <Button Text="AppThemeBinding: Light/Dark" BackgroundColor="{AppThemeBinding Light=#EEE6FF, Dark=#3B2A6B}"
+                                TextColor="{AppThemeBinding Light=#242424, Dark=#F2F2F2}" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="CSS 样式表 / StyleSheets"
+                                     Description="MAUI 支持 CSS 子集：StyleSheet.FromString/FromFile 加载，类选择器与元素选择器可用（见 XAML 源码）。"
+                                     Xaml="{StaticResource StyleCssXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="CSS 样式需在代码中加载（StyleSheet.FromString），此处演示语法。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

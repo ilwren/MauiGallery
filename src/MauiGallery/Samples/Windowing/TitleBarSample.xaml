@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Windowing.TitleBarSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="TbXaml">&lt;ContentPage&gt;
+    &lt;TitleBar Title="文档标题" Subtitle="副标题"&gt;
+        &lt;TitleBar.IconImageSource&gt;
+            &lt;FontImageSource Glyph="&#x270E;" /&gt;
+        &lt;/TitleBar.IconImageSource&gt;
+        &lt;TitleBar.TrailingContent&gt;
+            &lt;Button Text="设置" /&gt;
+        &lt;/TitleBar.TrailingContent&gt;
+    &lt;/TitleBar&gt;
+&lt;/ContentPage&gt;</x:String>
+        <x:String x:Key="TbPartsXaml">&lt;!-- TitleBar 模板部件（PART_*）--&gt;
+&lt;!-- PART_Icon / PART_Title / PART_Subtitle / PART_LeadingContent / PART_Content / PART_TrailingContent --&gt;
+&lt;!-- 模板状态：IconVisible/IconCollapsed、TitleVisible/TitleCollapsed … --&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="TitleBar / 自定义标题栏"
+                                     Description="TitleBar（Windows、Mac Catalyst）自定义窗口标题栏：图标、标题/副标题、前置与后置内容。隐藏后窗口内容延伸到标题栏区域。"
+                                     Xaml="{StaticResource TbXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="标题栏是窗口级 UI，点击打开整页演示（Windows/macOS 效果最佳）。" />
+                        <Button Text="打开 TitleBar 演示 / Open demo" Clicked="OnOpenDemo" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="模板部件 / Template parts"
+                                     Description="TitleBar 基于 TemplatedView，模板通过 PART_* 命名部件与 VisualState（IconVisible/TitleCollapsed 等）控制各区域显示。"
+                                     Xaml="{StaticResource TbPartsXaml}">
+                <controls:ControlExample.Example>
+                    <Label Text="标准标题栏高度 32px；可通过 HeightRequest 增大。" FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

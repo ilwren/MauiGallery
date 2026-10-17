@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Text.LabelSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="LabelBasicXaml">&lt;Label Text="你好，.NET MAUI！" /&gt;
+&lt;Label Text="红色小字 / Red caption"
+       FontSize="12"
+       TextColor="DarkRed" /&gt;</x:String>
+        <x:String x:Key="LabelFormatXaml">&lt;Label&gt;
+    &lt;Label.FormattedString&gt;
+        &lt;FormattedString&gt;
+            &lt;Span Text="粗体 " FontAttributes="Bold" /&gt;
+            &lt;Span Text="斜体 " FontAttributes="Italic" /&gt;
+            &lt;Span Text="下划线"
+                  TextDecorations="Underline" /&gt;
+        &lt;/FormattedString&gt;
+    &lt;/Label.FormattedString&gt;
+&lt;/Label&gt;</x:String>
+        <x:String x:Key="LabelBreakXaml">&lt;Label Text="很长很长的文本..."
+       LineBreakMode="TailTruncation" /&gt;</x:String>
+        <x:String x:Key="LabelHtmlXaml">&lt;Label TextType="Html"
+       Text="&amp;lt;b&amp;gt;HTML&amp;lt;/b&amp;gt; &amp;lt;i&amp;gt;content&amp;lt;/i&amp;gt;" /&gt;</x:String>
+        <x:String x:Key="LabelAutoXaml">&lt;Label Text="自动调整字号以填满宽度"
+       LineBreakMode="WordWrap"
+       MaxLines="1" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础文本 / Basic text"
+                                     Description="Text、TextColor、FontSize、FontFamily、FontAttributes、LineHeight、Padding 等控制文本外观。"
+                                     Xaml="{StaticResource LabelBasicXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="你好，.NET MAUI！" />
+                        <Label Text="红色小字 / Red caption" FontSize="12" TextColor="DarkRed" />
+                        <Label Text="粗体大字 / Bold large"
+                               FontFamily="OpenSansSemibold"
+                               FontSize="22" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="富文本 / FormattedString"
+                                     Description="FormattedString + Span 可在一段文本内混合样式（字体、颜色、装饰、行高、点击手势）。"
+                                     Xaml="{StaticResource LabelFormatXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label>
+                            <Label.FormattedString>
+                                <FormattedString>
+                                    <Span Text="粗体 " FontAttributes="Bold" FontSize="18" />
+                                    <Span Text="斜体 " FontAttributes="Italic" FontSize="18" />
+                                    <Span Text="下划线" TextDecorations="Underline" FontSize="18" TextColor="#512BD4" />
+                                </FormattedString>
+                            </Label.FormattedString>
+                        </Label>
+                        <Label>
+                            <Label.FormattedString>
+                                <FormattedString>
+                                    <Span Text="混色文本：" FontSize="15" />
+                                    <Span Text="红 " TextColor="Red" FontSize="15" />
+                                    <Span Text="绿 " TextColor="Green" FontSize="15" />
+                                    <Span Text="蓝" TextColor="Blue" FontSize="15" />
+                                </FormattedString>
+                            </Label.FormattedString>
+                        </Label>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="行断模式 / LineBreakMode"
+                                     Description="WordWrap、CharacterWrap、HeadTruncation、MiddleTruncation、TailTruncation、NoWrap 控制换行与截断；MaxLines 限制行数。"
+                                     Xaml="{StaticResource LabelBreakXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="WordWrap：这是一段很长很长很长很长很长很长很长很长很长很长的文本，会自动换行显示。"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="TailTruncation：这是一段很长很长很长很长很长很长很长很长很长很长的文本。"
+                               LineBreakMode="TailTruncation" />
+                        <Label Text="HeadTruncation：这是一段很长很长很长很长很长很长很长很长很长很长的文本。"
+                               LineBreakMode="HeadTruncation" />
+                        <Label Text="MaxLines=1：这是一段很长很长很长很长很长很长的文本。"
+                               LineBreakMode="WordWrap" MaxLines="1" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="HTML 文本 / TextType.Html"
+                                     Description="TextType=Html 时 Text 按 HTML 解析（粗体、斜体、链接等基础标签）。"
+                                     Xaml="{StaticResource LabelHtmlXaml}">
+                <controls:ControlExample.Example>
+                    <Label TextType="Html"
+                           Text="&lt;b&gt;HTML&lt;/b&gt; &lt;i&gt;content&lt;/i&gt; 与 &lt;a href='https://dotnet.microsoft.com'&gt;链接&lt;/a&gt;。" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="对齐与透明度 / Alignment &amp; opacity"
+                                     Description="HorizontalTextAlignment、VerticalTextAlignment、Opacity、Rotation 等 VisualElement 属性均适用。"
+                                     Xaml="{StaticResource LabelAutoXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="居中对齐 / Centered" HorizontalTextAlignment="Center" BackgroundColor="#EEE6FF" />
+                        <Label Text="右对齐 / Right" HorizontalTextAlignment="Right" BackgroundColor="#EEE6FF" />
+                        <Label Text="半透明 / 50% opacity" Opacity="0.5" BackgroundColor="#EEE6FF" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.ScrollViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="ScrollBasicXaml">&lt;ScrollView&gt;
+    &lt;VerticalStackLayout&gt; ...很长的内容... &lt;/VerticalStackLayout&gt;
+&lt;/ScrollView&gt;</x:String>
+        <x:String x:Key="ScrollOrientXaml">&lt;ScrollView Orientation="Both"&gt;
+    &lt;Grid WidthRequest="800" HeightRequest="400" /&gt;
+&lt;/ScrollView&gt;</x:String>
+        <x:String x:Key="ScrollToXaml">&lt;await ScrollView.ScrollToAsync(0, 300, animated: true);&gt;
+&lt;await ScrollView.ScrollToAsync(element, position, animated: true);&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="基础滚动 / Basic ScrollView"
+                                     Description="ScrollView 为单个内容提供滚动区域（内容通常为布局）。Orientation=Vertical/Horizontal/Both 控制方向。"
+                                     Xaml="{StaticResource ScrollBasicXaml}">
+                <controls:ControlExample.Example>
+                    <ScrollView HeightRequest="180" BackgroundColor="#F4F4F7">
+                        <VerticalStackLayout Padding="12" Spacing="6">
+                            <Label Text="第 1 行" /><Label Text="第 2 行" /><Label Text="第 3 行" />
+                            <Label Text="第 4 行" /><Label Text="第 5 行" /><Label Text="第 6 行" />
+                            <Label Text="第 7 行" /><Label Text="第 8 行" /><Label Text="第 9 行" />
+                            <Label Text="第 10 行" /><Label Text="第 11 行" /><Label Text="第 12 行" />
+                            <Label Text="第 13 行" /><Label Text="第 14 行" /><Label Text="第 15 行" />
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="双向滚动 / Both orientations"
+                                     Description="Orientation=Both 同时允许横向与纵向滚动（内容应大于视口）。"
+                                     Xaml="{StaticResource ScrollOrientXaml}">
+                <controls:ControlExample.Example>
+                    <ScrollView Orientation="Both" HeightRequest="150" BackgroundColor="#F4F4F7">
+                        <Grid WidthRequest="700" HeightRequest="300" BackgroundColor="#DFD8F7">
+                            <Label Text="700 × 300 的内容：横竖都可以滚动"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Grid>
+                    </ScrollView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ScrollToAsync / 程序滚动"
+                                     Description="ScrollToAsync(x, y) 或 ScrollToAsync(element, position) 以编程方式滚动，支持动画。"
+                                     Xaml="{StaticResource ScrollToXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="滚到底部 / Bottom" Clicked="OnScrollBottom" FontSize="12" />
+                            <Button Text="回到顶部 / Top" Clicked="OnScrollTop" FontSize="12" />
+                        </HorizontalStackLayout>
+                        <ScrollView x:Name="DemoScroll" HeightRequest="140" BackgroundColor="#F4F4F7">
+                            <VerticalStackLayout Padding="12" Spacing="6">
+                                <Label Text="内容 A" /><Label Text="内容 B" /><Label Text="内容 C" />
+                                <Label Text="内容 D" /><Label Text="内容 E" /><Label Text="内容 F" />
+                                <Label x:Name="BottomTarget" Text="🎯 底部 / Bottom" />
+                            </VerticalStackLayout>
+                        </ScrollView>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

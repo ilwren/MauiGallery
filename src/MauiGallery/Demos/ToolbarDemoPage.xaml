@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGallery.Demos.ToolbarDemoPage"
+             Title="工具栏演示">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="保存" Clicked="OnSave" Order="Primary" />
+        <ToolbarItem Text="分享" Clicked="OnShare" Order="Primary" />
+        <ToolbarItem Text="更多…" Clicked="OnMore" Order="Secondary" />
+        <ToolbarItem Text="删除" Clicked="OnDelete" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="ToolbarItem 演示" FontFamily="OpenSansSemibold" FontSize="22" />
+            <Label Text="页面顶部（或底部）工具栏上的按钮来自 ToolbarItem 集合：Order=Primary 显示在工具栏，Order=Secondary 放入溢出菜单。" />
+            <Label x:Name="Output" Text="点击工具栏按钮试试" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

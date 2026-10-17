@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HybridWebView Demo</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 16px; background: #f4f4f7; }
+        h2 { color: #512bd4; margin: 0 0 8px; }
+        button { background: #512bd4; color: white; border: 0; border-radius: 8px; padding: 10px 14px; margin: 4px 4px 4px 0; }
+        #log { background: white; border-radius: 8px; padding: 10px; margin-top: 10px; min-height: 60px; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <h2>HybridWebView</h2>
+    <p>本地 HTML/JS 与 C# 双向通信 / JS ⇄ C# interop</p>
+    <button onclick="sendToCsharp()">发送消息到 C# / Send to C#</button>
+    <button onclick="invokeCsharp()">调用 C# 方法 / Invoke .NET</button>
+    <button onclick="askCsharpValue()">获取 C# 返回值 / Get value</button>
+    <div id="log">日志 / Log…</div>
+    <script src="script.js"></script>
+</body>
+</html>

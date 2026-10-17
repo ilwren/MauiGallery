@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Layouts.ContentViewSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="CvBasicXaml">&lt;ContentView&gt;
+    &lt;Label Text="ContentView 包裹任意内容" /&gt;
+&lt;/ContentView&gt;</x:String>
+        <x:String x:Key="CvTemplateXaml">&lt;TemplatedView&gt;
+    &lt;TemplatedView.ControlTemplate&gt;
+        &lt;ControlTemplate&gt;
+            &lt;Border&gt;
+                &lt;Grid ColumnDefinitions="Auto,*"&gt;
+                    &lt;ContentPresenter /&gt;
+                &lt;/Grid&gt;
+            &lt;/Border&gt;
+        &lt;/ControlTemplate&gt;
+    &lt;/TemplatedView.ControlTemplate&gt;
+    &lt;Label Text="被模板包裹的内容" /&gt;
+&lt;/TemplatedView&gt;</x:String>
+        <x:String x:Key="CvBindingXaml">&lt;!-- TemplateBinding 在 ControlTemplate 内绑定宿主属性 --&gt;
+&lt;Label Text="{TemplateBinding Title}" /&gt;</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="ContentView / 基本容器"
+                                     Description="ContentView 是最简单的容器（只有 Content 属性），常作为自定义控件/UserControl 的基类。"
+                                     Xaml="{StaticResource CvBasicXaml}">
+                <controls:ControlExample.Example>
+                    <ContentView BackgroundColor="#F4F4F7" Padding="16">
+                        <Label Text="ContentView 包裹任意内容 / wraps any content" />
+                    </ContentView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="ControlTemplate + ContentPresenter / 控件模板"
+                                     Description="TemplatedView/ControlTemplate 定义可复用外观；ContentPresenter 是模板中内容的占位符。"
+                                     Xaml="{StaticResource CvTemplateXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="10">
+                        <TemplatedView>
+                            <TemplatedView.ControlTemplate>
+                                <ControlTemplate>
+                                    <Border BackgroundColor="#EEE6FF" Padding="16">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                            <Label Text="🎨" FontSize="24" VerticalOptions="Center" />
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </TemplatedView.ControlTemplate>
+                            <VerticalStackLayout>
+                                <Label Text="模板化卡片 / Templated card" FontFamily="OpenSansSemibold" />
+                                <Label Text="ContentPresenter 放置的内容" FontSize="12" />
+                            </VerticalStackLayout>
+                        </TemplatedView>
+
+                        <TemplatedView>
+                            <TemplatedView.ControlTemplate>
+                                <ControlTemplate>
+                                    <Border BackgroundColor="#FCE4EC" Padding="16">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12" />
+                                        </Border.StrokeShape>
+                                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                            <Label Text="💡" FontSize="24" VerticalOptions="Center" />
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </TemplatedView.ControlTemplate>
+                            <Label Text="同一模板、不同内容 / Same template, different content" />
+                        </TemplatedView>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="TemplateBinding / 模板绑定"
+                                     Description="TemplateBinding 在 ControlTemplate 内引用宿主属性（轻量级单向绑定）。"
+                                     Xaml="{StaticResource CvBindingXaml}">
+                <controls:ControlExample.Example>
+                    <TemplatedView>
+                        <TemplatedView.ControlTemplate>
+                            <ControlTemplate>
+                                <Border Padding="16">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12" />
+                                    </Border.StrokeShape>
+                                    <VerticalStackLayout Spacing="6">
+                                        <Label Text="{TemplateBinding BackgroundColor}" FontSize="12" />
+                                        <Label Text="（模板内通过 TemplateBinding 读取宿主属性）" FontSize="12" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </ControlTemplate>
+                        </TemplatedView.ControlTemplate>
+                    </TemplatedView>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
