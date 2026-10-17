@@ -23,7 +23,7 @@ public sealed class AlternatingTemplateSelector : DataTemplateSelector
 	{
 		var template = _index % 2 == 0 ? EvenTemplate : OddTemplate;
 		_index++;
-		return template ?? base.OnSelectTemplate(item, container);
+		return template ?? new DataTemplate();
 	}
 }
 

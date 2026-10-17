@@ -8,10 +8,10 @@ public partial class WindowSample : ContentView
 
 		if (Application.Current?.Windows.FirstOrDefault() is { } window)
 		{
-			window.Activated += (_, _) => LifecycleOutput.Text = $"Activated @ {DateTime.Now:HH:mm:ss}";
-			window.Deactivated += (_, _) => LifecycleOutput.Text = $"Deactivated @ {DateTime.Now:HH:mm:ss}";
-			window.Stopped += (_, _) => LifecycleOutput.Text = $"Stopped @ {DateTime.Now:HH:mm:ss}";
-			window.Resumed += (_, _) => LifecycleOutput.Text = $"Resumed @ {DateTime.Now:HH:mm:ss}";
+			window.Activated += (_, _) => LifecycleOutput.Text = $"Activated @ {System.DateTime.Now:HH:mm:ss}";
+			window.Deactivated += (_, _) => LifecycleOutput.Text = $"Deactivated @ {System.DateTime.Now:HH:mm:ss}";
+			window.Stopped += (_, _) => LifecycleOutput.Text = $"Stopped @ {System.DateTime.Now:HH:mm:ss}";
+			window.Resumed += (_, _) => LifecycleOutput.Text = $"Resumed @ {System.DateTime.Now:HH:mm:ss}";
 		}
 	}
 

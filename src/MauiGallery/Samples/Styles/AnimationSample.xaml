@@ -6,12 +6,12 @@
 
     <ContentView.Resources>
         <x:String x:Key="AnimExtXaml">// 视图扩展动画（ViewExtensions）
-await box.FadeTo(0.5, 500, Easing.SinInOut);
-await box.ScaleTo(1.5, 300);
-await box.TranslateTo(80, 40, 400);
-await box.RotateTo(180, 500);
-await box.RelRotateTo(90, 300);
-await box.LayoutTo(new Rect(0, 0, 200, 100), 400);
+await box.FadeToAsync(0.5, 500, Easing.SinInOut);
+await box.ScaleToAsync(1.5, 300);
+await box.TranslateToAsync(80, 40, 400);
+await box.RotateToAsync(180, 500);
+await box.RelRotateToAsync(90, 300);
+await box.LayoutToAsync(new Rect(0, 0, 200, 100), 400);
 
 // 取消全部动画
 box.CancelAnimations();           // ViewExtensions.CancelAnimations(VisualElement)

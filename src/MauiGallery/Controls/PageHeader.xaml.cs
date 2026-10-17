@@ -13,6 +13,6 @@ public partial class PageHeader : ContentView
 	private async void OnDocLinkClicked(object? sender, EventArgs e)
 	{
 		if (sender is Button { BindingContext: ControlInfoDocLink link } && Uri.TryCreate(link.Uri, UriKind.Absolute, out var uri))
-			await Browser.OpenAsync(uri, BrowserLaunchMode.SystemBrowser);
+			await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
 	}
 }

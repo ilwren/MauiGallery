@@ -17,7 +17,7 @@ public partial class RefreshViewSample : ContentView
 	{
 		await Task.Delay(1200);
 		_refreshCount++;
-		RefreshContent.Children.Insert(0, new Label { Text = $"✨ 刷新于 {DateTime.Now:HH:mm:ss}" });
+		RefreshContent.Children.Insert(0, new Label { Text = $"✨ 刷新于 {System.DateTime.Now:HH:mm:ss}" });
 		DemoRefresh.IsRefreshing = false;
 	}
 

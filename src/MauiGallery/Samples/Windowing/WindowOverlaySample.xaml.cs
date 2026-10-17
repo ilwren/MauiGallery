@@ -49,7 +49,7 @@ internal sealed class WatermarkElement : IWindowOverlayElement
 	{
 		canvas.FontColor = Colors.Gray;
 		canvas.FontSize = 11;
-		var text = $"MAUI Gallery · {DateTime.Now:HH:mm:ss}";
+		var text = $"MAUI Gallery · {System.DateTime.Now:HH:mm:ss}";
 		canvas.DrawString(text, dirtyRect.Right - 190, dirtyRect.Top + 8, 180, 20,
 			HorizontalAlignment.Right, VerticalAlignment.Top);
 	}

@@ -12,25 +12,25 @@ public partial class AnimationSample : ContentView
 	// ---- ViewExtensions ----
 	private async void OnFade(object? sender, EventArgs e)
 	{
-		await AnimBox.FadeTo(0.2, 400, Easing.SinInOut);
-		await AnimBox.FadeTo(1, 400, Easing.SinInOut);
+		await AnimBox.FadeToAsync(0.2, 400, Easing.SinInOut);
+		await AnimBox.FadeToAsync(1, 400, Easing.SinInOut);
 	}
 
 	private async void OnScale(object? sender, EventArgs e)
 	{
-		await AnimBox.ScaleTo(1.5, 300, Easing.CubicOut);
-		await AnimBox.ScaleTo(1, 300, Easing.CubicIn);
+		await AnimBox.ScaleToAsync(1.5, 300, Easing.CubicOut);
+		await AnimBox.ScaleToAsync(1, 300, Easing.CubicIn);
 	}
 
 	private async void OnTranslate(object? sender, EventArgs e)
 	{
-		await AnimBox.TranslateTo(60, 20, 350, Easing.CubicInOut);
-		await AnimBox.TranslateTo(0, 0, 350, Easing.CubicInOut);
+		await AnimBox.TranslateToAsync(60, 20, 350, Easing.CubicInOut);
+		await AnimBox.TranslateToAsync(0, 0, 350, Easing.CubicInOut);
 	}
 
 	private async void OnRotate(object? sender, EventArgs e)
 	{
-		await AnimBox.RotateTo(AnimBox.Rotation + 360, 700, Easing.CubicOut);
+		await AnimBox.RotateToAsync(AnimBox.Rotation + 360, 700, Easing.CubicOut);
 	}
 
 	private void OnReset(object? sender, EventArgs e)
@@ -76,7 +76,7 @@ public partial class AnimationSample : ContentView
 	private async Task RunEase(Easing easing)
 	{
 		EaseBox.TranslationX = 0;
-		await EaseBox.TranslateTo(220, 0, 900, easing);
-		await EaseBox.TranslateTo(0, 0, 300, Easing.Linear);
+		await EaseBox.TranslateToAsync(220, 0, 900, easing);
+		await EaseBox.TranslateToAsync(0, 0, 300, Easing.Linear);
 	}
 }

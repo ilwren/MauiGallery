@@ -21,7 +21,7 @@ public partial class ListViewSample : ContentView
 
 	private void OnRefresh()
 	{
-		RefreshListView.ItemsSource = SampleData.CreateItems(6).Select(i => i with { Detail = $"已刷新 {DateTime.Now:HH:mm:ss}" }).ToList();
+		RefreshListView.ItemsSource = SampleData.CreateItems(6).Select(i => i with { Detail = $"已刷新 {System.DateTime.Now:HH:mm:ss}" }).ToList();
 		RefreshListView.IsRefreshing = false;
 	}
 }
