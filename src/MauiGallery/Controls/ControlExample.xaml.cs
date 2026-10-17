@@ -6,9 +6,12 @@ namespace MauiGallery.Controls;
 /// Hosts one live control example together with its XAML / C# source, modeled on the
 /// <c>ControlExample</c> control used by the WinUI 3 Gallery.
 /// </summary>
-[ContentProperty(nameof(Example))]
 public partial class ControlExample : ContentView
 {
+	private View? _pendingExample;
+	private View? _pendingOutput;
+	private View? _pendingOptions;
+
 	public static readonly BindableProperty TitleProperty =
 		BindableProperty.Create(nameof(Title), typeof(string), typeof(ControlExample), string.Empty);
 
@@ -36,6 +39,8 @@ public partial class ControlExample : ContentView
 	public ControlExample()
 	{
 		InitializeComponent();
+		ApplyPending();
+		Loaded += (_, _) => ApplyPending();
 	}
 
 	public string Title
@@ -94,21 +99,45 @@ public partial class ControlExample : ContentView
 	private static void OnExampleChanged(BindableObject bindable, object? oldValue, object? newValue)
 	{
 		var self = (ControlExample)bindable;
-		self.ExampleHost.Content = newValue as View;
+		self._pendingExample = newValue as View;
+		self.ApplyPending();
 	}
 
 	private static void OnOutputChanged(BindableObject bindable, object? oldValue, object? newValue)
 	{
 		var self = (ControlExample)bindable;
-		self.OutputHost.Content = newValue as View;
-		self.OutputHost.IsVisible = newValue is not null;
+		self._pendingOutput = newValue as View;
+		self.ApplyPending();
 	}
 
 	private static void OnOptionsChanged(BindableObject bindable, object? oldValue, object? newValue)
 	{
 		var self = (ControlExample)bindable;
-		self.OptionsHost.Content = newValue as View;
-		self.OnPropertyChanged(nameof(HasOptions));
+		self._pendingOptions = newValue as View;
+		self.ApplyPending();
+	}
+
+	/// <summary>
+	/// Hosts are named elements inside the control's own XAML; property-changed callbacks can
+	/// fire while that XAML is still loading, so defer touching them until they exist.
+	/// </summary>
+	private void ApplyPending()
+	{
+		if (ExampleHost is null)
+			return;
+
+		ExampleHost.Content = _pendingExample;
+		if (OutputHost is not null)
+		{
+			OutputHost.Content = _pendingOutput;
+			OutputHost.IsVisible = _pendingOutput is not null;
+		}
+		if (OptionsHost is not null)
+		{
+			OptionsHost.Content = _pendingOptions;
+			OnPropertyChanged(nameof(HasOptions));
+		}
+		OnPropertyChanged(nameof(HasSource));
 	}
 
 	private static void OnTextPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)

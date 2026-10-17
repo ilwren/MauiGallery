@@ -52,7 +52,7 @@ jobs:
       - name: Build ${{ matrix.tfm }}
         shell: pwsh
         run: |
-          dotnet build src/MauiGallery/MauiGallery.csproj -f ${{ matrix.tfm }} ${{ matrix.extra }} 2>&1 | Tee-Object -FilePath build.log
+          dotnet build src/MauiGallery/MauiGallery.csproj -f ${{ matrix.tfm }} -p:TargetFrameworks=${{ matrix.tfm }} ${{ matrix.extra }} 2>&1 | Tee-Object -FilePath build.log
           exit $LASTEXITCODE
 
       - name: Report errors on PR
