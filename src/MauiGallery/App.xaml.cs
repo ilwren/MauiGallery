@@ -16,7 +16,7 @@ public partial class App : Application
 #if WINDOWS
 		window.Created += (_, _) =>
 		{
-			var dark = Application.Current?.RequestedAppTheme == AppTheme.Dark;
+			var dark = Application.Current?.RequestedTheme == AppTheme.Dark;
 			if (window.Handler?.PlatformView is Microsoft.UI.Xaml.Window nativeWindow)
 				WinUI.TitleBarHelper.ApplyTo(nativeWindow, dark);
 		};
