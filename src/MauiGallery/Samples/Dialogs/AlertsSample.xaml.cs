@@ -36,7 +36,7 @@ public partial class AlertsSample : ContentView, IControlSample
 	private async void OnPrompt(object? sender, EventArgs e)
 	{
 		if (_host is null) return;
-		var text = await _host.DisplayPrompt("重命名 / Rename", "输入新名称 / Enter a new name:",
+		var text = await _host.DisplayPromptAsync("重命名 / Rename", "输入新名称 / Enter a new name:",
 			"确定 / OK", "取消 / Cancel", "名称 / Name", 20);
 		PromptOutput.Text = text is null ? "用户取消 / Cancelled" : $"输入内容 / Input: {text}";
 	}

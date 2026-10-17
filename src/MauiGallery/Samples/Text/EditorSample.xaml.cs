@@ -9,10 +9,10 @@ public partial class EditorSample : ContentView
 	}
 
 	private void OnSpellCheckChanged(object? sender, CheckedChangedEventArgs e) =>
-		OptionEditor.IsSpellCheckEnabled = e.IsChecked;
+		OptionEditor.IsSpellCheckEnabled = e.Value;
 
 	private void OnPredictionChanged(object? sender, CheckedChangedEventArgs e) =>
-		OptionEditor.IsTextPredictionEnabled = e.IsChecked;
+		OptionEditor.IsTextPredictionEnabled = e.Value;
 
 	private void OnTextChanged(object? sender, TextChangedEventArgs e) =>
 		EditorOutput.Text = $"TextChanged: {e.NewTextValue?.Length ?? 0} 字符";

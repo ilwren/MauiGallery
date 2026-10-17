@@ -67,9 +67,13 @@ internal sealed class GradientDrawable : IDrawable
 	public void Draw(ICanvas canvas, RectF dirtyRect)
 	{
 		var gradient = new LinearGradientPaint(
-			new[] { Color.FromArgb("#512BD4"), Color.FromArgb("#D600AA") },
-			new PointF(0, 0),
-			new PointF(1, 1));
+			new PaintGradientStop[]
+			{
+				new(0f, Color.FromArgb("#512BD4")),
+				new(1f, Color.FromArgb("#D600AA")),
+			},
+			new Point(0, 0),
+			new Point(1, 1));
 
 		canvas.SetFillPaint(gradient, dirtyRect);
 		canvas.FillRectangle(dirtyRect.X, dirtyRect.Y, dirtyRect.Width, dirtyRect.Height);

@@ -11,7 +11,7 @@ public partial class SearchHandlerDemoPage : ContentPage
 
 		SearchBox.PropertyChanged += (s, e) =>
 		{
-			if (e.PropertyName == SearchSearchBox.QueryProperty.PropertyName && !string.IsNullOrEmpty(SearchBox.Query))
+			if (e.PropertyName == SearchBox.QueryProperty.PropertyName && !string.IsNullOrEmpty(SearchBox.Query))
 			{
 				var hits = _fruits.Where(f => f.Contains(SearchBox.Query, StringComparison.OrdinalIgnoreCase)).ToArray();
 				ResultLabel.Text = hits.Length > 0 ? "结果 / Results: " + string.Join(", ", hits) : "无匹配 / no matches";
