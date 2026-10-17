@@ -13,6 +13,14 @@ public partial class App : Application
 		// it (title bar, overlays, window events) on the Windowing pages.
 		var window = new Window(new AppShell());
 		window.Title = "MAUI Gallery";
+#if WINDOWS
+		window.Created += (_, _) =>
+		{
+			var dark = Application.Current?.RequestedAppTheme == AppTheme.Dark;
+			if (window.Handler?.PlatformView is Microsoft.UI.Xaml.Window nativeWindow)
+				WinUI.TitleBarHelper.ApplyTo(nativeWindow, dark);
+		};
+#endif
 		return window;
 	}
 }

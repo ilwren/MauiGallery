@@ -5,10 +5,10 @@
 
     <!-- MAUI purple brand palette (same family as the .NET MAUI default template) -->
     <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="PrimaryDark">#D600AA</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
+    <Color x:Key="PrimaryDark">#8A6BF7</Color>
+    <Color x:Key="PrimaryDarkText">#FFFFFF</Color>
+    <Color x:Key="Secondary">#E8E2FB</Color>
+    <Color x:Key="SecondaryDarkText">#B4A2F5</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
 
     <Color x:Key="White">White</Color>
@@ -26,8 +26,18 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
-    <Color x:Key="CardBackgroundLight">#FDFDFD</Color>
-    <Color x:Key="CardBackgroundDark">#2A2A2E</Color>
+    <Color x:Key="PageBackgroundLight">#F4F4F8</Color>
+    <Color x:Key="PageBackgroundDark">#17171C</Color>
+    <Color x:Key="NavBackgroundLight">#FFFFFF</Color>
+    <Color x:Key="NavBackgroundDark">#1F1F24</Color>
+    <Color x:Key="CardBorderLight">#E4E4EC</Color>
+    <Color x:Key="CardBorderDark">#35353E</Color>
+    <Color x:Key="FlyoutBackgroundLight">#FFFFFF</Color>
+    <Color x:Key="FlyoutBackgroundDark">#232329</Color>
+    <Color x:Key="AccentSoftLight">#EEE8FF</Color>
+    <Color x:Key="AccentSoftDark">#2E2650</Color>
+    <Color x:Key="CardBackgroundLight">#FFFFFF</Color>
+    <Color x:Key="CardBackgroundDark">#232329</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
