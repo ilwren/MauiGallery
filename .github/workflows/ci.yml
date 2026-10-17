@@ -31,11 +31,11 @@ jobs:
           - os: windows-latest
             tfm: net10.0-windows10.0.19041.0
             workload: maui-windows
-          - os: macos-latest
+          - os: xcode-27
             tfm: net10.0-ios
             workload: maui-ios
             extra: -p:RuntimeIdentifier=iossimulator-arm64
-          - os: macos-latest
+          - os: xcode-27
             tfm: net10.0-maccatalyst
             workload: maui-maccatalyst
     steps:
