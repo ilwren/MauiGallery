@@ -196,7 +196,7 @@
                     <VerticalStackLayout Spacing="8">
                         <CollectionView x:Name="ReorderCV" HeightRequest="180" CanReorderItems="True">
                             <CollectionView.ItemsLayout>
-                                <LinearItemsLayout ItemSpacing="4" />
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="4" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>

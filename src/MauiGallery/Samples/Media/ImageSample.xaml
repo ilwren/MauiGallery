@@ -79,14 +79,14 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
-            <controls:ControlExample Title="事件与加载 / Loading"
-                                     Description="LoadingCompleted/LoadingFailed 报告加载结果；UriImageSource 支持 CachingEnabled 与 CacheValidity 缓存控制。"
-                                     Xaml="{StaticResource ImageUriXaml}">
+            <controls:ControlExample Title="运行时切换源 / Switching source"
+                                     Description="Image.Source 可在运行时更换（UriImageSource/FileImageSource）。.NET 10 的 Image 不再公开加载事件，加载缓存由 ImageSource 管理。"
+                                     Xaml="&lt;Image x:Name=&quot;EventImage&quot;&#x0a;       Source=&quot;dotnet_bot.png&quot; /&gt;&#x0a;// 代码中：EventImage.Source = &quot;https://.../image.png&quot;;">
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="8">
                         <Image x:Name="EventImage" Source="dotnet_bot.png" HeightRequest="100" WidthRequest="100"
-                               LoadingStarted="OnLoadingStarted" LoadingCompleted="OnLoadingCompleted" LoadingFailed="OnLoadingFailed"
                                HorizontalOptions="Start" BackgroundColor="#F4F4F7" />
+                        <Button Text="切换源 / Swap source" Clicked="OnSwapSource" HorizontalOptions="Start" />
                         <Label x:Name="ImageOutput" Text="—" FontSize="12" />
                     </VerticalStackLayout>
                 </controls:ControlExample.Example>

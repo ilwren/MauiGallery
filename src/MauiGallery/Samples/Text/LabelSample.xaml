@@ -105,7 +105,7 @@
                 <controls:ControlExample.Example>
                     <VerticalStackLayout Spacing="6">
                         <Label Text="居中对齐 / Centered" HorizontalTextAlignment="Center" BackgroundColor="#EEE6FF" />
-                        <Label Text="右对齐 / Right" HorizontalTextAlignment="Right" BackgroundColor="#EEE6FF" />
+                        <Label Text="右对齐 / Right" HorizontalTextAlignment="End" BackgroundColor="#EEE6FF" />
                         <Label Text="半透明 / 50% opacity" Opacity="0.5" BackgroundColor="#EEE6FF" />
                     </VerticalStackLayout>
                 </controls:ControlExample.Example>
