@@ -126,6 +126,14 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="DeviceStateTrigger / OrientationStateTrigger"
+                                     Description="DeviceStateTrigger 依平台类名（如 DeviceInfo.Idiom == Desktop）激活；OrientationStateTrigger 依设备方向（Portrait/Landscape）激活。"
+                                     Xaml="&lt;Style TargetType=&quot;Label&quot;&gt;&#x0a;    &lt;Setter Property=&quot;VisualStateManager.VisualStateGroups&quot;&gt;&#x0a;        &lt;VisualStateGroupList&gt;&#x0a;            &lt;VisualStateGroup&gt;&#x0a;                &lt;VisualState x:Name=&quot;Portrait&quot;&gt;&#x0a;                    &lt;VisualState.StateTriggers&gt;&#x0a;                        &lt;OrientationStateTrigger Orientation=&quot;Portrait&quot; /&gt;&#x0a;                    &lt;/VisualState.StateTriggers&gt;&#x0a;                    &lt;VisualState.Setters&gt; ... &lt;/VisualState.Setters&gt;&#x0a;                &lt;/VisualState&gt;&#x0a;            &lt;/VisualStateGroup&gt;&#x0a;        &lt;/VisualStateGroupList&gt;&#x0a;    &lt;/Setter&gt;&#x0a;&lt;/Style&gt;">
+                <controls:ControlExample.Example>
+                    <Label Text="旋转设备查看方向触发器效果 / rotate the device to see OrientationStateTrigger.&#x0a;Desktop 设备上 DeviceStateTrigger(Desktop) 恒为激活。"
+                           FontSize="12" />
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

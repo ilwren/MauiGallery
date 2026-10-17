@@ -59,8 +59,8 @@ CATEGORIES = [
     ("dialogs", "对话框与浮层 / Dialogs & flyouts", "弹窗、操作表与工具提示",
      "模态交互：DisplayAlert、DisplayActionSheet、DisplayPrompt、ToolTipProperties。"),
     ("gestures", "手势与输入 / Gestures & input", "手势识别与拖放",
-     "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，以及拖放（Drag/Drop）与指针（Pointer）手势。"),
-    ("styles", "样式与模板 / Styles & templates", "样式、触发器、状态与模板",
+     "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。"),
+    ("styles", "样式与模板 / Styles & templates", "样式、动画、行为、触发器与模板",
      "外观与结构复用：Style、VisualStateManager、触发器（Trigger/DataTrigger/EventTrigger/MultiTrigger/StateTrigger）、AppThemeBinding、Shadow/Clip/Transform、DataTemplate/ControlTemplate、CSS 样式表。"),
     ("accessibility", "辅助功能 / Accessibility", "语义与自动化属性",
      "无障碍支持：SemanticProperties、AutomationProperties。"),
@@ -307,6 +307,10 @@ SAMPLES = [
      "DragGestureRecognizer 启动拖放（CanDrag、DragStarting），DropGestureRecognizer 接收放置（AllowDrop、Drop、DragOver），PointerGestureRecognizer 处理指针进入/移动/离开。",
      ["DragGestureRecognizer", "DropGestureRecognizer", "PointerGestureRecognizer"], "Microsoft.Maui.Controls.DragGestureRecognizer",
      ["drag", "drop", "pointer", "mouse", "拖放", "指针"], doc("gestures/drag-and-drop"), False, False),
+    ("swipeview", "gestures", "SwipeViewSample", "SwipeView 滑动操作", "SwipeItem / SwipeItemView / 阈值",
+     "SwipeView 为内容包裹滑动操作区：LeftItems/RightItems/TopItems/BottomItems（SwipeItems）+ SwipeItem（Text/BackgroundColor/Invoked）/SwipeItemView（自定义项），Threshold 控制触发距离，SwipeBehaviorOnInvoked 控制点击后行为。",
+     ["SwipeView", "SwipeItems", "SwipeItem"], "Microsoft.Maui.Controls.SwipeView",
+     ["swipe", "swipeitem", "reveal", "滑动"], doc("user-interface/controls/swipeview"), True, False),
 
     # ------------------------------- styles ------------------------------
     ("styles", "styles", "StylesSample", "Style 样式", "显式/隐式样式与资源",
@@ -337,6 +341,14 @@ SAMPLES = [
      "DataTemplate 为数据定义视觉结构（支持 x:DataType 编译绑定），DataTemplateSelector 按数据切换模板，ControlTemplate + TemplateBinding + ContentPresenter 定义控件外观。",
      ["DataTemplate", "DataTemplateSelector", "ControlTemplate"], "Microsoft.Maui.Controls.DataTemplate",
      ["datatemplate", "selector", "controltemplate", "templatebinding", "模板"], doc("fundamentals/datatemplate"), False, False),
+    ("animation", "styles", "AnimationSample", "Animation 动画", "ViewExtensions / Animation / Easing",
+     "视图扩展动画 FadeTo/ScaleTo/TranslateTo/RotateTo/RelRotateTo/LayoutTo（Task 异步、AbortAnimation 取消）；Animation 类组合子动画（Insert/WithConcurrent、Commit 循环）；Easing 缓动函数（Sin/Cubic/Bounce…）。",
+     ["Animation", "ViewExtensions", "Easing"], "Microsoft.Maui.Controls.Animation",
+     ["animation", "easing", "fade", "rotate", "动画", "缓动"], doc("user-interface/animation"), False, False),
+    ("behaviors", "styles", "BehaviorsSample", "Behavior 行为", "Behavior<T> 可复用交互逻辑",
+     "Behavior/Behavior<T> 将交互逻辑封装为可复用对象（OnAttachedTo/OnDetachingFrom 生命周期），可带 BindableProperty，通过 Behaviors 集合附加到任意视图。",
+     ["Behavior", "Behavior<T>"], "Microsoft.Maui.Controls.Behavior",
+     ["behavior", "attached", "logic", "行为"], doc("fundamentals/behaviors"), True, False),
 
     # ---------------------------- accessibility --------------------------
     ("semantics", "accessibility", "SemanticsSample", "语义与自动化 Semantics", "SemanticProperties / AutomationProperties",

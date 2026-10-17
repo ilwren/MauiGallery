@@ -95,6 +95,15 @@ public void ApplyQueryAttributes(IDictionary&lt;string, object&gt; query)
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="SearchHandler / 搜索框"
+                                     Description="Shell.SearchHandler 为 Shell 页面提供导航栏搜索（含建议列表）。点击打开实战页 / live demo page."
+                                     Xaml="&lt;Shell.SearchHandler&gt;&#x0a;    &lt;SearchHandler Placeholder=&quot;搜索…&quot;&#x0a;                   ShowsResults=&quot;True&quot;&#x0a;                   Command=&quot;{Binding SearchCommand}&quot; /&gt;&#x0a;&lt;/Shell.SearchHandler&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="打开 SearchHandler 实战页 / Open demo" Clicked="OnOpenSearchHandlerDemo" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

@@ -55,6 +55,17 @@ window.Overlays;        // IWindowOverlay 集合</x:String>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="多窗口 / Multiple windows"
+                                     Description="Application.Current.OpenWindow(new Window(page)) 在桌面平台开启多窗口；CloseWindow 关闭。移动端通常被系统忽略。"
+                                     Xaml="var window = new Window(new ContentPage { Title = &quot;New window&quot; });&#x0a;Application.Current!.OpenWindow(window);&#x0a;// Application.Current.CloseWindow(window);">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Button Text="打开新窗口 / Open window" Clicked="OnOpenWindow" />
+                        <Button Text="关闭子窗口 / Close child window" Clicked="OnCloseWindow" />
+                        <Label x:Name="WindowDemoOutput" Text="多窗口在桌面平台可用 / multi-window is desktop-only." FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

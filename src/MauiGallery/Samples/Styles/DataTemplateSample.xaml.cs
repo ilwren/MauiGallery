@@ -26,3 +26,16 @@ public sealed class AlternatingTemplateSelector : DataTemplateSelector
 		return template ?? base.OnSelectTemplate(item, container);
 	}
 }
+
+/// <summary>Combines multiple bound values into one (here: the smaller width).</summary>
+public sealed class MinValueConverter : IMultiValueConverter
+{
+	public object? Convert(object[] values, Type targetType, object? parameter, System.Globalization.CultureInfo culture)
+	{
+		var nums = values.OfType<double>().ToArray();
+		return nums.Length > 0 ? nums.Min() : 100d;
+	}
+
+	public object[] ConvertBack(object? value, Type[] targetTypes, object? parameter, System.Globalization.CultureInfo culture)
+		=> throw new NotSupportedException();
+}

@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MauiGallery.Controls"
+             xmlns:local="clr-namespace:MauiGallery.Samples.Styles"
              x:Class="MauiGallery.Samples.Styles.TriggerSample">
 
     <ContentView.Resources>
@@ -102,6 +103,22 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="EventTrigger / 事件触发器"
+                                     Description="EventTrigger 监听任意事件（如 Focused），执行自定义 TriggerAction&lt;T&gt;（如下面的 ShakeAction）。"
+                                     Xaml="&lt;EventTrigger Event=&quot;Focused&quot;&gt;&#x0a;    &lt;local:ShakeAction /&gt;&#x0a;&lt;/EventTrigger&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Entry x:Name="ShakeEntry" Placeholder="聚焦我试试 / tap to focus">
+                            <Entry.Triggers>
+                                <EventTrigger Event="Focused">
+                                    <local:ShakeAction />
+                                </EventTrigger>
+                            </Entry.Triggers>
+                        </Entry>
+                        <Label Text="TriggerAction&lt;VisualElement&gt; 自定义动画行为 / custom trigger action." FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

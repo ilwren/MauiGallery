@@ -1381,7 +1381,7 @@
       "uniqueId": "gestures",
       "title": "手势与输入 / Gestures & input",
       "subtitle": "手势识别与拖放",
-      "description": "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，以及拖放（Drag/Drop）与指针（Pointer）手势。",
+      "description": "交互手势：Tap、Click、Swipe、Pan、Pinch 手势识别器，SwipeView 滑动操作，以及拖放（Drag/Drop）与指针（Pointer）手势。",
       "items": [
         {
           "uniqueId": "gestures",
@@ -1438,13 +1438,39 @@
             "拖放",
             "指针"
           ]
+        },
+        {
+          "uniqueId": "swipeview",
+          "title": "SwipeView 滑动操作",
+          "subtitle": "SwipeItem / SwipeItemView / 阈值",
+          "description": "SwipeView 为内容包裹滑动操作区：LeftItems/RightItems/TopItems/BottomItems（SwipeItems）+ SwipeItem（Text/BackgroundColor/Invoked）/SwipeItemView（自定义项），Threshold 控制触发距离，SwipeBehaviorOnInvoked 控制点击后行为。",
+          "apiNamespace": "Microsoft.Maui.Controls.SwipeView",
+          "baseClasses": [
+            "SwipeView",
+            "SwipeItems",
+            "SwipeItem"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/controls/swipeview"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "swipe",
+            "swipeitem",
+            "reveal",
+            "滑动"
+          ]
         }
       ]
     },
     {
       "uniqueId": "styles",
       "title": "样式与模板 / Styles & templates",
-      "subtitle": "样式、触发器、状态与模板",
+      "subtitle": "样式、动画、行为、触发器与模板",
       "description": "外观与结构复用：Style、VisualStateManager、触发器（Trigger/DataTrigger/EventTrigger/MultiTrigger/StateTrigger）、AppThemeBinding、Shadow/Clip/Transform、DataTemplate/ControlTemplate、CSS 样式表。",
       "items": [
         {
@@ -1640,6 +1666,59 @@
             "controltemplate",
             "templatebinding",
             "模板"
+          ]
+        },
+        {
+          "uniqueId": "animation",
+          "title": "Animation 动画",
+          "subtitle": "ViewExtensions / Animation / Easing",
+          "description": "视图扩展动画 FadeTo/ScaleTo/TranslateTo/RotateTo/RelRotateTo/LayoutTo（Task 异步、AbortAnimation 取消）；Animation 类组合子动画（Insert/WithConcurrent、Commit 循环）；Easing 缓动函数（Sin/Cubic/Bounce…）。",
+          "apiNamespace": "Microsoft.Maui.Controls.Animation",
+          "baseClasses": [
+            "Animation",
+            "ViewExtensions",
+            "Easing"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/user-interface/animation"
+            }
+          ],
+          "isNew": false,
+          "isLegacy": false,
+          "tags": [
+            "animation",
+            "easing",
+            "fade",
+            "rotate",
+            "动画",
+            "缓动"
+          ]
+        },
+        {
+          "uniqueId": "behaviors",
+          "title": "Behavior 行为",
+          "subtitle": "Behavior<T> 可复用交互逻辑",
+          "description": "Behavior/Behavior<T> 将交互逻辑封装为可复用对象（OnAttachedTo/OnDetachingFrom 生命周期），可带 BindableProperty，通过 Behaviors 集合附加到任意视图。",
+          "apiNamespace": "Microsoft.Maui.Controls.Behavior",
+          "baseClasses": [
+            "Behavior",
+            "Behavior<T>"
+          ],
+          "docs": [
+            {
+              "title": "官方文档 / Docs",
+              "uri": "https://learn.microsoft.com/dotnet/maui/user-interface/controls/fundamentals/behaviors"
+            }
+          ],
+          "isNew": true,
+          "isLegacy": false,
+          "tags": [
+            "behavior",
+            "attached",
+            "logic",
+            "行为"
           ]
         }
       ]

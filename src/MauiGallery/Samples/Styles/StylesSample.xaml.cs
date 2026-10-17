@@ -6,4 +6,11 @@ public partial class StylesSample : ContentView
 	{
 		InitializeComponent();
 	}
+
+	private void OnApplyCss(object? sender, EventArgs e)
+	{
+		var sheet = Microsoft.Maui.Controls.StyleSheets.StyleSheet.FromString("label { color: #D600AA; font-style: italic; }");
+		Resources.Add(sheet);
+		CssTarget.Text = "已套用 CSS（斜体紫色）/ CSS applied";
+	}
 }

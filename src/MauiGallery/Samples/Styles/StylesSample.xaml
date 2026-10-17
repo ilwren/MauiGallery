@@ -90,6 +90,16 @@ this.Resources.Add(StyleSheet.FromFile("styles.css"));</x:String>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="CSS / 级联样式表"
+                                     Description="应用级或页面级 CSS（Resources/Styles.css 或嵌入资源），以及运行时 StyleSheet.FromString 动态追加。支持元素/类/ID 选择器。"
+                                     Xaml="&lt;ResourceDictionary&gt;&#x0a;    &lt;StyleSheet&gt;&#x0a;        &lt;StyleSheetSource Source=&quot;styles.css&quot; Assembly=&quot;{x:Static ...}&quot; /&gt;&#x0a;    &lt;/StyleSheet&gt;&#x0a;&lt;/ResourceDictionary&gt;&#x0a;&#x0a;// 或运行时：&#x0a;this.Resources.Add(StyleSheet.FromString(&quot;.promo { color: red; }&quot;));">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label x:Name="CssTarget" Text="这个标签将套用 CSS / this label gets CSS" />
+                        <Button Text="应用 CSS / Apply StyleSheet" Clicked="OnApplyCss" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

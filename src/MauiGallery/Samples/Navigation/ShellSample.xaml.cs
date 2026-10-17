@@ -18,4 +18,7 @@ public partial class ShellSample : ContentView
 
 	private async void OnGoButton(object? sender, EventArgs e) =>
 		await Shell.Current.GoToAsync("controlinfo?id=button");
+
+	private async void OnOpenSearchHandlerDemo(object? sender, EventArgs e) =>
+		await Shell.Current.GoToAsync("demo-searchhandler");
 }

@@ -110,6 +110,25 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="ClickGestureRecognizer / 点击手势（辅助功能）"
+                                     Description="ClickGestureRecognizer 提供跨平台的点击语义（支持键盘/开关设备访问），单击次数由 NumberOfClicksRequired 指定。"
+                                     Xaml="&lt;Label Text=&quot;点我 / click me&quot;&gt;&#x0a;    &lt;Label.GestureRecognizers&gt;&#x0a;        &lt;ClickGestureRecognizer Clicked=&quot;OnClickGesture&quot;&#x0a;                                NumberOfClicksRequired=&quot;1&quot; /&gt;&#x0a;    &lt;/Label.GestureRecognizers&gt;&#x0a;&lt;/Label&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#EEE6FF" Padding="16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="ClickGestureRecognizer / 点击（可访问）">
+                                <Label.GestureRecognizers>
+                                    <ClickGestureRecognizer Clicked="OnClickGesture" NumberOfClicksRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Border>
+                        <Label x:Name="ClickGestureOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

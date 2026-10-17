@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiGallery.Controls"
+             x:Class="MauiGallery.Samples.Styles.AnimationSample">
+
+    <ContentView.Resources>
+        <x:String x:Key="AnimExtXaml">// 视图扩展动画（ViewExtensions）
+await box.FadeTo(0.5, 500, Easing.SinInOut);
+await box.ScaleTo(1.5, 300);
+await box.TranslateTo(80, 40, 400);
+await box.RotateTo(180, 500);
+await box.RelRotateTo(90, 300);
+await box.LayoutTo(new Rect(0, 0, 200, 100), 400);
+
+// 取消全部动画
+box.AbortAnimation();  /  this.CancelAnimations(box);</x:String>
+        <x:String x:Key="AnimClassXaml">// Animation 类：组合与并行
+var animation = new Animation(v =&gt; box.Rotation = v, 0, 360, Easing.CubicOut);
+animation.Insert(0.5, 1.0, new Animation(v =&gt; box.Scale = v, 1, 0.5));
+animation.WithConcurrent(v =&gt; box.Opacity = v, 1, 0.2);
+animation.Commit(this, "Spin", 16, 2000, Easing.Linear,
+                 repeat: () =&gt; _loop);</x:String>
+        <x:String x:Key="AnimEasingXaml">// Easing 缓动函数
+Easing.Linear / Easing.SinIn / Easing.SinOut / Easing.SinInOut
+Easing.CubicIn / Easing.CubicOut / Easing.CubicInOut
+Easing.BounceIn / Easing.BounceOut
+Easing.CubicInOut / Easing.QuadIn ...
+// 自定义：new Easing(t =&gt; t * t * t);</x:String>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="4,0" Spacing="4">
+
+            <controls:ControlExample Title="视图扩展动画 / ViewExtensions"
+                                     Description="FadeTo / ScaleTo / TranslateTo / RotateTo / RelRotateTo / LayoutTo 返回 Task，可 await 链式执行；AbortAnimation 取消。"
+                                     Xaml="{StaticResource AnimExtXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="AnimBox" WidthRequest="80" HeightRequest="80" BackgroundColor="#512BD4" HorizontalOptions="Start">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Label Text="A" TextColor="White" FontSize="28" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Border>
+                        <FlexLayout Wrap="Wrap">
+                            <Button Text="Fade" Clicked="OnFade" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="Scale" Clicked="OnScale" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="Translate" Clicked="OnTranslate" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="Rotate" Clicked="OnRotate" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="全部复位 / Reset" Clicked="OnReset" FontSize="12" Margin="0,0,8,8" />
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Animation 类 / 自定义动画"
+                                     Description="Animation(callback, start, end, easing) 定义值动画；Insert/WithConcurrent 组合时序；Commit 提交到 IAnimatable（可循环）。"
+                                     Xaml="{StaticResource AnimClassXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="SpinBox" WidthRequest="70" HeightRequest="70" BackgroundColor="#D600AA" HorizontalOptions="Start">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="35" />
+                            </Border.StrokeShape>
+                            <Label Text="↻" TextColor="White" FontSize="26" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Border>
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="开始组合动画 / Commit" Clicked="OnCommitAnim" FontSize="12" />
+                            <Button Text="停止 / Abort" Clicked="OnAbortAnim" FontSize="12" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="AnimOutput" Text="—" FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+            <controls:ControlExample Title="Easing / 缓动函数"
+                                     Description="缓动函数控制动画速度曲线：Linear、Sin*、Cubic*、Quad*、Bounce* 等，也可 new Easing(t =&gt; ...) 自定义。"
+                                     Xaml="{StaticResource AnimEasingXaml}">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border x:Name="EaseBox" WidthRequest="50" HeightRequest="50" BackgroundColor="#2B0B98" HorizontalOptions="Start">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <FlexLayout Wrap="Wrap">
+                            <Button Text="Linear" Clicked="OnEaseLinear" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="SinInOut" Clicked="OnEaseSin" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="CubicOut" Clicked="OnEaseCubic" FontSize="12" Margin="0,0,8,8" />
+                            <Button Text="BounceOut" Clicked="OnEaseBounce" FontSize="12" Margin="0,0,8,8" />
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

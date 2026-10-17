@@ -101,6 +101,32 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="ArcSegment / Poly*Segment"
+                                     Description="路径几何的更多段类型：ArcSegment（椭圆弧，含 RotationAngle/IsLargeArc/SweepDirection）、PolyBezierSegment、PolyLineSegment 等。"
+                                     Xaml="&lt;Path Stroke=&quot;DarkGreen&quot; StrokeThickness=&quot;3&quot;&gt;&#x0a;    &lt;Path.Data&gt;&#x0a;        &lt;PathGeometry&gt;&#x0a;            &lt;PathFigure StartPoint=&quot;20,60&quot;&gt;&#x0a;                &lt;ArcSegment Size=&quot;40,40&quot; Point=&quot;100,60&quot;&#x0a;                            RotationAngle=&quot;45&quot; IsLargeArc=&quot;True&quot;&#x0a;                            SweepDirection=&quot;Clockwise&quot; /&gt;&#x0a;            &lt;/PathFigure&gt;&#x0a;        &lt;/PathGeometry&gt;&#x0a;    &lt;/Path.Data&gt;&#x0a;&lt;/Path&gt;">
+                <controls:ControlExample.Example>
+                    <HorizontalStackLayout Spacing="16">
+                        <Path Stroke="DarkGreen" StrokeThickness="3" WidthRequest="140" HeightRequest="100">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="20,60">
+                                        <ArcSegment Size="40,40" Point="100,60" RotationAngle="45" IsLargeArc="True" SweepDirection="Clockwise" />
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                        <Path Stroke="Purple" StrokeThickness="3" WidthRequest="140" HeightRequest="100">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="10,80">
+                                        <PolyBezierSegment Points="10,10 70,10 70,80" />
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </HorizontalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

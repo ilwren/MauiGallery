@@ -5,6 +5,7 @@ public partial class CollectionViewSample : ContentView
 	public CollectionViewSample()
 	{
 		InitializeComponent();
+		ReorderCV.ItemsSource = new List<string> { "长按拖我 / drag me", "条目 B / Item B", "条目 C / Item C", "条目 D / Item D" };
 
 		var items = SampleData.CreateItems(12);
 		ListCollectionView.ItemsSource = items;

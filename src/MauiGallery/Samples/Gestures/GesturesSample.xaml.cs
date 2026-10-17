@@ -52,4 +52,7 @@ public partial class GesturesSample : ContentView
 				break;
 		}
 	}
+
+	private void OnClickGesture(object? sender, ClickEventArgs e) =>
+		ClickGestureOutput.Text = "ClickGestureRecognizer 触发 / fired (accessible click)";
 }

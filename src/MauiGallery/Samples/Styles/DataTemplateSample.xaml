@@ -79,6 +79,16 @@ public class MyDataTemplateSelector : DataTemplateSelector
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="MultiBinding / 多值绑定"
+                                     Description="MultiBinding 组合多个绑定，经 IMultiValueConverter 汇总为单一值（如取两个值的最小值）。"
+                                     Xaml="&lt;Label&gt;&#x0a;    &lt;Label.Triggers&gt; &lt;DataTrigger ... /&gt; &lt;/Label.Triggers&gt;&#x0a;&lt;/Label&gt;&#x0a;&#x0a;var multi = new MultiBinding();&#x0a;multi.Bindings.Add(new Binding(nameof(Model.A)));&#x0a;multi.Bindings.Add(new Binding(nameof(Model.B)));&#x0a;multi.Converter = new MinValueConverter();">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="两列宽度的最小值（MinValueConverter）/ min of two bound values:" FontSize="12" />
+                        <BoxView x:Name="MultiBar" HeightRequest="16" BackgroundColor="#512BD4" WidthRequest="120" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

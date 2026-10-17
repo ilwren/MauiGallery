@@ -16,8 +16,8 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute("demo-flyout", typeof(Demos.FlyoutPageDemo));
 		Routing.RegisterRoute("demo-toolbar", typeof(Demos.ToolbarDemoPage));
 		Routing.RegisterRoute("demo-titlebar", typeof(Demos.TitleBarDemoPage));
-		Routing.RegisterRoute("demo-windowoverlay", typeof(Demos.WindowOverlayDemoPage));
 		Routing.RegisterRoute("demo-menubar", typeof(Demos.MenuBarDemoPage));
+		Routing.RegisterRoute("demo-searchhandler", typeof(Demos.SearchHandlerDemoPage));
 
 		BuildCategoryFlyout();
 	}

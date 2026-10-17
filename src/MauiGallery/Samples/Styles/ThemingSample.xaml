@@ -73,6 +73,24 @@ Application.Current.RequestedThemeChanged += ...;</x:String>
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="FlowDirection / 流向"
+                                     Description="FlowDirection（LeftToRight / RightToLeft）把控件流向改为 RTL（阿拉伯语、希伯来语等），也可用 MatchParent 跟随父级。"
+                                     Xaml="&lt;VerticalStackLayout FlowDirection=&quot;RightToLeft&quot;&gt;&#x0a;    &lt;Label Text=&quot;مرحبا بالعالم&quot; /&gt;&#x0a;&lt;/VerticalStackLayout&gt;&#x0a;&#x0a;&lt;Label Text=&quot;inherit&quot; FlowDirection=&quot;MatchParent&quot; /&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <Border Padding="12" BackgroundColor="#EEE6FF">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout FlowDirection="RightToLeft">
+                                <Label Text="مرحبا بالعالم — RTL 布局" />
+                                <Label Text="按钮也会靠右 / buttons flip too" />
+                                <Button Text="مرحبا" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

@@ -189,6 +189,27 @@
                 </controls:ControlExample.Example>
             </controls:ControlExample>
 
+            <controls:ControlExample Title="拖动排序 / Reordering"
+                                     Description="ReorderableItemsView（CollectionView 的基类）提供 CanReorderItems 长按拖动排序、CanMixGroups 跨组混排与 ReorderCompleted 事件。"
+                                     Xaml="&lt;CollectionView ItemsSource=&quot;{Binding Items}&quot;&#x0a;                  CanReorderItems=&quot;True&quot; /&gt;">
+                <controls:ControlExample.Example>
+                    <VerticalStackLayout Spacing="8">
+                        <CollectionView x:Name="ReorderCV" HeightRequest="180" CanReorderItems="True">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout ItemSpacing="4" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10" BackgroundColor="#F2F2F7">
+                                        <Label Text="{Binding .}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label Text="长按条目拖动排序 / long-press to reorder." FontSize="12" />
+                    </VerticalStackLayout>
+                </controls:ControlExample.Example>
+            </controls:ControlExample>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>
